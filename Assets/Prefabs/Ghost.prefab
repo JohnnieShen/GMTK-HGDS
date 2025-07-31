@@ -12,14 +12,10 @@ GameObject:
   - component: {fileID: 4149335058868437564}
   - component: {fileID: 5571244404726610459}
   - component: {fileID: 8222099162268165018}
-  - component: {fileID: 1171365776063370477}
   - component: {fileID: 5926560181322337046}
   - component: {fileID: 6639932304955408398}
-  - component: {fileID: 5659049951494545854}
-  - component: {fileID: 3561358669770227691}
-  - component: {fileID: 6068399148885907510}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,19 +164,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1171365776063370477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696089849162913681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fc49f2801804d444b599005c6aadfaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerName: Player
 --- !u!114 &5926560181322337046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,43 +192,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ghostLayer: 9
   transparency: 0.7
---- !u!114 &5659049951494545854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696089849162913681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b2936af804dd9447a76142b8c26104c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3561358669770227691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696089849162913681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b80d949ca3b49e2428cbe4ee83908893, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6068399148885907510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696089849162913681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d34da153c4eea47a20f268d41919b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ghostPrefab: {fileID: 1696089849162913681}
-  rewindKey: 114
-  playerLayer: 8
-  ghostLayer: 9

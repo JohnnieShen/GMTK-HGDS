@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 {
     [Header("Player Info")]
     public string playerName = "Player";
+    bool isGhost = false; // Set to true if this is a ghost player
     
     void Start()
     {
