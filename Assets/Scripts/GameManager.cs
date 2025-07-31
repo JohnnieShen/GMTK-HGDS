@@ -34,15 +34,5 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         Debug.Log("Delay finished, spawning new player now!");
         GameObject newPlayer = Instantiate(prefab, position, Quaternion.identity);
-        PlayerController playerController = newPlayer.GetComponent<PlayerController>();
-        if (playerController != null)
-        {
-            playerController.isGhost = false;
-            Debug.Log("New player spawned successfully!");
-        }
-        else
-        {
-            Debug.LogError("PlayerController not found on spawned player!");
-        }
     }
 }

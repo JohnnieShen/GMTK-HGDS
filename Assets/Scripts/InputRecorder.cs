@@ -4,22 +4,15 @@ using UnityEngine;
 public class InputRecorder : MonoBehaviour
 {
     private List<PlayerInputFrame> inputHistory = new();
-    private float timeElapsed = 0f;
     private bool isRecording = true;
     
     public bool IsRecording => isRecording;
     public List<PlayerInputFrame> InputHistory => new List<PlayerInputFrame>(inputHistory);
     public int FrameCount => inputHistory.Count;
-    
-    void Update()
-    {
-        timeElapsed += Time.deltaTime;
-    }
-    
+        
     public void StartRecording()
     {
         isRecording = true;
-        timeElapsed = 0f;
         inputHistory.Clear();
     }
     
@@ -28,17 +21,16 @@ public class InputRecorder : MonoBehaviour
         isRecording = false;
     }
     
-    public void RecordInput(float horizontal, bool jump)
+    public void RecordInput(float horizontal, bool jumpHeld)
     {
         if (isRecording)
         {
-            inputHistory.Add(new PlayerInputFrame(timeElapsed, horizontal, jump));
+            inputHistory.Add(new PlayerInputFrame(horizontal, jumpHeld));
         }
     }
     
     public void ClearHistory()
     {
         inputHistory.Clear();
-        timeElapsed = 0f;
     }
 }

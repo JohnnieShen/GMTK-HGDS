@@ -8,8 +8,7 @@ public class GhostController : MonoBehaviour
     private SpriteRenderer sr;
     private List<PlayerInputFrame> inputFrames;
     private int replayIndex = 0;
-    private float timeElapsed = 0f;
-    bool prevJumpHeld = false;
+    private bool prevJumpHeld = false;
     
     [Header("Ghost Settings")]
     public int ghostLayer = 9;
@@ -29,10 +28,34 @@ public class GhostController : MonoBehaviour
         Debug.Log($"GhostController: Ghost started on layer {ghostLayer} with transparency {transparency}");
     }
     
-    void Update()
+    // The core replay logic now runs in FixedUpdate.
+    void FixedUpdate()
     {
-        timeElapsed += Time.deltaTime;
-        ReplayInput();
+        if (inputFrames == null || replayIndex >= inputFrames.Count)
+        {
+            // Add a null check to prevent errors if destroyed before initialization.
+            if (inputFrames != null)
+            {
+                Debug.Log("GhostController → replay finished, destroying ghost");
+                Destroy(gameObject);
+            }
+            return;
+        }
+
+        // Get the current frame for this physics step.
+        PlayerInputFrame frame = inputFrames[replayIndex];
+
+        // Apply the recorded input directly to the MovementController.
+        movement.Move(frame.horizontal);
+
+        // Derive the "jumpDown" state from the change in the "jumpHeld" state.
+        bool jumpHeld = frame.jump;
+        bool jumpDown = jumpHeld && !prevJumpHeld;
+        movement.Jump(jumpDown, jumpHeld);
+        prevJumpHeld = jumpHeld;
+
+        // Advance to the next frame for the next FixedUpdate call.
+        replayIndex++;
     }
     
     public void Initialize(List<PlayerInputFrame> frames, Vector3 startPosition)
@@ -40,33 +63,8 @@ public class GhostController : MonoBehaviour
         inputFrames = new List<PlayerInputFrame>(frames);
         movement.SetPosition(startPosition);
         replayIndex = 0;
-        timeElapsed = 0f;
-        prevJumpHeld  = false;
+        prevJumpHeld = false;
         Debug.Log($"GhostController: Initialized with {frames.Count} frames at position {startPosition}");
-    }
-    
-    void ReplayInput()
-    {
-        if (inputFrames == null || replayIndex >= inputFrames.Count)
-        {
-            Debug.Log("GhostController → replay finished, destroying ghost");
-            Destroy(gameObject);
-            return;
-        }
-
-        PlayerInputFrame frame = inputFrames[replayIndex];
-
-        if (timeElapsed >= frame.time)
-        {
-            movement.Move(frame.horizontal);
-
-            bool jumpHeld = frame.jump;
-            bool jumpDown = jumpHeld && !prevJumpHeld;
-            movement.Jump(jumpDown, jumpHeld);
-            prevJumpHeld = jumpHeld;
-
-            replayIndex++;
-        }
     }
     
     void SetTransparency(float alpha)
