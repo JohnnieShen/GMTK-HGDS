@@ -3,35 +3,26 @@ using UnityEngine;
 [RequireComponent(typeof(MovementController), typeof(InputRecorder))]
 public class PlayerInputHandler : MonoBehaviour
 {
-    private MovementController movement;
-    private InputRecorder inputRecorder;
-    
+    MovementController movement;
+    InputRecorder      recorder;
+
     void Awake()
     {
-        movement = GetComponent<MovementController>();
-        inputRecorder = GetComponent<InputRecorder>();
+        movement  = GetComponent<MovementController>();
+        recorder  = GetComponent<InputRecorder>();
     }
-    
+
     void Update()
     {
-        if (!inputRecorder.IsRecording) return;
-        
-        HandleMovementInput();
-    }
-    
-    void HandleMovementInput()
-    {
+        if (!recorder.IsRecording) return;
+
         float horizontal = Input.GetAxisRaw("Horizontal");
-        bool jump = Input.GetKeyDown(KeyCode.Space);
-        
-        // Apply movement
+        bool jumpDown = Input.GetKeyDown(KeyCode.Space);
+        bool jumpHeld = Input.GetKey(KeyCode.Space);
+
         movement.Move(horizontal);
-        if (jump)
-        {
-            movement.Jump();
-        }
-        
-        // Record the input
-        inputRecorder.RecordInput(horizontal, jump);
+        movement.Jump(jumpDown, jumpHeld);
+
+        recorder.RecordInput(horizontal, jumpDown);
     }
 }

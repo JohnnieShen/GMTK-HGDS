@@ -9,6 +9,7 @@ public class GhostController : MonoBehaviour
     private List<PlayerInputFrame> inputFrames;
     private int replayIndex = 0;
     private float timeElapsed = 0f;
+    bool prevJumpHeld = false;
     
     [Header("Ghost Settings")]
     public int ghostLayer = 9;
@@ -40,6 +41,7 @@ public class GhostController : MonoBehaviour
         movement.SetPosition(startPosition);
         replayIndex = 0;
         timeElapsed = 0f;
+        prevJumpHeld  = false;
         Debug.Log($"GhostController: Initialized with {frames.Count} frames at position {startPosition}");
     }
     
@@ -47,30 +49,23 @@ public class GhostController : MonoBehaviour
     {
         if (inputFrames == null || replayIndex >= inputFrames.Count)
         {
-            // Replay finished, destroy the ghost
-            Debug.Log("GhostController: Replay finished, destroying ghost");
+            Debug.Log("GhostController → replay finished, destroying ghost");
             Destroy(gameObject);
             return;
         }
-        
+
         PlayerInputFrame frame = inputFrames[replayIndex];
-        
-        // Check if it's time to execute this frame
+
         if (timeElapsed >= frame.time)
         {
             movement.Move(frame.horizontal);
-            if (frame.jump)
-            {
-                movement.Jump();
-            }
-            
+
+            bool jumpHeld = frame.jump;
+            bool jumpDown = jumpHeld && !prevJumpHeld;
+            movement.Jump(jumpDown, jumpHeld);
+            prevJumpHeld = jumpHeld;
+
             replayIndex++;
-            
-            // Log every 60 frames to avoid spam
-            if (replayIndex % 60 == 0)
-            {
-                Debug.Log($"GhostController: Replaying frame {replayIndex}/{inputFrames.Count}");
-            }
         }
     }
     

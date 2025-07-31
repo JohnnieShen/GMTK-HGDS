@@ -3,40 +3,120 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovementController : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    public float moveSpeed = 5f;
-    public float jumpForce = 10f;
-    
-    private Rigidbody2D rb;
-    
-    public bool IsGrounded => Mathf.Abs(rb.linearVelocity.y) < 0.05f;
-    
+    [Header("Horizontal")]
+    [SerializeField] float moveSpeed      = 10f;
+    [SerializeField] float accelTime      = 0.10f;
+    [SerializeField] float airAccelTime   = 0.20f;
+
+    [Header("Jump & Gravity")]
+    [SerializeField] float jumpHeight     = 4f;
+    [SerializeField] float timeToApex     = 0.4f;
+    [SerializeField] float upGravityMult  = 1f;
+    [SerializeField] float downGravityMult= 2f;
+
+    [Header("Forgiveness")]
+    [SerializeField] float coyoteTime     = 0.10f;
+    [SerializeField] float jumpBuffer     = 0.10f;
+
+    [Header("Ground Check")]
+    [SerializeField] LayerMask groundMask;
+    [SerializeField] Vector2  groundCheckSize = new(0.8f, 0.1f);
+    [SerializeField] Vector3  groundCheckOffset = new(0f, -0.51f, 0f);
+
+    Rigidbody2D rb;
+    Vector2 velocitySmooth;
+    float  gravity;
+    float  jumpVel;
+
+    float  horizontalInput;
+    bool   jumpHeld;
+
+    float  timeSinceLeftGround;
+    float  timeSinceJumpPressed;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0f;
+
+        gravity = -(2f * jumpHeight) / (timeToApex * timeToApex);
+        jumpVel = Mathf.Abs(gravity) * timeToApex;
+
+        timeSinceJumpPressed = jumpBuffer + 1f;
+        timeSinceLeftGround  = coyoteTime + 1f;
     }
-    
-    public void Move(float horizontal)
+
+    void Update()
     {
-        rb.linearVelocity = new Vector2(horizontal * moveSpeed, rb.linearVelocity.y);
-    }
-    
-    public void Jump()
-    {
-        if (IsGrounded)
+        timeSinceJumpPressed += Time.deltaTime;
+        if (IsGrounded())
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            timeSinceLeftGround = 0;
+        }
+        else
+        {
+            timeSinceLeftGround += Time.deltaTime;
+        }
+
+        if (timeSinceJumpPressed <= jumpBuffer &&
+            timeSinceLeftGround <= coyoteTime)
+        {
+            PerformJump();
         }
     }
-    
-    public void ResetVelocity()
+
+    void FixedUpdate()
     {
-        rb.linearVelocity = Vector2.zero;
+        float targetX = horizontalInput * moveSpeed;
+        float accel   = IsGrounded() ? 1f / accelTime : 1f / airAccelTime;
+
+        float newVelX = Mathf.SmoothDamp(rb.linearVelocity.x,
+                                         targetX,
+                                         ref velocitySmooth.x,
+                                         1f / accel,
+                                         Mathf.Infinity,
+                                         Time.fixedDeltaTime);
+
+        float g = (rb.linearVelocity.y > 0f ? upGravityMult : downGravityMult) * gravity;
+        if (rb.linearVelocity.y > 0f && !jumpHeld) g *= 1.5f;
+
+        float newVelY = rb.linearVelocity.y + g * Time.fixedDeltaTime;
+
+        rb.linearVelocity = new Vector2(newVelX, newVelY);
     }
-    
-    public void SetPosition(Vector3 position)
+
+    public void Move(float horizontal) => horizontalInput = horizontal;
+
+    public void Jump(bool jumpDown, bool jumpHeld)
     {
-        transform.position = position;
-        rb.linearVelocity = Vector2.zero;
+        if (jumpDown) timeSinceJumpPressed = 0f;
+        this.jumpHeld = jumpHeld;
     }
+
+    public void ResetVelocity() => rb.linearVelocity = Vector2.zero;
+
+    public void SetPosition(Vector3 pos)
+    {
+        transform.position = pos;
+        rb.linearVelocity  = Vector2.zero;
+    }
+
+    public bool IsGrounded() =>
+        Physics2D.OverlapBox(transform.position + groundCheckOffset,
+                             groundCheckSize, 0f, groundMask);
+
+    void PerformJump()
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpVel);
+        timeSinceJumpPressed = jumpBuffer + 1f;
+    }
+
+#if UNITY_EDITOR
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position + groundCheckOffset,
+                            new Vector3(groundCheckSize.x, groundCheckSize.y, 0));
+    }
+#endif
 }
