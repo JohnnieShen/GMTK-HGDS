@@ -5,11 +5,23 @@ public class InputRecorder : MonoBehaviour
 {
     private List<PlayerInputFrame> inputHistory = new();
     private bool isRecording = true;
+
+    private Vector3 spawnPosition;
     
     public bool IsRecording => isRecording;
     public List<PlayerInputFrame> InputHistory => new List<PlayerInputFrame>(inputHistory);
     public int FrameCount => inputHistory.Count;
-        
+
+    void Awake()
+    {
+        spawnPosition = transform.position;
+    }
+
+    public Vector3 GetSpawnPosition()
+    {
+        return spawnPosition;
+    }
+
     public void StartRecording()
     {
         isRecording = true;

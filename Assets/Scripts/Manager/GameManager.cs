@@ -30,14 +30,20 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
+        if (!waitingToRespawn)
+        {
+            return;
+        }
+
+        float currentTime = TimelineManager.Instance.GetCurrentTime();
         float timelineDuration = TimelineManager.Instance.timelineDuration;
-        float previousTime = (TimelineManager.Instance.GetCurrentTime() - Time.deltaTime * TimelineManager.Instance.timelineSpeed + timelineDuration) % timelineDuration;
+        float previousTime = (currentTime - Time.deltaTime * TimelineManager.Instance.timelineSpeed + timelineDuration) % timelineDuration;
 
         // Handle timeline wraparound:
         bool crossedSpawnTime =
-            previousTime > TimelineManager.Instance.GetCurrentTime()
-                ? (selectedSpawnTime >= previousTime || selectedSpawnTime <= TimelineManager.Instance.GetCurrentTime())
-                : (selectedSpawnTime >= previousTime && selectedSpawnTime <= TimelineManager.Instance.GetCurrentTime());
+            previousTime > currentTime
+                ? (selectedSpawnTime >= previousTime || selectedSpawnTime <= currentTime)
+                : (selectedSpawnTime >= previousTime && selectedSpawnTime <= currentTime);
 
         if (crossedSpawnTime)
         {
@@ -47,7 +53,7 @@ public class GameManager : MonoBehaviour
     }
     
     // Called when R is pressed - hide the player and set up for respawn
-    public void HidePlayerAndPrepareRespawn(GameObject playerPrefab, Vector3 position)
+    public void PrepareRespawn(GameObject playerPrefab, Vector3 position)
     {
         playerToRespawn = playerPrefab;
         respawnPosition = position;
@@ -65,6 +71,18 @@ public class GameManager : MonoBehaviour
             Debug.Log($"Respawning player! Timeline time: {currentTime}, Target: {selectedSpawnTime}");
             
             GameObject newPlayer = Instantiate(playerToRespawn, respawnPosition, Quaternion.identity);
+
+            InputRecorder newRecorder = newPlayer.GetComponent<InputRecorder>();
+            if (newRecorder != null)
+            {
+                newRecorder.StartRecording();
+                Debug.Log("Input recording started for new player.");
+            }
+            else
+            {
+                Debug.LogError("Newly spawned player is missing an InputRecorder!");
+            }
+
             waitingToRespawn = false;
             playerToRespawn = null;
         }
