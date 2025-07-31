@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Rewind")]
     public GameObject playerPrefab;
-    
+
     [Header("Physics Layers")]
     public int playerLayer = 8;  // Layer for live player
     public int ghostLayer = 9;   // Layer for ghosts
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        
+
         // Record spawn position for live players
         if (!isGhost)
         {
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour
             // Set ghost to ghost layer
             gameObject.layer = ghostLayer;
         }
-        
+
         // Ghosts should start replaying immediately
         if (isGhost)
         {
@@ -114,41 +115,36 @@ public class PlayerController : MonoBehaviour
 
     void Rewind()
     {
-        // Stop recording for this player
-        isRecording = false;
-
-        // Spawn a ghost at the original spawn position
+        Debug.Log("Rewind() called!");
+        
+        // Spawn ghost (past lifetime) at spawn position, not current position
         GameObject ghost = Instantiate(gameObject, spawnPosition, Quaternion.identity);
-        Destroy(ghost.GetComponent<PlayerController>()); // remove original controller
+        Destroy(ghost.GetComponent<PlayerController>());
         PlayerController ghostController = ghost.AddComponent<PlayerController>();
         ghostController.isGhost = true;
         ghostController.inputHistory = new List<PlayerInputFrame>(inputHistory);
         ghostController.moveSpeed = moveSpeed;
         ghostController.jumpForce = jumpForce;
         ghostController.playerPrefab = playerPrefab;
-        ghostController.spawnPosition = spawnPosition; // Pass the spawn position to ghost
-        ghostController.playerLayer = playerLayer; // Pass layer settings
-        ghostController.ghostLayer = ghostLayer;
-        
-        // Make ghost slightly transparent to distinguish it
-        ghostController.sr = ghost.GetComponent<SpriteRenderer>();
-        Color ghostColor = ghostController.sr.color;
-        ghostColor.a = 0.7f;
-        ghostController.sr.color = ghostColor;
 
-        // Reset this player to start fresh at spawn position
-        transform.position = spawnPosition;
-        rb.linearVelocity = Vector2.zero;
-        timeElapsed = 0f;
-        inputHistory.Clear();
-        
-        // Start recording again
-        isRecording = true;
-        
-        // Configure physics layers to prevent collision between player and ghosts
-        ConfigurePhysicsLayers();
+        Debug.Log($"Ghost created. Now requesting delayed spawn with prefab: {playerPrefab?.name}, position: {spawnPosition}, delay: {GameManager.Instance.selectedSpawnTime}");
+
+        // Use GameManager to handle delayed spawn
+        if (playerPrefab != null)
+        {
+            GameManager.Instance.SpawnPlayerAfterDelay(playerPrefab, spawnPosition, GameManager.Instance.selectedSpawnTime);
+        }
+        else
+        {
+            Debug.LogError("playerPrefab is null! Cannot spawn new player.");
+        }
+
+        Debug.Log("Destroying current player...");
+        // Destroy this player
+        Destroy(gameObject);
     }
-    
+
+
     void ConfigurePhysicsLayers()
     {
         // Disable collision between player layer and ghost layer
