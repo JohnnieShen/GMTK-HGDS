@@ -20,15 +20,16 @@ public class InputRecorder : MonoBehaviour
     {
         isRecording = false;
     }
-    
     public void RecordInput(float horizontal, bool jumpHeld)
     {
         if (isRecording)
         {
-            inputHistory.Add(new PlayerInputFrame(horizontal, jumpHeld));
+            float time = TimelineManager.Instance.GetCurrentTime();
+            inputHistory.Add(new PlayerInputFrame(horizontal, jumpHeld, time));
         }
     }
-    
+
+        
     public void ClearHistory()
     {
         inputHistory.Clear();

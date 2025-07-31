@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(MovementController))]
@@ -31,33 +32,18 @@ public class GhostController : MonoBehaviour
     // The core replay logic now runs in FixedUpdate.
     void FixedUpdate()
     {
-        if (inputFrames == null || replayIndex >= inputFrames.Count)
-        {
-            // Add a null check to prevent errors if destroyed before initialization.
-            if (inputFrames != null)
-            {
-                Debug.Log("GhostController → replay finished, destroying ghost");
-                Destroy(gameObject);
-            }
-            return;
-        }
+        float timelineTime = TimelineManager.Instance.GetCurrentTime();
+        
+        // Find frame that matches current timeline time
+        var frame = inputFrames.FirstOrDefault(f => Mathf.Abs(f.time - timelineTime) < 0.02f);
+        if (frame == null) return;
 
-        // Get the current frame for this physics step.
-        PlayerInputFrame frame = inputFrames[replayIndex];
-
-        // Apply the recorded input directly to the MovementController.
         movement.Move(frame.horizontal);
-
-        // Derive the "jumpDown" state from the change in the "jumpHeld" state.
-        bool jumpHeld = frame.jump;
-        bool jumpDown = jumpHeld && !prevJumpHeld;
-        movement.Jump(jumpDown, jumpHeld);
-        prevJumpHeld = jumpHeld;
-
-        // Advance to the next frame for the next FixedUpdate call.
-        replayIndex++;
+        bool jumpDown = frame.jump && !prevJumpHeld;
+        movement.Jump(jumpDown, frame.jump);
+        prevJumpHeld = frame.jump;
     }
-    
+
     public void Initialize(List<PlayerInputFrame> frames, Vector3 startPosition)
     {
         inputFrames = new List<PlayerInputFrame>(frames);

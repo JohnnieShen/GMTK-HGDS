@@ -4,9 +4,12 @@ using System.Collections;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    
 
     [Header("Time Travel Settings")]
     public float selectedSpawnTime = 5f; // Set manually for now
+
+    public float timelineDuration = 10f; // Total timeline length in seconds
 
     void Awake()
     {

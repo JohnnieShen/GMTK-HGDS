@@ -11,16 +11,18 @@ public class Player : MonoBehaviour
     [Header("Player Info")]
     public string playerName = "Player";
     bool isGhost = false; // Set to true if this is a ghost player
-    
+
     void Start()
     {
         gameObject.name = playerName;
         Debug.Log($"Player: '{playerName}' started with modular component system");
     }
-    
+
     // Expose common functionality for external scripts
     public MovementController Movement => GetComponent<MovementController>();
     public InputRecorder InputRecorder => GetComponent<InputRecorder>();
     public TimeRewindManager TimeRewind => GetComponent<TimeRewindManager>();
     public PlayerInputHandler InputHandler => GetComponent<PlayerInputHandler>();
+
+
 }
