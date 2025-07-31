@@ -25,6 +25,7 @@ public class GhostController : MonoBehaviour
         // Set up ghost appearance
         gameObject.layer = ghostLayer;
         SetTransparency(transparency);
+        Debug.Log($"GhostController: Ghost started on layer {ghostLayer} with transparency {transparency}");
     }
     
     void Update()
@@ -39,6 +40,7 @@ public class GhostController : MonoBehaviour
         movement.SetPosition(startPosition);
         replayIndex = 0;
         timeElapsed = 0f;
+        Debug.Log($"GhostController: Initialized with {frames.Count} frames at position {startPosition}");
     }
     
     void ReplayInput()
@@ -46,6 +48,7 @@ public class GhostController : MonoBehaviour
         if (inputFrames == null || replayIndex >= inputFrames.Count)
         {
             // Replay finished, destroy the ghost
+            Debug.Log("GhostController: Replay finished, destroying ghost");
             Destroy(gameObject);
             return;
         }
@@ -62,6 +65,12 @@ public class GhostController : MonoBehaviour
             }
             
             replayIndex++;
+            
+            // Log every 60 frames to avoid spam
+            if (replayIndex % 60 == 0)
+            {
+                Debug.Log($"GhostController: Replaying frame {replayIndex}/{inputFrames.Count}");
+            }
         }
     }
     

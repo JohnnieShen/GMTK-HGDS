@@ -14,8 +14,8 @@ public class Player : MonoBehaviour
     
     void Start()
     {
-
         gameObject.name = playerName;
+        Debug.Log($"Player: '{playerName}' started with modular component system");
     }
     
     // Expose common functionality for external scripts

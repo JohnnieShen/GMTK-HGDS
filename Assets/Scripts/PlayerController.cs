@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("PlayerController Start() called!");
+        
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
 
@@ -67,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Debug.Log("R key pressed! Calling Rewind()");
+                Debug.Log("*** R KEY PRESSED! ***");
                 Rewind();
             }
         }
