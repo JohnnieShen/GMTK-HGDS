@@ -37,11 +37,13 @@ public class PlayerController : MonoBehaviour
             spawnPosition = transform.position;
             // Set live player to player layer
             gameObject.layer = playerLayer;
+            Debug.Log($"LIVE PLAYER created at position: {transform.position}");
         }
         else
         {
             // Set ghost to ghost layer
             gameObject.layer = ghostLayer;
+            Debug.Log($"GHOST created at position: {transform.position}");
         }
 
         // Ghosts should start replaying immediately
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
+                Debug.Log("R key pressed! Calling Rewind()");
                 Rewind();
             }
         }
