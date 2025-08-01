@@ -11,6 +11,8 @@ public class TimelineProgressUI : MonoBehaviour,
     public Slider slider;
     bool   dragging;
 
+    public float SliderFraction => slider != null ? slider.value : 0f;
+
     void Awake()
     {
         if (slider == null) slider = GetComponent<Slider>();

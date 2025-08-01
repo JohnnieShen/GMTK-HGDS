@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public GameObject CurrentPlayer { get; private set; }
 
     [Header("Time Travel Settings")]
     public float selectedSpawnTime = 5f;
@@ -59,6 +60,12 @@ public class GameManager : MonoBehaviour
             RespawnPlayer();
         }
 
+    }
+
+    public void RegisterPlayer(GameObject p)  => CurrentPlayer = p;
+    public void UnregisterPlayer(GameObject p)
+    {
+        if (CurrentPlayer == p) CurrentPlayer = null;
     }
 
     public void HandlePhysicsPause(bool pause)

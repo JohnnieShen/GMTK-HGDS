@@ -15,6 +15,10 @@ public class GhostController : MonoBehaviour
     public int ghostLayer = 9;
     public float transparency = 0.7f;
     Rigidbody2D rb;
+    
+
+    float startTime;
+    float endTime;
 
     void Awake()
     {
@@ -27,11 +31,13 @@ public class GhostController : MonoBehaviour
         Debug.Log($"GhostController: Awake complete. Layer={gameObject.layer}, Transparency={sr.color.a}");
     }
        
-    // The core replay logic now runs in FixedUpdate.
     void FixedUpdate()
     {
         if (inputFrames == null || inputFrames.Count == 0) return;
         float timelineTime = TimelineManager.Instance.GetCurrentTime();
+        bool visible = timelineTime >= startTime && timelineTime <= endTime;
+        sr.enabled = visible;
+        if (!visible) return;
 
         if (timelineTime > inputFrames[^1].time + 0.02f)
         {
@@ -40,7 +46,6 @@ public class GhostController : MonoBehaviour
             return;
         }
         
-        // Find frame that matches current timeline time
         var frame = inputFrames.FirstOrDefault(f => Mathf.Abs(f.time - timelineTime) < 0.02f);
         if (frame == null) return;
 
@@ -65,13 +70,16 @@ public class GhostController : MonoBehaviour
         replayIndex  = inputFrames.IndexOf(frame);
     }
 
-    public void Initialize(List<PlayerInputFrame> frames, float startTime)
+    public void Initialize(List<PlayerInputFrame> frames, float start, float end)
     {
-        Debug.Log($"GhostController141: Initializing with {frames.Count} frames at start time {startTime:0.00}s");
+        startTime = start;
+        endTime   = end;
+
+        Debug.Log($"GhostController141: Initializing with {frames.Count} frames at start time {start:0.00}s");
         inputFrames = new List<PlayerInputFrame>(frames);
 
         PlayerInputFrame frame = inputFrames
-                                 .OrderBy(f => Mathf.Abs(f.time - startTime))
+                                 .OrderBy(f => Mathf.Abs(f.time - start))
                                  .First();
 
         movement.SetPosition(frame.position);
@@ -85,7 +93,11 @@ public class GhostController : MonoBehaviour
             $"Ghost init @t={frame.time:0.00}s  pos={frame.position}  vel={frame.velocity}");
     }
 
-    public void Initialize(List<PlayerInputFrame> frames, Vector3 startPosition) => Initialize(frames, 0f);
+    public void Initialize(List<PlayerInputFrame> frames, float start)
+    {
+        float end = frames != null && frames.Count > 0 ? frames[^1].time : start;
+        Initialize(frames, start, end);
+    }
     
     void SetTransparency(float alpha)
     {
