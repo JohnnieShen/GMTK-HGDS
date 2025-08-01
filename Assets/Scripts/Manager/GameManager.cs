@@ -163,27 +163,26 @@ public class GameManager : MonoBehaviour
     }
     
     void UpdateOneGhost(GhostWindow g)
-{
-    float t   = TimelineManager.Instance.GetCurrentTime();
-    float len = TimelineManager.Instance.timelineDuration;
-
-    bool inside = (g.start <= g.end)
-                ? (t >= g.start && t <= g.end)
-                : (t >= g.start || t <= g.end);
-
-    bool isEnabled = g.gc.gameObject.activeSelf;
-
-    if (inside && !isEnabled)
     {
-        g.gc.gameObject.SetActive(true);
-        g.gc.Seek(t);
-        g.active = true;
-    }
-    else if (!inside && isEnabled)
-    {
-        g.gc.gameObject.SetActive(false);
-        g.active = false;
-    }
-}
+        float t   = TimelineManager.Instance.GetCurrentTime();
+        float len = TimelineManager.Instance.timelineDuration;
 
+        bool inside = (g.start <= g.end)
+                    ? (t >= g.start && t <= g.end)
+                    : (t >= g.start || t <= g.end);
+
+        bool isEnabled = g.gc.gameObject.activeSelf;
+
+        if (inside && !isEnabled)
+        {
+            g.gc.gameObject.SetActive(true);
+            g.gc.Seek(t);
+            g.active = true;
+        }
+        else if (!inside && isEnabled)
+        {
+            g.gc.gameObject.SetActive(false);
+            g.active = false;
+        }
+    }
 }
