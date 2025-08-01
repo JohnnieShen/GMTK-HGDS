@@ -34,6 +34,8 @@ public class MovementController : MonoBehaviour
     float  timeSinceLeftGround;
     float  timeSinceJumpPressed;
 
+    public Vector2 CurrentVelocity => rb.linearVelocity;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

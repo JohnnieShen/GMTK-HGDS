@@ -7,6 +7,7 @@ public class GhostController : MonoBehaviour
 {
     private MovementController movement;
     private SpriteRenderer sr;
+    private Collider2D col;
     private List<PlayerInputFrame> inputFrames;
     private int replayIndex = 0;
     private bool prevJumpHeld = false;
@@ -25,10 +26,15 @@ public class GhostController : MonoBehaviour
         Debug.Log($"GhostController: Awake on layer {ghostLayer} with transparency {transparency}");
         movement = GetComponent<MovementController>();
         sr = GetComponent<SpriteRenderer>();
+        col = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         gameObject.layer = ghostLayer;
         SetTransparency(transparency);
         Debug.Log($"GhostController: Awake complete. Layer={gameObject.layer}, Transparency={sr.color.a}");
+        float timelineTime = TimelineManager.Instance.GetCurrentTime();
+        bool visible = timelineTime >= startTime && timelineTime <= endTime;
+        sr.enabled = visible;
+        col.isTrigger = !visible;
     }
        
     void FixedUpdate()
@@ -37,8 +43,8 @@ public class GhostController : MonoBehaviour
         float timelineTime = TimelineManager.Instance.GetCurrentTime();
         bool visible = timelineTime >= startTime && timelineTime <= endTime;
         sr.enabled = visible;
+        col.isTrigger = !visible;
         if (!visible) return;
-
         if (timelineTime > inputFrames[^1].time + 0.02f)
         {
             Debug.Log("GhostController: finished replay; destroying self.");

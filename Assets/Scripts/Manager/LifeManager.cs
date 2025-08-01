@@ -7,11 +7,9 @@ public class LifeManager : MonoBehaviour
 
     public TimelineProgressUI timelineProgressUI;
 
-    /*  runtime lists  */
-    readonly List<LifeLog> completedLives = new();     // logs only
-    readonly List<GhostController> ghosts      = new();     // live ghost objects
+    readonly List<LifeLog> completedLives = new();
+    readonly List<GhostController> ghosts      = new();
 
-    /*  current live player  */
     GameObject          playerGO;
     InputRecorder       currentRec;
     float               lifeStartTime;
@@ -20,16 +18,13 @@ public class LifeManager : MonoBehaviour
     [SerializeField] GameObject playerPrefab;
     [SerializeField] GameObject ghostPrefab;
 
-    /* ───────────────  MONO  ─────────────── */
     void Awake() => Instance = this;
 
-    void Start()  => StartNewLife(0f);                      // game begins at t=0
-
-    /* ───────────────  LIFE CYCLE  ─────────────── */
+    void Start()  => StartNewLife(0f);
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))          // K → finish this life
+        if (Input.GetKeyDown(KeyCode.K))
             EndCurrentLife();
 
         if (Input.GetKeyDown(KeyCode.L))
@@ -48,7 +43,6 @@ public class LifeManager : MonoBehaviour
         Debug.Log($"LifeManager: Ending life at t={TimelineManager.Instance.GetCurrentTime():0.00}s");
         currentRec.StopRecording();
 
-        // 1. store the log
         var log = new LifeLog
         {
             frames = currentRec.InputHistory,
@@ -58,11 +52,9 @@ public class LifeManager : MonoBehaviour
         };
         completedLives.Add(log);
 
-        // 2. create a ghost that replays it
         var ghost = SpawnGhost(log);
         ghosts.Add(ghost);
 
-        // 3. remove the player object
         GameManager.Instance.UnregisterPlayer(playerGO);
         Destroy(playerGO);
         playerGO = null;
@@ -71,10 +63,16 @@ public class LifeManager : MonoBehaviour
 
     public void StartNewLife(float spawnTime)
     {
-        playerGO  = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        playerGO = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        var anim = playerGO.GetComponent<Animator>();
+        var col = playerGO.GetComponent<Collider2D>();
+        col.isTrigger = false;
+        var sr = playerGO.GetComponent<SpriteRenderer>();
+        sr.enabled = true;
+        anim.Rebind();
+        anim.Update(0f);
         playerGO.SetActive(true);
 
-        //  NEW: tell GameManager a player now exists
         GameManager.Instance.RegisterPlayer(playerGO);
 
         currentRec = playerGO.GetComponent<InputRecorder>();
@@ -82,17 +80,15 @@ public class LifeManager : MonoBehaviour
         lifeStartTime = spawnTime;
     }
 
-    /* ───────────────  HELPERS  ─────────────── */
 
     GhostController SpawnGhost(LifeLog log)
     {
         var go = Instantiate(ghostPrefab, log.spawnPos, Quaternion.identity);
         var gc = go.GetComponent<GhostController>() ?? go.AddComponent<GhostController>();
-        gc.Initialize(log.frames, log.startTime, log.endTime);     // overload below
+        gc.Initialize(log.frames, log.startTime, log.endTime);
         return gc;
     }
 
-    /* expose for UI */
     public float GetTimelineDuration() => TimelineManager.Instance.timelineDuration;
     public IReadOnlyList<LifeLog> Lives => completedLives;
 }
