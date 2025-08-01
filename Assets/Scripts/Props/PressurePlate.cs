@@ -13,13 +13,20 @@ public class PressurePlateHold : MonoBehaviour
     [Header("Default State")]
     public bool defaultStateIsOn = false;
 
+    [Header("Visuals")]
+    public SpriteRenderer spriteRenderer;
+    public Sprite idleSprite;
+    public Sprite pressedSprite;
+    public Sprite activatingSprite; // optional
+
     private bool isSomethingOnPlate = false;
-    private bool isProcessing = false;
     private Coroutine delayCoroutine;
 
     void Start()
     {
         targetObject.SetActive(defaultStateIsOn);
+        if (spriteRenderer != null && idleSprite != null)
+            spriteRenderer.sprite = idleSprite;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -31,7 +38,7 @@ public class PressurePlateHold : MonoBehaviour
         if (delayCoroutine != null)
             StopCoroutine(delayCoroutine);
 
-        delayCoroutine = StartCoroutine(SetStateAfterDelay(!defaultStateIsOn, delayOn));
+        delayCoroutine = StartCoroutine(SetStateAfterDelay(!defaultStateIsOn, delayOn, pressedSprite));
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -43,15 +50,20 @@ public class PressurePlateHold : MonoBehaviour
         if (delayCoroutine != null)
             StopCoroutine(delayCoroutine);
 
-        delayCoroutine = StartCoroutine(SetStateAfterDelay(defaultStateIsOn, delayOff));
+        delayCoroutine = StartCoroutine(SetStateAfterDelay(defaultStateIsOn, delayOff, idleSprite));
     }
 
-    private IEnumerator SetStateAfterDelay(bool stateToSet, float delay)
+    private IEnumerator SetStateAfterDelay(bool stateToSet, float delay, Sprite finalSprite)
     {
-        isProcessing = true;
+        if (spriteRenderer != null && activatingSprite != null)
+            spriteRenderer.sprite = activatingSprite;
+
         yield return new WaitForSeconds(delay);
+
         targetObject.SetActive(stateToSet);
-        isProcessing = false;
+
+        if (spriteRenderer != null && finalSprite != null)
+            spriteRenderer.sprite = finalSprite;
     }
 
     private bool IsValidObject(Collider2D col)

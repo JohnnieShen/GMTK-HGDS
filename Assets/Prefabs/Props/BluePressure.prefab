@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 496985616850123853}
   - component: {fileID: 2006174340572178241}
   m_Layer: 0
-  m_Name: PressurePlate
+  m_Name: BluePressure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,3 +151,7 @@ MonoBehaviour:
   delayOn: 0
   delayOff: 0
   defaultStateIsOn: 1
+  spriteRenderer: {fileID: 8587316991135925520}
+  idleSprite: {fileID: 2262686526604635532, guid: 533bef8eaae724c41814460635268888, type: 3}
+  pressedSprite: {fileID: -8198574232401945530, guid: 533bef8eaae724c41814460635268888, type: 3}
+  activatingSprite: {fileID: -8198574232401945530, guid: 533bef8eaae724c41814460635268888, type: 3}
