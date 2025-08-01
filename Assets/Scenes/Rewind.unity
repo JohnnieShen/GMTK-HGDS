@@ -766,6 +766,37 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1318182343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1318182344}
+  m_Layer: 0
+  m_Name: Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1318182344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318182343}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.62, y: -1.72, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1447670786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,6 +1049,7 @@ MonoBehaviour:
   timelineProgressUI: {fileID: 2009132228}
   playerPrefab: {fileID: 1696089849162913681, guid: abbb1a70a474b6f49a0c81c73e95183a, type: 3}
   ghostPrefab: {fileID: 1696089849162913681, guid: e6b09f8e4faaae24d90079fc1eaf4b89, type: 3}
+  spawnPoint: {fileID: 1318182344}
 --- !u!1 &1988432826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,3 +1493,4 @@ SceneRoots:
   - {fileID: 1132400908}
   - {fileID: 2020652421}
   - {fileID: 1447670789}
+  - {fileID: 1318182344}
