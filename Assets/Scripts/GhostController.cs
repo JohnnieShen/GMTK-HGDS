@@ -23,52 +23,33 @@ public class GhostController : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log($"GhostController: Awake on layer {ghostLayer} with transparency {transparency}");
         movement = GetComponent<MovementController>();
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
+
         gameObject.layer = ghostLayer;
         SetTransparency(transparency);
-        Debug.Log($"GhostController: Awake complete. Layer={gameObject.layer}, Transparency={sr.color.a}");
-        float timelineTime = TimelineManager.Instance.GetCurrentTime();
-        bool visible = timelineTime >= startTime && timelineTime <= endTime;
-        sr.enabled = visible;
-        col.isTrigger = !visible;
     }
        
     void FixedUpdate()
     {
         if (inputFrames == null || inputFrames.Count == 0) return;
-        float timelineTime = TimelineManager.Instance.GetCurrentTime();
+
+        float t     = TimelineManager.Instance.GetCurrentTime();
         float speed = TimelineManager.Instance.timelineSpeed;
-        bool visible = timelineTime >= startTime && timelineTime <= endTime;
-        sr.enabled = visible;
-        col.isTrigger = !visible;
-        if (!visible) return;
-        const float tol = 0.02f;
-        if (speed >= 0f)
-        {
-            if (timelineTime > endTime + tol) { Destroy(gameObject); return; }
-        }
-        else
-        {
-            if (timelineTime < startTime - tol) { Destroy(gameObject); return; }
-        }
-        
-        var frame = inputFrames
-            .OrderBy(f => Mathf.Abs(f.time - timelineTime))
-            .First();
+
+        // const float tol = 0.02f;
+        // if (speed >= 0f && t > endTime + tol) { Destroy(gameObject); return; }
+        // if (speed <  0f && t < startTime - tol) { Destroy(gameObject); return; }
+
+        var frame = inputFrames.OrderBy(f => Mathf.Abs(f.time - t)).First();
 
         if (speed < 0f || speed > 1f)
         {
             movement.SetPosition(frame.position);
-
-            rb.linearVelocity = (speed < 0f)
-                ? -frame.velocity
-                : frame.velocity;
-
-            prevJumpHeld = frame.jump;
+            rb.linearVelocity = (speed < 0f) ? -frame.velocity : frame.velocity;
+            prevJumpHeld      = frame.jump;
         }
         else
         {
@@ -96,32 +77,20 @@ public class GhostController : MonoBehaviour
 
     public void Initialize(List<PlayerInputFrame> frames, float start, float end)
     {
-        startTime = start;
-        endTime   = end;
-
-        Debug.Log($"GhostController141: Initializing with {frames.Count} frames at start time {start:0.00}s");
         inputFrames = new List<PlayerInputFrame>(frames);
+        startTime   = start;
+        endTime     = end;
 
-        PlayerInputFrame frame = inputFrames
-                                 .OrderBy(f => Mathf.Abs(f.time - start))
-                                 .First();
-
-        movement.SetPosition(frame.position);
-        rb.linearVelocity = frame.velocity;
-
-        prevJumpHeld = frame.jump;
-
-        replayIndex = inputFrames.IndexOf(frame);
-
-        Debug.Log(
-            $"Ghost init @t={frame.time:0.00}s  pos={frame.position}  vel={frame.velocity}");
+        Seek(start);
+        GameManager.Instance?.RegisterGhost(this, startTime, endTime);
     }
 
     public void Initialize(List<PlayerInputFrame> frames, float start)
     {
-        float end = frames != null && frames.Count > 0 ? frames[^1].time : start;
+        float end = frames is { Count: >0 } ? frames[^1].time : start;
         Initialize(frames, start, end);
     }
+
     
     void SetTransparency(float alpha)
     {

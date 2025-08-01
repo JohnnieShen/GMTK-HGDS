@@ -4,6 +4,14 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
+    class GhostWindow
+    {
+        public GhostController gc;
+        public float start;
+        public float end;
+        public bool  active;
+    }
+
     public static GameManager Instance;
 
     public GameObject CurrentPlayer { get; private set; }
@@ -24,7 +32,9 @@ public class GameManager : MonoBehaviour
         public float angVel;
     }
 
-    readonly List<BodyState> frozenBodies = new ();
+    readonly List<GhostWindow> ghosts = new();
+
+    readonly List<BodyState> frozenBodies = new();
 
     void Awake()
     {
@@ -41,6 +51,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        foreach (var g in ghosts)
+            UpdateOneGhost(g);
+
         if (!waitingToRespawn)
         {
             return;
@@ -59,10 +72,9 @@ public class GameManager : MonoBehaviour
         {
             RespawnPlayer();
         }
-
     }
 
-    public void RegisterPlayer(GameObject p)  => CurrentPlayer = p;
+    public void RegisterPlayer(GameObject p) => CurrentPlayer = p;
     public void UnregisterPlayer(GameObject p)
     {
         if (CurrentPlayer == p) CurrentPlayer = null;
@@ -107,7 +119,7 @@ public class GameManager : MonoBehaviour
             playerToRespawn = null;
         }
     }
-    
+
     void FreezeAll()
     {
         frozenBodies.Clear();
@@ -115,8 +127,8 @@ public class GameManager : MonoBehaviour
         {
             frozenBodies.Add(new BodyState
             {
-                rb     = rb,
-                vel    = rb.linearVelocity,
+                rb = rb,
+                vel = rb.linearVelocity,
                 angVel = rb.angularVelocity
             });
 
@@ -137,4 +149,41 @@ public class GameManager : MonoBehaviour
         }
         frozenBodies.Clear();
     }
+
+    public void RegisterGhost(GhostController gc, float start, float end)
+    {
+        Debug.Log($"Registering ghost from {start:0.00} to {end:0.00}");
+        ghosts.Add(new GhostWindow { gc = gc, start = start, end = end });
+        UpdateOneGhost(ghosts[^1]);
+    }
+
+    public void UnregisterGhost(GhostController gc)
+    {
+        ghosts.RemoveAll(g => g.gc == gc);
+    }
+    
+    void UpdateOneGhost(GhostWindow g)
+{
+    float t   = TimelineManager.Instance.GetCurrentTime();
+    float len = TimelineManager.Instance.timelineDuration;
+
+    bool inside = (g.start <= g.end)
+                ? (t >= g.start && t <= g.end)
+                : (t >= g.start || t <= g.end);
+
+    bool isEnabled = g.gc.gameObject.activeSelf;
+
+    if (inside && !isEnabled)
+    {
+        g.gc.gameObject.SetActive(true);
+        g.gc.Seek(t);
+        g.active = true;
+    }
+    else if (!inside && isEnabled)
+    {
+        g.gc.gameObject.SetActive(false);
+        g.active = false;
+    }
+}
+
 }
