@@ -1,63 +1,61 @@
 using UnityEngine;
 using System.Collections;
 
-public class PressurePlate_ReversedLogic : MonoBehaviour
+public class PressurePlateHold : MonoBehaviour
 {
-    public GameObject connectedObject;
-    public float reactivateDelay = 2f;
+    [Header("Target")]
+    public GameObject targetObject;
 
-    private int objectsOnPlate = 0;
-    private Coroutine reactivateCoroutine;
+    [Header("Delays")]
+    public float delayOn = 0f;
+    public float delayOff = 0f;
+
+    [Header("Default State")]
+    public bool defaultStateIsOn = false;
+
+    private bool isSomethingOnPlate = false;
+    private bool isProcessing = false;
+    private Coroutine delayCoroutine;
 
     void Start()
     {
-        if (connectedObject != null)
-            connectedObject.SetActive(true); // Default is ON
+        targetObject.SetActive(defaultStateIsOn);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (IsValidObject(other))
-        {
-            objectsOnPlate++;
+        if (!IsValidObject(other)) return;
 
-            // Deactivate immediately when something steps on
-            if (connectedObject != null)
-                connectedObject.SetActive(false);
+        isSomethingOnPlate = true;
 
-            // Cancel pending reactivation
-            if (reactivateCoroutine != null)
-            {
-                StopCoroutine(reactivateCoroutine);
-                reactivateCoroutine = null;
-            }
-        }
+        if (delayCoroutine != null)
+            StopCoroutine(delayCoroutine);
+
+        delayCoroutine = StartCoroutine(SetStateAfterDelay(!defaultStateIsOn, delayOn));
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (IsValidObject(other))
-        {
-            objectsOnPlate = Mathf.Max(0, objectsOnPlate - 1);
+        if (!IsValidObject(other)) return;
 
-            if (objectsOnPlate == 0)
-            {
-                // Begin reactivation delay
-                reactivateCoroutine = StartCoroutine(ReactivateAfterDelay());
-            }
-        }
+        isSomethingOnPlate = false;
+
+        if (delayCoroutine != null)
+            StopCoroutine(delayCoroutine);
+
+        delayCoroutine = StartCoroutine(SetStateAfterDelay(defaultStateIsOn, delayOff));
     }
 
-    private IEnumerator ReactivateAfterDelay()
+    private IEnumerator SetStateAfterDelay(bool stateToSet, float delay)
     {
-        yield return new WaitForSeconds(reactivateDelay);
-
-        if (objectsOnPlate == 0 && connectedObject != null)
-            connectedObject.SetActive(true);
+        isProcessing = true;
+        yield return new WaitForSeconds(delay);
+        targetObject.SetActive(stateToSet);
+        isProcessing = false;
     }
 
-    private bool IsValidObject(Collider2D other)
+    private bool IsValidObject(Collider2D col)
     {
-        return other.CompareTag("Player") || other.attachedRigidbody != null;
+        return col.CompareTag("Player") || col.CompareTag("Box");
     }
 }
