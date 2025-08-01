@@ -41,24 +41,42 @@ public class GhostController : MonoBehaviour
     {
         if (inputFrames == null || inputFrames.Count == 0) return;
         float timelineTime = TimelineManager.Instance.GetCurrentTime();
+        float speed = TimelineManager.Instance.timelineSpeed;
         bool visible = timelineTime >= startTime && timelineTime <= endTime;
         sr.enabled = visible;
         col.isTrigger = !visible;
         if (!visible) return;
-        if (timelineTime > inputFrames[^1].time + 0.02f)
+        const float tol = 0.02f;
+        if (speed >= 0f)
         {
-            Debug.Log("GhostController: finished replay; destroying self.");
-            Destroy(gameObject);
-            return;
+            if (timelineTime > endTime + tol) { Destroy(gameObject); return; }
+        }
+        else
+        {
+            if (timelineTime < startTime - tol) { Destroy(gameObject); return; }
         }
         
-        var frame = inputFrames.FirstOrDefault(f => Mathf.Abs(f.time - timelineTime) < 0.02f);
-        if (frame == null) return;
+        var frame = inputFrames
+            .OrderBy(f => Mathf.Abs(f.time - timelineTime))
+            .First();
 
-        movement.Move(frame.horizontal);
-        bool jumpDown = frame.jump && !prevJumpHeld;
-        movement.Jump(jumpDown, frame.jump);
-        prevJumpHeld = frame.jump;
+        if (speed < 0f || speed > 1f)
+        {
+            movement.SetPosition(frame.position);
+
+            rb.linearVelocity = (speed < 0f)
+                ? -frame.velocity
+                : frame.velocity;
+
+            prevJumpHeld = frame.jump;
+        }
+        else
+        {
+            movement.Move(frame.horizontal);
+            bool jumpDown = frame.jump && !prevJumpHeld;
+            movement.Jump(jumpDown, frame.jump);
+            prevJumpHeld = frame.jump;
+        }
     }
     
     public void Seek(float time)
