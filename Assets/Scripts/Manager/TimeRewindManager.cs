@@ -2,20 +2,22 @@ using UnityEngine;
 
 public class TimeRewindManager : MonoBehaviour
 {
-    public static TimeRewindManager Instance;
+    public static TimeRewindManager Instance { get; private set; }
 
-    [Header("References")]
-    [Tooltip("Assign your Player Prefab here.")]
+    [Header("Prefabs")]
     public GameObject playerPrefab;
-    [Tooltip("Assign your Ghost Prefab here.")]
     public GameObject ghostPrefab;
 
-    [Header("Settings")]
+    [Header("Keys")]
     public KeyCode rewindKey = KeyCode.R;
+    public KeyCode playbackKey = KeyCode.V;
 
     [Header("Physics Layers")]
     public int playerLayer = 8;
     public int ghostLayer = 9;
+
+    [Header("Ghost")]
+    public float playbackStartTime = 1f;
 
     void Awake()
     {
@@ -37,57 +39,71 @@ public class TimeRewindManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(rewindKey))
-        {
-            TriggerRewind();
-        }
+        if (Input.GetKeyDown(rewindKey)) TriggerRewind();
+        if (Input.GetKeyDown(playbackKey)) TriggerPlayback();
     }
 
     public void TriggerRewind()
     {
-        GameObject playerObject = GameObject.FindWithTag("Player");
-        if (playerObject == null)
-        {
-            Debug.LogWarning("Rewind triggered, but no active player found to rewind!");
-            return;
-        }
+        var player = GameObject.FindWithTag("Player");
+        if (!TryGetRecorder(player, out var rec)) return;
 
-        InputRecorder recorder = playerObject.GetComponent<InputRecorder>();
-        if (recorder == null)
-        {
-            Debug.LogError("Player object is missing an InputRecorder component!");
-            return;
-        }
+        rec.StopRecording();
+        SpawnGhost(rec, playbackStartTime);
 
-        Debug.Log("*** Rewind key pressed! ***");
-
-        recorder.StopRecording();
-        CreateGhost(recorder);
-
-        GameManager.Instance.PrepareRespawn(playerPrefab, recorder.GetSpawnPosition());
-
-        Destroy(playerObject);
+        GameManager.Instance.PrepareRespawn(playerPrefab, rec.GetSpawnPosition());
+        Destroy(player);
     }
 
-    void CreateGhost(InputRecorder sourceRecorder)
+    public void TriggerPlayback()
     {
-        if (sourceRecorder.FrameCount == 0)
+        var player = GameObject.FindWithTag("Player");
+        if (!TryGetRecorder(player, out var rec)) return;
+
+        SpawnGhost(rec, playbackStartTime);
+        TimelineManager.Instance.currentTime = playbackStartTime;
+    }
+
+    bool TryGetRecorder(GameObject go, out InputRecorder recorder)
+    {
+        recorder = null;
+        if (go == null)
         {
-            Debug.LogWarning("No input frames recorded, skipping ghost creation.");
-            return;
+            Debug.LogWarning("No active player found.");
+            return false;
         }
 
-        Vector3 spawnPos = sourceRecorder.GetSpawnPosition();
-        GameObject ghostObj = Instantiate(ghostPrefab, spawnPos, Quaternion.identity);
-        GhostController ghost = ghostObj.GetComponent<GhostController>();
-
-        if (ghost == null)
+        recorder = go.GetComponent<InputRecorder>();
+        if (recorder == null)
         {
-            ghost = ghostObj.AddComponent<GhostController>();
+            Debug.LogError("Player missing InputRecorder component.");
+            return false;
         }
+
+        if (recorder.FrameCount == 0)
+        {
+            Debug.LogWarning("No input frames recorded; cannot create ghost.");
+            return false;
+        }
+
+        return true;
+    }
+
+    void SpawnGhost(InputRecorder recorder, float startTime)
+    {
+        Vector3 pos = recorder.GetSpawnPosition();
+        var     go  = Instantiate(ghostPrefab, pos, Quaternion.identity);
+
+        go.name = $"Ghost @{startTime:0.00}s ({pos})";
+        go.tag = "Ghost";
+        go.layer = ghostLayer;
+
+        var ghost = go.GetComponent<GhostController>() ??
+                    go.AddComponent<GhostController>();
 
         ghost.ghostLayer = ghostLayer;
-        ghost.Initialize(sourceRecorder.InputHistory, spawnPos);
-        Debug.Log("Ghost initialized and ready to replay.");
+        ghost.Initialize(recorder.InputHistory, startTime);
+
+        Debug.Log($"<color=cyan>[TimeRewind]</color> Spawned ghost at {pos} (t={startTime:0.00}s)");
     }
 }

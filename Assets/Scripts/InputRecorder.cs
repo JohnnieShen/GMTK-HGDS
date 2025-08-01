@@ -5,7 +5,7 @@ public class InputRecorder : MonoBehaviour
 {
     private List<PlayerInputFrame> inputHistory = new();
     private bool isRecording = true;
-
+    Rigidbody2D rb;
     private Vector3 spawnPosition;
     
     public bool IsRecording => isRecording;
@@ -14,6 +14,7 @@ public class InputRecorder : MonoBehaviour
 
     void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
         spawnPosition = transform.position;
     }
 
@@ -37,7 +38,7 @@ public class InputRecorder : MonoBehaviour
         if (isRecording)
         {
             float time = TimelineManager.Instance.GetCurrentTime();
-            inputHistory.Add(new PlayerInputFrame(horizontal, jumpHeld, time));
+            inputHistory.Add(new PlayerInputFrame(horizontal, jumpHeld, time, rb.linearVelocity, transform.position));
         }
     }
 

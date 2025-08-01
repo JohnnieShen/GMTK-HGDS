@@ -9,10 +9,29 @@ public class TimelineManager : MonoBehaviour
 
     public event System.Action<float> OnTimelineTick;
 
+    bool  isPaused;
+    public bool IsPaused => isPaused;
+    public void Pause(bool v) => isPaused = v;
+    public void SetPaused(bool pause)
+    {
+        if (isPaused == pause) return;
+        isPaused = pause;
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.HandlePhysicsPause(pause);
+        }
+    }
+    public void TogglePause() => SetPaused(!isPaused);
+
     void Awake() => Instance = this;
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F)) TogglePause();
+
+        if (isPaused) return;
+
         currentTime += Time.deltaTime * timelineSpeed;
         if (currentTime > timelineDuration)
             currentTime -= timelineDuration;

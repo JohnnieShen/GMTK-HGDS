@@ -14,25 +14,31 @@ public class GhostController : MonoBehaviour
     [Header("Ghost Settings")]
     public int ghostLayer = 9;
     public float transparency = 0.7f;
-    
+    Rigidbody2D rb;
+
     void Awake()
     {
+        Debug.Log($"GhostController: Awake on layer {ghostLayer} with transparency {transparency}");
         movement = GetComponent<MovementController>();
         sr = GetComponent<SpriteRenderer>();
-    }
-    
-    void Start()
-    {
-        // Set up ghost appearance
+        rb = GetComponent<Rigidbody2D>();
         gameObject.layer = ghostLayer;
         SetTransparency(transparency);
-        Debug.Log($"GhostController: Ghost started on layer {ghostLayer} with transparency {transparency}");
+        Debug.Log($"GhostController: Awake complete. Layer={gameObject.layer}, Transparency={sr.color.a}");
     }
-    
+       
     // The core replay logic now runs in FixedUpdate.
     void FixedUpdate()
     {
+        if (inputFrames == null || inputFrames.Count == 0) return;
         float timelineTime = TimelineManager.Instance.GetCurrentTime();
+
+        if (timelineTime > inputFrames[^1].time + 0.02f)
+        {
+            Debug.Log("GhostController: finished replay; destroying self.");
+            Destroy(gameObject);
+            return;
+        }
         
         // Find frame that matches current timeline time
         var frame = inputFrames.FirstOrDefault(f => Mathf.Abs(f.time - timelineTime) < 0.02f);
@@ -43,15 +49,43 @@ public class GhostController : MonoBehaviour
         movement.Jump(jumpDown, frame.jump);
         prevJumpHeld = frame.jump;
     }
-
-    public void Initialize(List<PlayerInputFrame> frames, Vector3 startPosition)
+    
+    public void Seek(float time)
     {
-        inputFrames = new List<PlayerInputFrame>(frames);
-        movement.SetPosition(startPosition);
-        replayIndex = 0;
-        prevJumpHeld = false;
-        Debug.Log($"GhostController: Initialized with {frames.Count} frames at position {startPosition}");
+        if (inputFrames == null || inputFrames.Count == 0) return;
+
+        PlayerInputFrame frame = inputFrames
+                                .OrderBy(f => Mathf.Abs(f.time - time))
+                                .First();
+
+        movement.SetPosition(frame.position);
+        rb.linearVelocity = frame.velocity;
+
+        prevJumpHeld = frame.jump;
+        replayIndex  = inputFrames.IndexOf(frame);
     }
+
+    public void Initialize(List<PlayerInputFrame> frames, float startTime)
+    {
+        Debug.Log($"GhostController141: Initializing with {frames.Count} frames at start time {startTime:0.00}s");
+        inputFrames = new List<PlayerInputFrame>(frames);
+
+        PlayerInputFrame frame = inputFrames
+                                 .OrderBy(f => Mathf.Abs(f.time - startTime))
+                                 .First();
+
+        movement.SetPosition(frame.position);
+        rb.linearVelocity = frame.velocity;
+
+        prevJumpHeld = frame.jump;
+
+        replayIndex = inputFrames.IndexOf(frame);
+
+        Debug.Log(
+            $"Ghost init @t={frame.time:0.00}s  pos={frame.position}  vel={frame.velocity}");
+    }
+
+    public void Initialize(List<PlayerInputFrame> frames, Vector3 startPosition) => Initialize(frames, 0f);
     
     void SetTransparency(float alpha)
     {

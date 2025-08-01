@@ -17,8 +17,6 @@ GameObject:
   - component: {fileID: 720659338577874919}
   - component: {fileID: 5998680393921336907}
   - component: {fileID: 4079923749175755339}
-  - component: {fileID: 4259630209018825853}
-  - component: {fileID: 373656496024349486}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -102,7 +100,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.00040200353, y: -0.000000040978193}
+  m_Offset: {x: -0.0022549294, y: -0.0034633428}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -112,7 +110,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.24553049, y: 0.21644253}
+  m_Size: {x: 0.25351167, y: 0.22912699}
   m_EdgeRadius: 0
 --- !u!212 &7045944161053605358
 SpriteRenderer:
@@ -244,33 +242,5 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b80d949ca3b49e2428cbe4ee83908893, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4259630209018825853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 326731542031326016}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d34da153c4eea47a20f268d41919b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ghostPrefab: {fileID: 1696089849162913681, guid: 4725b6f9fb829904fb6a36ea05098806, type: 3}
-  rewindKey: 114
-  playerLayer: 8
-  ghostLayer: 9
---- !u!114 &373656496024349486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 326731542031326016}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5997ec02ae1c4144bb2a979177844843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

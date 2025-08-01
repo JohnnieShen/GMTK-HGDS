@@ -1,33 +1,43 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    
+
 
     [Header("Time Travel Settings")]
-    public float selectedSpawnTime = 5f; // Player can set this to control when in the timeline to spawn
+    public float selectedSpawnTime = 5f;
 
-    public float timelineDuration = 10f; // Total timeline length in seconds
-    
+    public float timelineDuration = 10f;
+
     private GameObject playerToRespawn;
     private Vector3 respawnPosition;
     private bool waitingToRespawn = false;
+
+    struct BodyState
+    {
+        public Rigidbody2D rb;
+        public Vector2 vel;
+        public float angVel;
+    }
+
+    readonly List<BodyState> frozenBodies = new ();
 
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Keep GameManager persistent
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
     }
-    
+
     void Update()
     {
         if (!waitingToRespawn)
@@ -39,7 +49,6 @@ public class GameManager : MonoBehaviour
         float timelineDuration = TimelineManager.Instance.timelineDuration;
         float previousTime = (currentTime - Time.deltaTime * TimelineManager.Instance.timelineSpeed + timelineDuration) % timelineDuration;
 
-        // Handle timeline wraparound:
         bool crossedSpawnTime =
             previousTime > currentTime
                 ? (selectedSpawnTime >= previousTime || selectedSpawnTime <= currentTime)
@@ -51,25 +60,29 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    
-    // Called when R is pressed - hide the player and set up for respawn
+
+    public void HandlePhysicsPause(bool pause)
+    {
+        if (pause) FreezeAll();
+        else UnfreezeAll();
+    }
+
     public void PrepareRespawn(GameObject playerPrefab, Vector3 position)
     {
         playerToRespawn = playerPrefab;
         respawnPosition = position;
         waitingToRespawn = true;
-        
+
         Debug.Log($"Player hidden. Will respawn when timeline reaches: {selectedSpawnTime}");
     }
-    
-    // Respawn the player when timeline reaches the selected time
+
     private void RespawnPlayer()
     {
         if (playerToRespawn != null)
         {
             float currentTime = TimelineManager.Instance.GetCurrentTime();
             Debug.Log($"Respawning player! Timeline time: {currentTime}, Target: {selectedSpawnTime}");
-            
+
             GameObject newPlayer = Instantiate(playerToRespawn, respawnPosition, Quaternion.identity);
 
             InputRecorder newRecorder = newPlayer.GetComponent<InputRecorder>();
@@ -86,5 +99,35 @@ public class GameManager : MonoBehaviour
             waitingToRespawn = false;
             playerToRespawn = null;
         }
+    }
+    
+    void FreezeAll()
+    {
+        frozenBodies.Clear();
+        foreach (var rb in FindObjectsOfType<Rigidbody2D>())
+        {
+            frozenBodies.Add(new BodyState
+            {
+                rb     = rb,
+                vel    = rb.linearVelocity,
+                angVel = rb.angularVelocity
+            });
+
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.simulated = false;
+        }
+    }
+
+    void UnfreezeAll()
+    {
+        foreach (var b in frozenBodies)
+        {
+            if (b.rb == null) continue;
+            b.rb.simulated = true;
+            b.rb.linearVelocity = b.vel;
+            b.rb.angularVelocity = b.angVel;
+        }
+        frozenBodies.Clear();
     }
 }
