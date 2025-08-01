@@ -18,6 +18,9 @@ public class LifeManager : MonoBehaviour
     [SerializeField] GameObject playerPrefab;
     [SerializeField] GameObject ghostPrefab;
 
+    [Header("Player Spawn Settings")]
+    [SerializeField] Transform spawnPoint;
+
     void Awake() => Instance = this;
 
     void Start()  => StartNewLife(0f);
@@ -63,7 +66,7 @@ public class LifeManager : MonoBehaviour
 
     public void StartNewLife(float spawnTime)
     {
-        playerGO = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        playerGO = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
         var anim = playerGO.GetComponent<Animator>();
         var col = playerGO.GetComponent<Collider2D>();
         col.isTrigger = false;
