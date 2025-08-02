@@ -91,7 +91,7 @@ public class TimelineManager : MonoBehaviour
             currentTime -= timelineDuration; looped = true;
         }
         if (currentTime < 0f) {
-            currentTime += timelineDuration; looped = true;
+            currentTime = 0f;
         }
 
         if (looped) OnTimelineLoop?.Invoke();

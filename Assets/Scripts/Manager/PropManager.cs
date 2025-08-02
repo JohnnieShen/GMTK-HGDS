@@ -32,16 +32,16 @@ public class PropManager : MonoBehaviour
 
     void OnTick(float t)
     {
-        var mgr    = TimelineManager.Instance;
-        float spd  = mgr.timelineSpeed;
-        bool record   = spd >  0f && !mgr.IsFastForwarding;
-        bool playback = spd <  0f || mgr.IsFastForwarding;
+        float spd = TimelineManager.Instance.timelineSpeed;
+        bool record   = spd > 0f;   // record on any forward speed
+        bool playback = spd < 0f;   // only play back when truly rewinding
 
         foreach (var r in recorders) {
             if (record)   r.RecordFrame(t);
             if (playback) r.ApplyAtTime(t);
         }
     }
+
 
     void OnLoop()
     {
