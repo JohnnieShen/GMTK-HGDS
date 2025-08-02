@@ -14,12 +14,16 @@ public class PropManager : MonoBehaviour
         else { Destroy(gameObject); return; }
 
         TimelineManager.Instance.OnTimelineTick += OnTick;
+        TimelineManager.Instance.OnTimelineLoop += OnLoop;
     }
 
     void OnDestroy()
     {
         if (TimelineManager.Instance != null)
+        {
             TimelineManager.Instance.OnTimelineTick -= OnTick;
+            TimelineManager.Instance.OnTimelineLoop -= OnLoop;
+        }
         if (Instance == this) Instance = null;
     }
 
@@ -39,7 +43,10 @@ public class PropManager : MonoBehaviour
         }
     }
 
-
+    void OnLoop()
+    {
+        SeekAll(0f);
+    }
 
     public void SeekAll(float time)
     {
