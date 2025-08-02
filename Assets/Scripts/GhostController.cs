@@ -12,12 +12,15 @@ public class GhostController : MonoBehaviour
     private List<PlayerInputFrame> inputFrames;
     private int replayIndex = 0;
     private bool prevJumpHeld = false;
-    
+
     [Header("Ghost Settings")]
     public int ghostLayer = 9;
     public float transparency = 0.7f;
+
+    readonly List<Transform> playersOnGhost = new ();
+
     Rigidbody2D rb;
-    
+
 
     float startTime;
     float endTime;
@@ -40,30 +43,15 @@ public class GhostController : MonoBehaviour
         float t = TimelineManager.Instance.GetCurrentTime();
         float speed = TimelineManager.Instance.timelineSpeed;
 
-        // const float tol = 0.02f;
-        // if (speed >= 0f && t > endTime + tol) { Destroy(gameObject); return; }
-        // if (speed <  0f && t < startTime - tol) { Destroy(gameObject); return; }
-
         var frame = inputFrames.OrderBy(f => Mathf.Abs(f.time - t)).First();
 
-        // if (speed < 0f || speed > 1f)
-        // {
-        //     movement.SetPosition(frame.position);
-        //     rb.linearVelocity = (speed < 0f) ? -frame.velocity : frame.velocity;
-        //     prevJumpHeld = frame.jump;
-        // }
-        // else
-        // {
-        //     movement.Move(frame.horizontal);
-        //     bool jumpDown = frame.jump && !prevJumpHeld;
-        //     movement.Jump(jumpDown, frame.jump);
-        //     prevJumpHeld = frame.jump;
-        // }
+        // Store previous position for movement calculation
+        Vector2 prevPos = transform.position;
 
         movement.SetPosition(frame.position);
         rb.linearVelocity = (speed < 0f) ? -frame.velocity : frame.velocity;
         prevJumpHeld = frame.jump;
-        
+
         Debug.Log($"Ghost frame at t={frame.time:0.00}s: pos={frame.position}, vel={rb.linearVelocity}, jump={frame.jump}, interact={frame.interact}, propId={frame.interactPropId}");
         if (frame.interact && frame.interactPropId != -1)
         {
@@ -75,8 +63,31 @@ public class GhostController : MonoBehaviour
                 if (i != null) i.Interact();
             }
         }
+
+        // Calculate movement delta and move players riding the ghost
+        Vector2 currentPos = transform.position;
+        Vector2 delta = currentPos - prevPos;
+        
+        // Move all players riding on the ghost
+        foreach (var p in playersOnGhost)
+        {
+            if (p != null)
+            {
+                // Move the player by the same amount the ghost moved
+                p.position += (Vector3)delta;
+                
+                // Optional: Match ghost's horizontal velocity to prevent sliding
+                Rigidbody2D playerRb = p.GetComponent<Rigidbody2D>();
+                if (playerRb != null)
+                {
+                    Vector2 playerVel = playerRb.linearVelocity;
+                    playerVel.x = rb.linearVelocity.x; // Match ghost's horizontal velocity
+                    playerRb.linearVelocity = playerVel;
+                }
+            }
+        }
     }
-    
+
     void TryInteract()
     {
         Debug.Log("Ghost trying to interact");
@@ -92,7 +103,7 @@ public class GhostController : MonoBehaviour
             }
         }
     }
-    
+
     public void Seek(float time)
     {
         if (inputFrames == null || inputFrames.Count == 0) return;
@@ -111,8 +122,8 @@ public class GhostController : MonoBehaviour
     public void Initialize(List<PlayerInputFrame> frames, float start, float end)
     {
         inputFrames = new List<PlayerInputFrame>(frames);
-        startTime   = start;
-        endTime     = end;
+        startTime = start;
+        endTime = end;
 
         Seek(start);
         GameManager.Instance?.RegisterGhost(this, startTime, endTime);
@@ -120,11 +131,11 @@ public class GhostController : MonoBehaviour
 
     public void Initialize(List<PlayerInputFrame> frames, float start)
     {
-        float end = frames is { Count: >0 } ? frames[^1].time : start;
+        float end = frames is { Count: > 0 } ? frames[^1].time : start;
         Initialize(frames, start, end);
     }
 
-    
+
     void SetTransparency(float alpha)
     {
         if (sr != null)
@@ -134,4 +145,39 @@ public class GhostController : MonoBehaviour
             sr.color = color;
         }
     }
+
+    void OnCollisionEnter2D(Collision2D c)
+    {
+        if (c.transform.CompareTag("Player"))
+        {
+            // Check if player is landing on top of the ghost (not hitting from the side)
+            bool isOnTop = false;
+            foreach (ContactPoint2D contact in c.contacts)
+            {
+                if (contact.normal.y < -0.5f) // Normal pointing down means player is on top
+                {
+                    isOnTop = true;
+                    break;
+                }
+            }
+            
+            if (isOnTop && !playersOnGhost.Contains(c.transform))
+            {
+                playersOnGhost.Add(c.transform);
+                Debug.Log($"Player {c.transform.name} is now riding ghost");
+            }
+        }
+    }
+    
+    void OnCollisionExit2D(Collision2D c)
+    {
+        if (c.transform.CompareTag("Player"))
+        {
+            playersOnGhost.Remove(c.transform);
+            Debug.Log($"Player {c.transform.name} stopped riding ghost");
+        }
+    }
+
+    
+    
 }
