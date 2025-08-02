@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo>
+	<Project Name="GMTK-HGDS_WwiseProject" GUID="{32DABF5A-58A9-49D9-8EAC-F19EB0A6578A}" Generator="2023.1.5.8522"/>
+	<CacheRoot>../../../../GMTK-HGDS_WwiseProject/.cache</CacheRoot>
+	<Platforms>
+		<Platform Name="Mac" GUID="{45BA4A3B-870C-4269-B824-A85FF2D2D6B1}" BasePlatform="Mac" BasePlatformGUID="{9C6217D5-DD11-4795-87C1-6CE02853C540}" Path="../../../../GMTK-HGDS_WwiseProject/GeneratedSoundBanks/Mac"/>
+		<Platform Name="Windows" GUID="{1D634F19-7598-417F-AEB9-215C69F1C221}" BasePlatform="Windows" BasePlatformGUID="{6E0CB257-C6C8-4C5C-8366-2740DFC441EB}" Path="../../../../GMTK-HGDS_WwiseProject/GeneratedSoundBanks/Windows"/>
+	</Platforms>
+	<Languages>
+		<Language Name="English(US)" Id="684519430" GUID="{11DF58AC-F036-48C5-B637-AABABE09EF89}" Default="true" UseAsStandIn="true"/>
+	</Languages>
+	<FileHash>{0A278258-9A05-2E0E-6EBD-6336F9927836}</FileHash>
+</ProjectInfo>
