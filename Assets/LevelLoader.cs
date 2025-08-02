@@ -50,9 +50,13 @@ public class LevelLoader : MonoBehaviour
         Debug.Log("Trigger set");
 
         // Wait for animation
-        yield return new WaitForSeconds(transitionTime);   
+        yield return new WaitForSeconds(transitionTime);
 
         // Load next scene
         SceneManager.LoadScene(levelIndex);
+        
+        yield return null;
+        if (LifeManager.Instance != null)
+            LifeManager.Instance.FullReset();
     }
 }
