@@ -11,13 +11,14 @@ public class PlatformMover : MonoBehaviour
     private Vector2 lastPosition;
     private List<Transform> playersOnPlatform = new List<Transform>();
 
-    bool isActive;
+    public bool isActive;
     PropRecorder recorder;
 
     void Start()
     {
         target = pointB;
         lastPosition = transform.position;
+        isActive = true;
 
         recorder = GetComponent<PropRecorder>() ?? gameObject.AddComponent<PropRecorder>();
         PropManager.Instance.Register(recorder);

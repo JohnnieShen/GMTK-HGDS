@@ -24,7 +24,7 @@ public class TimeRewindManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -39,20 +39,7 @@ public class TimeRewindManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(rewindKey)) TriggerRewind();
         if (Input.GetKeyDown(playbackKey)) TriggerPlayback();
-    }
-
-    public void TriggerRewind()
-    {
-        var player = GameObject.FindWithTag("Player");
-        if (!TryGetRecorder(player, out var rec)) return;
-
-        rec.StopRecording();
-        SpawnGhost(rec, playbackStartTime);
-
-        GameManager.Instance.PrepareRespawn(playerPrefab, rec.GetSpawnPosition());
-        Destroy(player);
     }
 
     public void TriggerPlayback()
