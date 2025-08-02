@@ -13,6 +13,7 @@ public class LevelLoader : MonoBehaviour
 
     public void Start()
     {
+        DontDestroyOnLoad(gameObject);
         transition = GetComponent<Animator>();
         
         // Make sure the collider is set as a trigger
@@ -36,27 +37,36 @@ public class LevelLoader : MonoBehaviour
             LoadNextLevel();
         }
     }
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     public void LoadNextLevel()
     {
+        if (loading) return;
         loading = true;
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(TransitionAndLoad(
+            SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    IEnumerator LoadLevel(int levelIndex)
+    IEnumerator TransitionAndLoad(int levelIndex)
     {
-        // Start animation
         transition.SetTrigger("Start");
-        Debug.Log("Trigger set");
-
-        // Wait for animation
         yield return new WaitForSeconds(transitionTime);
-
-        // Load next scene
         SceneManager.LoadScene(levelIndex);
-        
-        yield return null;
-        if (LifeManager.Instance != null)
-            LifeManager.Instance.FullReset();
+        // don’t try to reset here
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Scene loaded: resetting LifeManager");
+        LifeManager.Instance?.FullReset();
+        loading = false;
     }
 }
