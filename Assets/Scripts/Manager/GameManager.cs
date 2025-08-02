@@ -53,12 +53,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        TriggerNotifier.PlayerTriggerEvent += HandlePlayerTrigger;
-    }
-
-    void OnDestroy()
-    {
-        TriggerNotifier.PlayerTriggerEvent -= HandlePlayerTrigger;
     }
 
     void Update()
@@ -212,17 +206,6 @@ public class GameManager : MonoBehaviour
             g.gc.gameObject.SetActive(false);
             g.active = false;
         }
-    }
-
-    void HandlePlayerTrigger(bool entered)
-    {
-        Debug.Log($"Player trigger event: {(entered ? "Entered" : "Exited")}");
-
-        if (entered && !levelLoader.isLoading()) levelLoader.LoadNextLevel();
-//Time.timeScale = entered ? 0f : 1f;
-
-        if (pausePanel != null)
-            pausePanel.SetActive(entered);
     }
     
     void ResetRuntimeState()
