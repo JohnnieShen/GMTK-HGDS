@@ -259,7 +259,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      halftiles_0: -3719404988844320528
+      halftiles_1: -3583511146124697510
+      halftiles_2: 8243445082516277119
+      halftiles_3: -8193978863914242367
+      halftiles_4: 4612702207708002904
+      halftiles_5: -5905670106355624715
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
