@@ -17,9 +17,15 @@ MonoBehaviour:
     musicSwitch: 2
   - sceneName: AUDIO 2
     musicSwitch: 3
-  - sceneName: 
-    musicSwitch: 0
-  - sceneName: 
-    musicSwitch: 0
-  - sceneName: 
-    musicSwitch: 0
+  - sceneName: 1-1
+    musicSwitch: 1
+  - sceneName: 1-2
+    musicSwitch: 1
+  - sceneName: 1-3
+    musicSwitch: 1
+  - sceneName: 1-4
+    musicSwitch: 1
+  - sceneName: 1-5
+    musicSwitch: 1
+  - sceneName: 2-1
+    musicSwitch: 2
