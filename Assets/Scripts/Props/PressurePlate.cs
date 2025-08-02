@@ -10,8 +10,8 @@ public class PressurePlateHold : MonoBehaviour
     public float delayOn = 0f;
     public float delayOff = 0f;
 
-    [Header("Default State")]
-    public bool defaultStateIsOn = false;
+    [Header("Default")]
+    public bool defaultActive = false;
 
     [Header("Visuals")]
     public SpriteRenderer spriteRenderer;
@@ -21,53 +21,75 @@ public class PressurePlateHold : MonoBehaviour
 
     private bool isSomethingOnPlate = false;
     private Coroutine delayCoroutine;
+    bool isActive;
+    Coroutine delayCo;
+    PropRecorder recorder;
 
     void Start()
     {
-        targetObject.SetActive(defaultStateIsOn);
-        if (spriteRenderer != null && idleSprite != null)
-            spriteRenderer.sprite = idleSprite;
+        isActive = defaultActive;
+        ApplyVisuals();
+
+        recorder = GetComponent<PropRecorder>() ?? gameObject.AddComponent<PropRecorder>();
+        PropManager.Instance.Register(recorder);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!IsValidObject(other)) return;
-
-        isSomethingOnPlate = true;
-
-        if (delayCoroutine != null)
-            StopCoroutine(delayCoroutine);
-
-        delayCoroutine = StartCoroutine(SetStateAfterDelay(!defaultStateIsOn, delayOn, pressedSprite));
+        ChangeStateDelayed(true, delayOn);
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (!IsValidObject(other)) return;
-
-        isSomethingOnPlate = false;
-
-        if (delayCoroutine != null)
-            StopCoroutine(delayCoroutine);
-
-        delayCoroutine = StartCoroutine(SetStateAfterDelay(defaultStateIsOn, delayOff, idleSprite));
+        ChangeStateDelayed(false, delayOff);
     }
 
-    private IEnumerator SetStateAfterDelay(bool stateToSet, float delay, Sprite finalSprite)
+    void ChangeStateDelayed(bool nextState, float delay)
     {
-        if (spriteRenderer != null && activatingSprite != null)
+        if (delayCo != null) StopCoroutine(delayCo);
+        delayCo = StartCoroutine(SetStateAfterDelay(nextState, delay));
+    }
+
+    IEnumerator SetStateAfterDelay(bool nextState, float delay)
+    {
+        if (spriteRenderer && activatingSprite)
             spriteRenderer.sprite = activatingSprite;
 
         yield return new WaitForSeconds(delay);
 
-        targetObject.SetActive(stateToSet);
+        isActive = nextState;
+        ApplyVisuals();
+    }
 
-        if (spriteRenderer != null && finalSprite != null)
-            spriteRenderer.sprite = finalSprite;
+    void ApplyVisuals()
+    {
+        if (targetObject) targetObject.SetActive(isActive);
+
+        if (spriteRenderer)
+            spriteRenderer.sprite = isActive ? pressedSprite : idleSprite;
     }
 
     private bool IsValidObject(Collider2D col)
     {
         return col.CompareTag("Player") || col.CompareTag("Box");
+    }
+
+    public PropStatusFrame CaptureFrame()
+    {
+        return new PropStatusFrame(
+            gameObject.GetInstanceID(),
+            TimelineManager.Instance.GetCurrentTime(),
+            isActive,
+            transform.position
+        );
+    }
+
+    public void ApplyFrame(PropStatusFrame frame)
+    {
+        isActive = frame.active;
+        transform.position = frame.position;
+        ApplyVisuals();
     }
 }

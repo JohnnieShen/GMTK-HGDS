@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Button : MonoBehaviour
+public class Button : MonoBehaviour, RecordableProp
 {
     [Header("Target")]
     public GameObject targetObject;
@@ -9,7 +9,7 @@ public class Button : MonoBehaviour
     [Header("Timing")]
     public float delayOn = 0f;
     public float delayOff = 1f;
-    public bool defaultStateIsOn = true;
+    public bool defaultPressed = false;
 
     [Header("Sprites")]
     public SpriteRenderer spriteRenderer;
@@ -19,21 +19,23 @@ public class Button : MonoBehaviour
 
     private bool playerInRange = false;
     private bool isProcessing = false;
+    bool isPressed;
+    PropRecorder recorder;
 
     void Start()
     {
-        targetObject.SetActive(defaultStateIsOn);
+        isPressed = defaultPressed;
 
-        if (spriteRenderer && idleSprite)
-            spriteRenderer.sprite = idleSprite;
+        ApplyVisuals();
+
+        recorder = GetComponent<PropRecorder>() ?? gameObject.AddComponent<PropRecorder>();
+        PropManager.Instance.Register(recorder);
     }
 
     void Update()
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E) && !isProcessing)
-        {
             StartCoroutine(PressSequence());
-        }
     }
 
     IEnumerator PressSequence()
@@ -45,22 +47,23 @@ public class Button : MonoBehaviour
 
         yield return new WaitForSeconds(delayOn);
 
-        // Flip from default state
-        bool flippedState = !defaultStateIsOn;
-        targetObject.SetActive(flippedState);
-
-        if (spriteRenderer && pressedSprite)
-            spriteRenderer.sprite = pressedSprite;
+        isPressed = !isPressed;
+        ApplyVisuals();
 
         yield return new WaitForSeconds(delayOff);
 
-        // Revert to default
-        targetObject.SetActive(defaultStateIsOn);
-
-        if (spriteRenderer && idleSprite)
-            spriteRenderer.sprite = idleSprite;
+        isPressed = defaultPressed;
+        ApplyVisuals();
 
         isProcessing = false;
+    }
+
+    void ApplyVisuals()
+    {
+        if (targetObject) targetObject.SetActive(isPressed);
+
+        if (spriteRenderer)
+            spriteRenderer.sprite = isPressed ? pressedSprite : idleSprite;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -73,5 +76,17 @@ public class Button : MonoBehaviour
     {
         if (other.CompareTag("Player"))
             playerInRange = false;
+    }
+
+    public PropStatusFrame CaptureFrame()
+    {
+        return new PropStatusFrame(gameObject.GetInstanceID(), TimelineManager.Instance.GetCurrentTime(), isPressed, transform.position);
+    }
+
+    public void ApplyFrame(PropStatusFrame frame)
+    {
+        isPressed = frame.active;
+        transform.position = frame.position;
+        ApplyVisuals();
     }
 }

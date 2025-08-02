@@ -11,14 +11,21 @@ public class PlatformMover : MonoBehaviour
     private Vector2 lastPosition;
     private List<Transform> playersOnPlatform = new List<Transform>();
 
+    bool isActive;
+    PropRecorder recorder;
+
     void Start()
     {
         target = pointB;
         lastPosition = transform.position;
+
+        recorder = GetComponent<PropRecorder>() ?? gameObject.AddComponent<PropRecorder>();
+        PropManager.Instance.Register(recorder);
     }
 
     void Update()
     {
+        if (!isActive) return;
         Vector2 previousPosition = transform.position;
         transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
         
@@ -40,6 +47,8 @@ public class PlatformMover : MonoBehaviour
         }
     }
 
+    public void SetActive(bool value) => isActive = value;
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         // Check if something landed on top of the platform
@@ -59,6 +68,26 @@ public class PlatformMover : MonoBehaviour
         {
             playersOnPlatform.Remove(collision.transform);
         }
+    }
+
+    public PropStatusFrame CaptureFrame()
+    {
+        return new PropStatusFrame(
+            gameObject.GetInstanceID(),
+            TimelineManager.Instance.GetCurrentTime(),
+            isActive,
+            transform.position
+        );
+    }
+
+    public void ApplyFrame(PropStatusFrame frame)
+    {
+        isActive = frame.active;
+        transform.position = frame.position;
+
+        target = (Vector2.Distance(transform.position, pointA) <
+                  Vector2.Distance(transform.position, pointB))
+                 ? pointB : pointA;
     }
 
     void OnDrawGizmosSelected()

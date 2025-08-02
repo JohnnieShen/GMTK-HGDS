@@ -1,14 +1,16 @@
 using UnityEngine;
 using System.Collections;
 
-public class Lever : MonoBehaviour
+public class Lever : MonoBehaviour, RecordableProp
 {
     [Header("Target")]
     public GameObject targetObject;
 
     [Header("Settings")]
     public float delayOn = 0f;
-    public bool defaultStateIsOn = true;
+
+    [Header("Default")]
+    public bool defaultActive = true;
 
     [Header("Sprites")]
     public SpriteRenderer spriteRenderer;
@@ -19,14 +21,16 @@ public class Lever : MonoBehaviour
     private bool playerInRange = false;
     private bool isProcessing = false;
     private bool currentState;
+    bool isActive;
+    PropRecorder recorder;
 
     void Start()
     {
-        currentState = defaultStateIsOn;
-        targetObject.SetActive(currentState);
+        isActive = defaultActive;
+        ApplyVisuals();
 
-        if (spriteRenderer)
-            spriteRenderer.sprite = currentState ? onSprite : offSprite;
+        recorder = GetComponent<PropRecorder>() ?? gameObject.AddComponent<PropRecorder>();
+        PropManager.Instance.Register(recorder);
     }
 
     void Update()
@@ -46,12 +50,8 @@ public class Lever : MonoBehaviour
 
         yield return new WaitForSeconds(delayOn);
 
-        // Flip state
-        currentState = !currentState;
-        targetObject.SetActive(currentState);
-
-        if (spriteRenderer)
-            spriteRenderer.sprite = currentState ? onSprite : offSprite;
+        isActive = !isActive;
+        ApplyVisuals();
 
         isProcessing = false;
     }
@@ -66,5 +66,29 @@ public class Lever : MonoBehaviour
     {
         if (other.CompareTag("Player"))
             playerInRange = false;
+    }
+
+    public PropStatusFrame CaptureFrame()
+    {
+        return new PropStatusFrame(
+            gameObject.GetInstanceID(),
+            TimelineManager.Instance.GetCurrentTime(),
+            isActive,
+            transform.position
+        );
+    }
+
+    public void ApplyFrame(PropStatusFrame frame)
+    {
+        isActive = frame.active;
+        transform.position = frame.position;
+        ApplyVisuals();
+    }
+    void ApplyVisuals()
+    {
+        if (targetObject) targetObject.SetActive(isActive);
+
+        if (spriteRenderer)
+            spriteRenderer.sprite = isActive ? onSprite : offSprite;
     }
 }

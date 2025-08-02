@@ -31,12 +31,12 @@ public class GhostController : MonoBehaviour
         gameObject.layer = ghostLayer;
         SetTransparency(transparency);
     }
-       
+
     void FixedUpdate()
     {
         if (inputFrames == null || inputFrames.Count == 0) return;
 
-        float t     = TimelineManager.Instance.GetCurrentTime();
+        float t = TimelineManager.Instance.GetCurrentTime();
         float speed = TimelineManager.Instance.timelineSpeed;
 
         // const float tol = 0.02f;
@@ -45,19 +45,23 @@ public class GhostController : MonoBehaviour
 
         var frame = inputFrames.OrderBy(f => Mathf.Abs(f.time - t)).First();
 
-        if (speed < 0f || speed > 1f)
-        {
-            movement.SetPosition(frame.position);
-            rb.linearVelocity = (speed < 0f) ? -frame.velocity : frame.velocity;
-            prevJumpHeld      = frame.jump;
-        }
-        else
-        {
-            movement.Move(frame.horizontal);
-            bool jumpDown = frame.jump && !prevJumpHeld;
-            movement.Jump(jumpDown, frame.jump);
-            prevJumpHeld = frame.jump;
-        }
+        // if (speed < 0f || speed > 1f)
+        // {
+        //     movement.SetPosition(frame.position);
+        //     rb.linearVelocity = (speed < 0f) ? -frame.velocity : frame.velocity;
+        //     prevJumpHeld = frame.jump;
+        // }
+        // else
+        // {
+        //     movement.Move(frame.horizontal);
+        //     bool jumpDown = frame.jump && !prevJumpHeld;
+        //     movement.Jump(jumpDown, frame.jump);
+        //     prevJumpHeld = frame.jump;
+        // }
+        
+        movement.SetPosition(frame.position);
+        rb.linearVelocity = (speed < 0f) ? -frame.velocity : frame.velocity;
+        prevJumpHeld = frame.jump;
     }
     
     public void Seek(float time)
