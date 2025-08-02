@@ -1,5 +1,9 @@
 Event	ID	Name			Wwise Object Path	Notes
 	1073466678	Stop_BGM			\Default Work Unit\Stop_BGM	
+	1834004125	Play_Rolling			\Default Work Unit\Rolling\Play_Rolling	
+	2323405115	Play_Landing			\Default Work Unit\Landing\Play_Landing	
+	2567045767	Stop_Rolling			\Default Work Unit\Rolling\Stop_Rolling	
+	2756694246	Play_Jumping			\Default Work Unit\Jumping\Play_Jumping	
 	3126765036	Play_BGM			\Default Work Unit\Play_BGM	
 
 Switch Group	ID	Name			Wwise Object Path	Notes
@@ -14,7 +18,10 @@ Switch	ID	Name	Switch Group			Notes
 	3604647259	MainMenu	BGM			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	37369419	Jumping	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\Jumping_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Jumping		312144
 	148771695	DéjàYou - CHAPTER 4_v2	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\DéjàYou - CHAPTER 4.v2_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\BGM-Switch\Chapter4-PL\DéjàYou - CHAPTER 4_v2\DéjàYou - CHAPTER 4_v2		8294544
+	344276529	Rolling	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\Rolling_FBC78EF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Rolling		1038268
+	345306008	Landing	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\Landing_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Landing		217000
 	349871890	DéjàYou - CHAPTER 3_v2	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\DéjàYou - CHAPTER 3.v2_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\BGM-Switch\Chapter3-PL\DéjàYou - CHAPTER 3_v2\DéjàYou - CHAPTER 3_v2		11520144
 	541674770	DéjàYou - CHAPTER 5_v2	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\DéjàYou - CHAPTER 5.v2_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\BGM-Switch\Chapter5-PL\DéjàYou - CHAPTER 5_v2\DéjàYou - CHAPTER 5_v2		8418604
 	645034010	DéjàYou - CHAPTER 1_v2	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\DéjàYou - CHAPTER 1.v2_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\BGM-Switch\Chapter1-PL\DéjàYou - CHAPTER 1_v2\DéjàYou - CHAPTER 1_v2		12672144

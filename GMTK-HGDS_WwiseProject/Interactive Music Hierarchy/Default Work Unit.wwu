@@ -1,6 +1,1071 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}" SchemaVersion="119">
 	<InteractiveMusic>
-		<WorkUnit Name="Default Work Unit" ID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}" PersistMode="Standalone">
+			<ChildrenList>
+				<MusicSwitchContainer Name="BGM-Switch" ID="{C742305C-F522-4A3A-9896-2797A90169EB}" ShortID="740788317">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-6</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+						</Reference>
+						<Reference Name="TransitionRoot">
+							<Custom>
+								<MusicTransition Name="Root" ID="{29E23DAC-81C4-49D6-BDFD-33A97EBBDE38}">
+									<PropertyList>
+										<Property Name="IsFolder" Type="bool" Value="True"/>
+									</PropertyList>
+									<ChildrenList>
+										<MusicTransition Name="Transition" ID="{583060DE-D7FD-41DD-A615-B3817331B2FE}">
+											<PropertyList>
+												<Property Name="EnableDestinationFadeIn" Type="bool" Value="True"/>
+												<Property Name="EnableSourceFadeOut" Type="bool" Value="True"/>
+												<Property Name="ExitSourceAt" Type="int16" Value="0"/>
+											</PropertyList>
+											<TransitionInfo>
+												<SourceFadeOut>
+													<MusicFade Name="Source Fade-out" ID="{DC3E5F85-5601-4E74-BF83-F2EF5C64A1B3}">
+														<PropertyList>
+															<Property Name="FadeTime" Type="Real64" Value="2"/>
+															<Property Name="FadeType" Type="int16" Value="1"/>
+														</PropertyList>
+													</MusicFade>
+												</SourceFadeOut>
+												<DestinationFadeIn>
+													<MusicFade Name="Destination Fade-in" ID="{52904606-66A8-4BD8-8A3C-7E808669B4E2}">
+														<PropertyList>
+															<Property Name="FadeOffset" Type="Real64" Value="-1"/>
+															<Property Name="FadeTime" Type="Real64" Value="1"/>
+														</PropertyList>
+													</MusicFade>
+												</DestinationFadeIn>
+											</TransitionInfo>
+										</MusicTransition>
+									</ChildrenList>
+									<TransitionInfo/>
+								</MusicTransition>
+							</Custom>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicPlaylistContainer Name="Chapter1-PL" ID="{F804BF62-5BCA-4AC9-AFB1-D5ACE6EEF932}" ShortID="503517512">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+								</Reference>
+								<Reference Name="PlaylistRoot">
+									<Custom>
+										<MusicPlaylistItem Name="" ID="{9AE341E1-0AC2-4212-BE93-E752CFC77898}" ShortID="420007084">
+											<ChildrenList>
+												<MusicPlaylistItem Name="" ID="{899654B2-D457-40A9-B71A-F8A108D2A919}" ShortID="607156692">
+													<PropertyList>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="DéjàYou - CHAPTER 1_v2" ID="{407568C3-863F-496D-878B-AE421E1B51BE}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+												<MusicPlaylistItem Name="" ID="{98E1861B-898F-4FA0-93E4-7D401D67DE3C}" ShortID="460695492">
+													<PropertyList>
+														<Property Name="LoopCount" Type="int16" Value="0"/>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="DéjàYou - CHAPTER 1_v2" ID="{407568C3-863F-496D-878B-AE421E1B51BE}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+											</ChildrenList>
+										</MusicPlaylistItem>
+									</Custom>
+								</Reference>
+								<Reference Name="TransitionRoot">
+									<Custom>
+										<MusicTransition Name="Root" ID="{4590D665-F3A6-46F0-8DAD-5B743A8ABB18}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<MusicTransition Name="Transition" ID="{EBAD2DA8-66C4-4E56-8280-E0144F5C307D}">
+													<TransitionInfo/>
+												</MusicTransition>
+											</ChildrenList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</Custom>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicSegment Name="DéjàYou - CHAPTER 1_v2" ID="{407568C3-863F-496D-878B-AE421E1B51BE}" ShortID="737437299">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="71156.25"/>
+										<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="DéjàYou - CHAPTER 1_v2" ID="{15AF0DD5-F436-4844-84D5-FEDCBBB842E7}" ShortID="951251268">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+												</Reference>
+												<Reference Name="TransitionRoot">
+													<Custom>
+														<MusicTransition Name="Root" ID="{AAB3C9D1-60C4-4F86-BF4E-2C7D51775BBF}">
+															<PropertyList>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
+															</PropertyList>
+															<TransitionInfo/>
+														</MusicTransition>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="DéjàYou - CHAPTER 1_v2" ID="{A31C6C29-A7D5-41D5-8CE7-1CF3F60964B0}">
+													<Language>SFX</Language>
+													<AudioFile>DéjàYou - CHAPTER 1.v2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="645034010"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<Reference>
+														<Local>
+															<MusicTrackSequence Name="" ID="{2BF5B5A9-B425-47F5-A9C7-FA8CFA6B704E}">
+																<ObjectLists>
+																	<ObjectList Name="Clips">
+																		<Reference>
+																			<Local>
+																				<MusicClip Name="DéjàYou - CHAPTER 1_v2" ID="{BCB6BA96-AEF4-4E90-9162-63ECE6B9DA78}">
+																					<PropertyList>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="66000"/>
+																						<Property Name="FadeInMode" Type="int16" Value="0"/>
+																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																					</PropertyList>
+																					<AudioSourceRef Name="DéjàYou - CHAPTER 1_v2" ID="{A31C6C29-A7D5-41D5-8CE7-1CF3F60964B0}"/>
+																				</MusicClip>
+																			</Local>
+																		</Reference>
+																	</ObjectList>
+																</ObjectLists>
+															</MusicTrackSequence>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Cues">
+											<Reference>
+												<Local>
+													<MusicCue Name="Entry Cue" ID="{2BA96A1D-7049-4415-8374-DD32F2E1D7F5}"/>
+												</Local>
+											</Reference>
+											<Reference>
+												<Local>
+													<MusicCue Name="Exit Cue" ID="{95AAF4FF-0E35-407E-B494-FF3B3FEAD7FC}">
+														<PropertyList>
+															<Property Name="CueType" Type="int16" Value="1"/>
+															<Property Name="TimeMs" Type="Real64" Value="56000"/>
+														</PropertyList>
+													</MusicCue>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicSegment>
+							</ChildrenList>
+						</MusicPlaylistContainer>
+						<MusicPlaylistContainer Name="Chapter2-PL" ID="{2D064C81-2478-4CBC-81C7-83B0E66B0E7D}" ShortID="801421749">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+								</Reference>
+								<Reference Name="PlaylistRoot">
+									<Custom>
+										<MusicPlaylistItem Name="" ID="{32697210-ED50-4AE4-8DD3-AE48D86069A3}" ShortID="907736608">
+											<ChildrenList>
+												<MusicPlaylistItem Name="" ID="{11F02BE2-2E69-4B99-AA3B-CCCCB3F3EBF9}" ShortID="442089398">
+													<PropertyList>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="DéjàYou - CHAPTER 2_v2" ID="{28A3BA4C-984A-48E0-9926-2E3A74B42F6B}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+												<MusicPlaylistItem Name="" ID="{AE066446-D71D-4FDB-8C9E-3119661598D0}" ShortID="320847108">
+													<PropertyList>
+														<Property Name="LoopCount" Type="int16" Value="0"/>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="DéjàYou - CHAPTER 2_v2" ID="{28A3BA4C-984A-48E0-9926-2E3A74B42F6B}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+											</ChildrenList>
+										</MusicPlaylistItem>
+									</Custom>
+								</Reference>
+								<Reference Name="TransitionRoot">
+									<Custom>
+										<MusicTransition Name="Root" ID="{BACE40FC-BE61-4C54-AAB4-E6B8A3529332}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<MusicTransition Name="Transition" ID="{56BA5E0C-41EB-43B0-9E85-2402ED6AD124}">
+													<TransitionInfo/>
+												</MusicTransition>
+											</ChildrenList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</Custom>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicSegment Name="DéjàYou - CHAPTER 2_v2" ID="{28A3BA4C-984A-48E0-9926-2E3A74B42F6B}" ShortID="956832758">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="56571.4375"/>
+										<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+										<Property Name="Tempo" Type="Real64" Value="140"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="DéjàYou - CHAPTER 2_v2" ID="{E6490A28-460E-4C99-BCC8-2A9408BCBE33}" ShortID="559298716">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+												</Reference>
+												<Reference Name="TransitionRoot">
+													<Custom>
+														<MusicTransition Name="Root" ID="{EA12033B-9C72-4CAE-844E-E4745D21DD60}">
+															<PropertyList>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
+															</PropertyList>
+															<TransitionInfo/>
+														</MusicTransition>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="DéjàYou - CHAPTER 2_v2" ID="{A3194A06-58CC-43DF-8C5F-EE34DABEA747}">
+													<Language>SFX</Language>
+													<AudioFile>DéjàYou - CHAPTER 2.v2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="981914805"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<Reference>
+														<Local>
+															<MusicTrackSequence Name="" ID="{5FE29F5A-EE1C-4A35-9488-59902FD9DDFE}">
+																<ObjectLists>
+																	<ObjectList Name="Clips">
+																		<Reference>
+																			<Local>
+																				<MusicClip Name="DéjàYou - CHAPTER 2_v2" ID="{A8FFEEAA-A577-4C8B-88DD-05DDC7E0AEB3}">
+																					<PropertyList>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="56571.4375"/>
+																						<Property Name="FadeInMode" Type="int16" Value="0"/>
+																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																					</PropertyList>
+																					<AudioSourceRef Name="DéjàYou - CHAPTER 2_v2" ID="{A3194A06-58CC-43DF-8C5F-EE34DABEA747}"/>
+																				</MusicClip>
+																			</Local>
+																		</Reference>
+																	</ObjectList>
+																</ObjectLists>
+															</MusicTrackSequence>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Cues">
+											<Reference>
+												<Local>
+													<MusicCue Name="Entry Cue" ID="{5FB534A3-084F-4782-8B70-9C6E0E7F591E}"/>
+												</Local>
+											</Reference>
+											<Reference>
+												<Local>
+													<MusicCue Name="Exit Cue" ID="{E644417D-4F6D-4604-AD19-0CDF78A4C01D}">
+														<PropertyList>
+															<Property Name="CueType" Type="int16" Value="1"/>
+															<Property Name="TimeMs" Type="Real64" Value="49714.2857142857"/>
+														</PropertyList>
+													</MusicCue>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicSegment>
+							</ChildrenList>
+						</MusicPlaylistContainer>
+						<MusicPlaylistContainer Name="Chapter3-PL" ID="{F9CFB4CC-424E-4EFB-9C7C-DB1768B0743A}" ShortID="1031972285">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+								</Reference>
+								<Reference Name="PlaylistRoot">
+									<Custom>
+										<MusicPlaylistItem Name="" ID="{0957FCB2-3D56-456B-A38E-5E6B566EBFB0}" ShortID="643949882">
+											<ChildrenList>
+												<MusicPlaylistItem Name="" ID="{921801AA-2B39-4696-9FB8-544C099595E3}" ShortID="805937216">
+													<PropertyList>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="DéjàYou - CHAPTER 3_v2" ID="{29A07205-A572-404C-8654-39617E47BF3B}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+												<MusicPlaylistItem Name="" ID="{8ACD276E-A694-4BC2-AD82-ACA1FE2986D7}" ShortID="68777247">
+													<PropertyList>
+														<Property Name="LoopCount" Type="int16" Value="0"/>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="DéjàYou - CHAPTER 3_v2" ID="{29A07205-A572-404C-8654-39617E47BF3B}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+											</ChildrenList>
+										</MusicPlaylistItem>
+									</Custom>
+								</Reference>
+								<Reference Name="TransitionRoot">
+									<Custom>
+										<MusicTransition Name="Root" ID="{77B1337A-9E3F-45F1-A092-54C942252D24}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<MusicTransition Name="Transition" ID="{5053BDAB-CD2E-4F11-8CEB-83BEB0ED3E55}">
+													<TransitionInfo/>
+												</MusicTransition>
+											</ChildrenList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</Custom>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicSegment Name="DéjàYou - CHAPTER 3_v2" ID="{29A07205-A572-404C-8654-39617E47BF3B}" ShortID="41297221">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="60000"/>
+										<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+										<Property Name="Tempo" Type="Real64" Value="140"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="DéjàYou - CHAPTER 3_v2" ID="{93C0DA84-8626-4B97-B951-EAB2A6BBAC72}" ShortID="345815669">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+												</Reference>
+												<Reference Name="TransitionRoot">
+													<Custom>
+														<MusicTransition Name="Root" ID="{D7EFD824-6447-46B7-B1C7-08FCD9E85A65}">
+															<PropertyList>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
+															</PropertyList>
+															<TransitionInfo/>
+														</MusicTransition>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="DéjàYou - CHAPTER 3_v2" ID="{F9128A0E-F6C1-40E1-A9DE-4BF5169690D2}">
+													<Language>SFX</Language>
+													<AudioFile>DéjàYou - CHAPTER 3.v2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="349871890"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<Reference>
+														<Local>
+															<MusicTrackSequence Name="" ID="{E080E1DB-3CC2-4E68-9165-44AB3559EF3A}">
+																<ObjectLists>
+																	<ObjectList Name="Clips">
+																		<Reference>
+																			<Local>
+																				<MusicClip Name="DéjàYou - CHAPTER 3_v2" ID="{B4BA62B3-95F3-4E9E-820F-8B0DF1F5687C}">
+																					<PropertyList>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="60000"/>
+																						<Property Name="FadeInMode" Type="int16" Value="0"/>
+																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																					</PropertyList>
+																					<AudioSourceRef Name="DéjàYou - CHAPTER 3_v2" ID="{F9128A0E-F6C1-40E1-A9DE-4BF5169690D2}"/>
+																				</MusicClip>
+																			</Local>
+																		</Reference>
+																	</ObjectList>
+																</ObjectLists>
+															</MusicTrackSequence>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Cues">
+											<Reference>
+												<Local>
+													<MusicCue Name="Entry Cue" ID="{408511AB-FE96-4A61-BE94-611218BF3165}"/>
+												</Local>
+											</Reference>
+											<Reference>
+												<Local>
+													<MusicCue Name="Exit Cue" ID="{3F87D775-70D5-4184-A7B5-6ECB4A2E4770}">
+														<PropertyList>
+															<Property Name="CueType" Type="int16" Value="1"/>
+															<Property Name="TimeMs" Type="Real64" Value="54857.1428571429"/>
+														</PropertyList>
+													</MusicCue>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicSegment>
+							</ChildrenList>
+						</MusicPlaylistContainer>
+						<MusicPlaylistContainer Name="Chapter4-PL" ID="{CEB4DF75-28E5-417C-9DB9-C7ECC58DA4CA}" ShortID="864505004">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+								</Reference>
+								<Reference Name="PlaylistRoot">
+									<Custom>
+										<MusicPlaylistItem Name="" ID="{494368DD-5FBC-4D4F-BEFB-51A9B403DDE6}" ShortID="190105094">
+											<ChildrenList>
+												<MusicPlaylistItem Name="" ID="{00E57C2C-98D3-4571-841A-B3501EB2D147}" ShortID="298735223">
+													<PropertyList>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="DéjàYou - CHAPTER 4_v2" ID="{B628C332-6791-465B-A1C0-60BA6FA4C35B}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+												<MusicPlaylistItem Name="" ID="{E4100015-054D-43BF-BC03-2FB9256D933B}" ShortID="799262226">
+													<PropertyList>
+														<Property Name="LoopCount" Type="int16" Value="0"/>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="DéjàYou - CHAPTER 4_v2" ID="{B628C332-6791-465B-A1C0-60BA6FA4C35B}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+											</ChildrenList>
+										</MusicPlaylistItem>
+									</Custom>
+								</Reference>
+								<Reference Name="TransitionRoot">
+									<Custom>
+										<MusicTransition Name="Root" ID="{39522D32-8853-4E7E-9479-C9DFDFACCC42}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<MusicTransition Name="Transition" ID="{FE48E08C-1B4C-42CF-8F43-85CDBA35F3DE}">
+													<TransitionInfo/>
+												</MusicTransition>
+											</ChildrenList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</Custom>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicSegment Name="DéjàYou - CHAPTER 4_v2" ID="{B628C332-6791-465B-A1C0-60BA6FA4C35B}" ShortID="546871174">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="43200"/>
+										<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+										<Property Name="Tempo" Type="Real64" Value="150"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="DéjàYou - CHAPTER 4_v2" ID="{E1B098E3-C400-4C3A-B136-79F64CC1A4BF}" ShortID="661395878">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+												</Reference>
+												<Reference Name="TransitionRoot">
+													<Custom>
+														<MusicTransition Name="Root" ID="{78A05F39-6984-4AE6-B8AD-DE5C467F306A}">
+															<PropertyList>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
+															</PropertyList>
+															<TransitionInfo/>
+														</MusicTransition>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="DéjàYou - CHAPTER 4_v2" ID="{08063AEE-2915-4166-BA38-FC41670717FB}">
+													<Language>SFX</Language>
+													<AudioFile>DéjàYou - CHAPTER 4.v2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="148771695"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<Reference>
+														<Local>
+															<MusicTrackSequence Name="" ID="{87A92BAF-B69F-428C-BA09-601B072483F4}">
+																<ObjectLists>
+																	<ObjectList Name="Clips">
+																		<Reference>
+																			<Local>
+																				<MusicClip Name="DéjàYou - CHAPTER 4_v2" ID="{F18CA91E-E3E2-418E-BEDB-11FEF0C54AB1}">
+																					<PropertyList>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="43200"/>
+																						<Property Name="FadeInMode" Type="int16" Value="0"/>
+																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																					</PropertyList>
+																					<AudioSourceRef Name="DéjàYou - CHAPTER 4_v2" ID="{08063AEE-2915-4166-BA38-FC41670717FB}"/>
+																				</MusicClip>
+																			</Local>
+																		</Reference>
+																	</ObjectList>
+																</ObjectLists>
+															</MusicTrackSequence>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Cues">
+											<Reference>
+												<Local>
+													<MusicCue Name="Entry Cue" ID="{0FD6B2BD-4BB0-4A81-95A8-41D881CA8E4A}">
+														<PropertyList>
+															<Property Name="TimeMs" Type="Real64" Value="1600"/>
+														</PropertyList>
+													</MusicCue>
+												</Local>
+											</Reference>
+											<Reference>
+												<Local>
+													<MusicCue Name="Exit Cue" ID="{87D778E7-BFFD-48FC-84CE-19EE8A9A5B1B}">
+														<PropertyList>
+															<Property Name="CueType" Type="int16" Value="1"/>
+															<Property Name="TimeMs" Type="Real64" Value="40000"/>
+														</PropertyList>
+													</MusicCue>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicSegment>
+							</ChildrenList>
+						</MusicPlaylistContainer>
+						<MusicPlaylistContainer Name="Chapter5-PL" ID="{636A25CD-59F1-430F-82D6-B53E80FE9ED1}" ShortID="97439095">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+								</Reference>
+								<Reference Name="PlaylistRoot">
+									<Custom>
+										<MusicPlaylistItem Name="" ID="{53632A13-BAF7-4A87-9CA8-84A3A7FBF11C}" ShortID="847794038">
+											<ChildrenList>
+												<MusicPlaylistItem Name="" ID="{14FF27BE-709E-4C37-BD81-F8F05BF1BD34}" ShortID="967357614">
+													<PropertyList>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="DéjàYou - CHAPTER 5_v2" ID="{16E2304D-70C4-4874-8DB3-74B4E29B82D2}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+												<MusicPlaylistItem Name="" ID="{8AF1271B-F00B-493E-AE7F-B3D32B1DDFE0}" ShortID="1024906942">
+													<PropertyList>
+														<Property Name="LoopCount" Type="int16" Value="0"/>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="DéjàYou - CHAPTER 5_v2" ID="{16E2304D-70C4-4874-8DB3-74B4E29B82D2}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+											</ChildrenList>
+										</MusicPlaylistItem>
+									</Custom>
+								</Reference>
+								<Reference Name="TransitionRoot">
+									<Custom>
+										<MusicTransition Name="Root" ID="{08550DAC-35E2-44FC-8CAA-508C39C38190}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<MusicTransition Name="Transition" ID="{8A654CF0-B0C7-4BD1-9E81-6029C88DA0E6}">
+													<TransitionInfo/>
+												</MusicTransition>
+											</ChildrenList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</Custom>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicSegment Name="DéjàYou - CHAPTER 5_v2" ID="{16E2304D-70C4-4874-8DB3-74B4E29B82D2}" ShortID="163903530">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="43846.1458333333"/>
+										<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+										<Property Name="Tempo" Type="Real64" Value="130"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="DéjàYou - CHAPTER 5_v2" ID="{000F8B8B-C285-49AE-B6F7-B695B538A91B}" ShortID="802425241">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+												</Reference>
+												<Reference Name="TransitionRoot">
+													<Custom>
+														<MusicTransition Name="Root" ID="{EB0D519E-54BF-4A58-A313-6CD79F51DBDA}">
+															<PropertyList>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
+															</PropertyList>
+															<TransitionInfo/>
+														</MusicTransition>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="DéjàYou - CHAPTER 5_v2" ID="{BA279BB0-8AAD-4582-BA95-FAC89AC538A7}">
+													<Language>SFX</Language>
+													<AudioFile>DéjàYou - CHAPTER 5.v2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="541674770"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<Reference>
+														<Local>
+															<MusicTrackSequence Name="" ID="{A2FF64C2-B00E-44A1-8BF2-CFB330A4A722}">
+																<ObjectLists>
+																	<ObjectList Name="Clips">
+																		<Reference>
+																			<Local>
+																				<MusicClip Name="DéjàYou - CHAPTER 5_v2" ID="{7F3829FB-1385-4360-8493-0C3CD50ACF0B}">
+																					<PropertyList>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="43846.1458333333"/>
+																						<Property Name="FadeInMode" Type="int16" Value="0"/>
+																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																					</PropertyList>
+																					<AudioSourceRef Name="DéjàYou - CHAPTER 5_v2" ID="{BA279BB0-8AAD-4582-BA95-FAC89AC538A7}"/>
+																				</MusicClip>
+																			</Local>
+																		</Reference>
+																	</ObjectList>
+																</ObjectLists>
+															</MusicTrackSequence>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Cues">
+											<Reference>
+												<Local>
+													<MusicCue Name="Entry Cue" ID="{FE714108-577C-4DCE-830B-66CF6D57B5D6}"/>
+												</Local>
+											</Reference>
+											<Reference>
+												<Local>
+													<MusicCue Name="Exit Cue" ID="{9B55BC30-4F1F-4F7A-AD93-686CACF1E6A9}">
+														<PropertyList>
+															<Property Name="CueType" Type="int16" Value="1"/>
+															<Property Name="TimeMs" Type="Real64" Value="36923.0769230769"/>
+														</PropertyList>
+													</MusicCue>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicSegment>
+							</ChildrenList>
+						</MusicPlaylistContainer>
+						<MusicPlaylistContainer Name="Main-PL" ID="{A557A728-A60F-4D52-8B48-FEAB531B4785}" ShortID="635020363">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+								</Reference>
+								<Reference Name="PlaylistRoot">
+									<Custom>
+										<MusicPlaylistItem Name="" ID="{E9E696D3-7189-4E4B-B18F-7C6A0E80C0F9}" ShortID="439906958">
+											<ChildrenList>
+												<MusicPlaylistItem Name="" ID="{D3EB4AD6-98E3-4910-9C98-40C56C69AA8F}" ShortID="381267484">
+													<PropertyList>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="DéjàYou - MAIN THEME_v1" ID="{15F5F6C4-B461-4EF2-A80D-4F4B5B4A0358}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+												<MusicPlaylistItem Name="" ID="{CCEDFA4A-EF64-4243-8E71-39CE90DAC5D3}" ShortID="213452203">
+													<PropertyList>
+														<Property Name="LoopCount" Type="int16" Value="0"/>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="DéjàYou - MAIN THEME_v1" ID="{15F5F6C4-B461-4EF2-A80D-4F4B5B4A0358}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+											</ChildrenList>
+										</MusicPlaylistItem>
+									</Custom>
+								</Reference>
+								<Reference Name="TransitionRoot">
+									<Custom>
+										<MusicTransition Name="Root" ID="{976B91E0-27E9-48A7-BBE8-4D96EED98713}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<MusicTransition Name="Transition" ID="{0CFC034A-BE3D-4D9F-B8AD-EC4DD81B09EB}">
+													<TransitionInfo/>
+												</MusicTransition>
+											</ChildrenList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</Custom>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicSegment Name="DéjàYou - MAIN THEME_v1" ID="{15F5F6C4-B461-4EF2-A80D-4F4B5B4A0358}" ShortID="357453276">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="48000"/>
+										<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+										<Property Name="Tempo" Type="Real64" Value="150"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="DéjàYou - MAIN THEME_v1" ID="{955FA317-69BA-40D2-A4C2-8545F015A87C}" ShortID="397721012">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+												</Reference>
+												<Reference Name="TransitionRoot">
+													<Custom>
+														<MusicTransition Name="Root" ID="{5F708130-5497-4695-BA45-9248780D8829}">
+															<PropertyList>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
+															</PropertyList>
+															<TransitionInfo/>
+														</MusicTransition>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="DéjàYou - MAIN THEME_v1" ID="{D5056C28-22F3-4909-AA21-BF571A77C17E}">
+													<Language>SFX</Language>
+													<AudioFile>DéjàYou - MAIN THEME.v1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="768716440"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<Reference>
+														<Local>
+															<MusicTrackSequence Name="" ID="{E0E46DA1-B202-4DEC-8DF3-C79FCA190F39}">
+																<ObjectLists>
+																	<ObjectList Name="Clips">
+																		<Reference>
+																			<Local>
+																				<MusicClip Name="DéjàYou - MAIN THEME_v1" ID="{3DF785F1-E0FB-468B-915A-6853C1A821E4}">
+																					<PropertyList>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="48000"/>
+																						<Property Name="FadeInMode" Type="int16" Value="0"/>
+																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																					</PropertyList>
+																					<AudioSourceRef Name="DéjàYou - MAIN THEME_v1" ID="{D5056C28-22F3-4909-AA21-BF571A77C17E}"/>
+																				</MusicClip>
+																			</Local>
+																		</Reference>
+																	</ObjectList>
+																</ObjectLists>
+															</MusicTrackSequence>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Cues">
+											<Reference>
+												<Local>
+													<MusicCue Name="Entry Cue" ID="{045CD2CA-2956-4D6A-87C9-B8AD72A6E0C2}">
+														<PropertyList>
+															<Property Name="TimeMs" Type="Real64" Value="1600"/>
+														</PropertyList>
+													</MusicCue>
+												</Local>
+											</Reference>
+											<Reference>
+												<Local>
+													<MusicCue Name="Exit Cue" ID="{8BA6E0C5-1D2F-44FC-A117-0EDFE58C0CC1}">
+														<PropertyList>
+															<Property Name="CueType" Type="int16" Value="1"/>
+															<Property Name="TimeMs" Type="Real64" Value="40000"/>
+														</PropertyList>
+													</MusicCue>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicSegment>
+							</ChildrenList>
+						</MusicPlaylistContainer>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="Arguments">
+							<Reference>
+								<ObjectRef Name="BGM" ID="{982C1AE0-E561-4BEE-9581-05D1C34C7069}" WorkUnitID="{7A5FADCD-F7A1-43D5-961E-ECCE45152DC7}"/>
+							</Reference>
+						</ObjectList>
+						<ObjectList Name="Entries">
+							<Reference>
+								<Local>
+									<MultiSwitchEntry Name="" ID="{1C4E59A2-EB66-496A-9B59-47B5660F6308}">
+										<ReferenceList>
+											<Reference Name="AudioNode">
+												<ObjectRef Name="Main-PL" ID="{A557A728-A60F-4D52-8B48-FEAB531B4785}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+											</Reference>
+										</ReferenceList>
+										<ObjectLists>
+											<ObjectList Name="EntryPath">
+												<Reference>
+													<ObjectRef Name="MainMenu" ID="{1DCC56F4-010B-4F2B-A9D6-7B9CC90923D3}" WorkUnitID="{7A5FADCD-F7A1-43D5-961E-ECCE45152DC7}"/>
+												</Reference>
+											</ObjectList>
+										</ObjectLists>
+									</MultiSwitchEntry>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MultiSwitchEntry Name="" ID="{636791D0-9436-4EB7-8264-8EC515B7671E}">
+										<ReferenceList>
+											<Reference Name="AudioNode">
+												<ObjectRef Name="Chapter1-PL" ID="{F804BF62-5BCA-4AC9-AFB1-D5ACE6EEF932}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+											</Reference>
+										</ReferenceList>
+										<ObjectLists>
+											<ObjectList Name="EntryPath">
+												<Reference>
+													<ObjectRef Name="Chapter1" ID="{4F53BEB2-A123-40DB-A716-2C6F930746E1}" WorkUnitID="{7A5FADCD-F7A1-43D5-961E-ECCE45152DC7}"/>
+												</Reference>
+											</ObjectList>
+										</ObjectLists>
+									</MultiSwitchEntry>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MultiSwitchEntry Name="" ID="{C7D02D85-9160-4D71-931E-5B2C3CD8C76D}">
+										<ReferenceList>
+											<Reference Name="AudioNode">
+												<ObjectRef Name="Chapter2-PL" ID="{2D064C81-2478-4CBC-81C7-83B0E66B0E7D}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+											</Reference>
+										</ReferenceList>
+										<ObjectLists>
+											<ObjectList Name="EntryPath">
+												<Reference>
+													<ObjectRef Name="Chapter2" ID="{435F2326-9A82-4EDC-94C6-96895F7E732B}" WorkUnitID="{7A5FADCD-F7A1-43D5-961E-ECCE45152DC7}"/>
+												</Reference>
+											</ObjectList>
+										</ObjectLists>
+									</MultiSwitchEntry>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MultiSwitchEntry Name="" ID="{7ED5DA8A-5109-46D9-BA0D-5016859D2C47}">
+										<ReferenceList>
+											<Reference Name="AudioNode">
+												<ObjectRef Name="Chapter3-PL" ID="{F9CFB4CC-424E-4EFB-9C7C-DB1768B0743A}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+											</Reference>
+										</ReferenceList>
+										<ObjectLists>
+											<ObjectList Name="EntryPath">
+												<Reference>
+													<ObjectRef Name="Chapter3" ID="{9540AB77-4675-4C74-B4B6-7F62C136A6B4}" WorkUnitID="{7A5FADCD-F7A1-43D5-961E-ECCE45152DC7}"/>
+												</Reference>
+											</ObjectList>
+										</ObjectLists>
+									</MultiSwitchEntry>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MultiSwitchEntry Name="" ID="{CA885B37-83D3-46A5-8F83-DC3D5979894B}">
+										<ReferenceList>
+											<Reference Name="AudioNode">
+												<ObjectRef Name="Chapter4-PL" ID="{CEB4DF75-28E5-417C-9DB9-C7ECC58DA4CA}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+											</Reference>
+										</ReferenceList>
+										<ObjectLists>
+											<ObjectList Name="EntryPath">
+												<Reference>
+													<ObjectRef Name="Chapter4" ID="{0E2DF485-4095-4B67-ACCD-E3F34B9FF2CA}" WorkUnitID="{7A5FADCD-F7A1-43D5-961E-ECCE45152DC7}"/>
+												</Reference>
+											</ObjectList>
+										</ObjectLists>
+									</MultiSwitchEntry>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MultiSwitchEntry Name="" ID="{B1230A0E-7B14-4E5E-BCCA-510825A5965C}">
+										<ReferenceList>
+											<Reference Name="AudioNode">
+												<ObjectRef Name="Chapter5-PL" ID="{636A25CD-59F1-430F-82D6-B53E80FE9ED1}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+											</Reference>
+										</ReferenceList>
+										<ObjectLists>
+											<ObjectList Name="EntryPath">
+												<Reference>
+													<ObjectRef Name="Chapter5" ID="{D048F098-54A6-49A9-B3F1-1AF2F46CAECB}" WorkUnitID="{7A5FADCD-F7A1-43D5-961E-ECCE45152DC7}"/>
+												</Reference>
+											</ObjectList>
+										</ObjectLists>
+									</MultiSwitchEntry>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MultiSwitchEntry Name="" ID="{66D9BD8E-39E4-4D0F-9CF5-16B00CD68BAD}">
+										<ReferenceList>
+											<Reference Name="AudioNode">
+												<ObjectRef Name="Main-PL" ID="{A557A728-A60F-4D52-8B48-FEAB531B4785}" WorkUnitID="{B113DDC0-85A1-4398-9087-A62A655D6FCB}"/>
+											</Reference>
+										</ReferenceList>
+										<ObjectLists>
+											<ObjectList Name="EntryPath">
+												<Reference>
+													<ObjectRef Name="BGM" ID="{982C1AE0-E561-4BEE-9581-05D1C34C7069}" WorkUnitID="{7A5FADCD-F7A1-43D5-961E-ECCE45152DC7}"/>
+												</Reference>
+											</ObjectList>
+										</ObjectLists>
+									</MultiSwitchEntry>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+				</MusicSwitchContainer>
+			</ChildrenList>
+		</WorkUnit>
 	</InteractiveMusic>
 </WwiseDocument>

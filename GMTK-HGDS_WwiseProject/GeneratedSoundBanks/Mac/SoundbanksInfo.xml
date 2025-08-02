@@ -9,13 +9,25 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="782826392" Type="User" Language="SFX" Hash="{2E472C93-B38F-70E4-5C04-457A0C41172C}">
+		<SoundBank Id="782826392" Type="User" Language="SFX" Hash="{BFDBB1D1-7382-9477-47EB-E1736485C842}">
 			<ShortName>Default</ShortName>
 			<Path>Default.bnk</Path>
 			<Media>
+				<File Id="37369419" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Jumping.wav</ShortName>
+					<CachePath>SFX/Jumping_818F3B66.wem</CachePath>
+				</File>
 				<File Id="148771695" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>DéjàYou - CHAPTER 4.v2.wav</ShortName>
 					<CachePath>SFX/DéjàYou - CHAPTER 4.v2_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="344276529" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Rolling.wav</ShortName>
+					<CachePath>SFX/Rolling_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="345306008" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Landing.wav</ShortName>
+					<CachePath>SFX/Landing_818F3B66.wem</CachePath>
 				</File>
 				<File Id="349871890" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>DéjàYou - CHAPTER 3.v2.wav</ShortName>
@@ -85,7 +97,32 @@
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
+				<Event Id="2756694246" Name="Play_Jumping" DurationType="OneShot" DurationMin="1.4901316" DurationMax="1.772075">
+					<MediaRefs>
+						<MediaRef Id="37369419"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="348963605" Name="Reverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="2323405115" Name="Play_Landing" DurationType="OneShot" DurationMin="0.97758746" DurationMax="1.3049227">
+					<MediaRefs>
+						<MediaRef Id="345306008"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="348963605" Name="Reverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="1834004125" Name="Play_Rolling" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="344276529"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="348963605" Name="Reverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="1073466678" Name="Stop_BGM" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="2567045767" Name="Stop_Rolling" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 			</Events>
 			<SwitchGroups>
 				<SwitchGroup Id="412724365" Name="BGM">
@@ -100,10 +137,13 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{D326F752-7CA2-0A14-FDB1-63ECE89D0199}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{60ED9925-1083-90AE-7FBF-3FB11498A7A4}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
+				<ShareSets>
+					<Plugin Id="1520064353" Name="Hall_Medium_Bright" LibName="Wwise RoomVerb" LibId="7733251"/>
+				</ShareSets>
 				<AudioDevices>
 					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
 					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
@@ -112,6 +152,15 @@
 			<Busses>
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
+			<AuxBusses>
+				<AuxBus Id="348963605" Name="Reverb">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="1520064353"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+			</AuxBusses>
 			<SwitchGroups>
 				<SwitchGroup Id="412724365" Name="BGM">
 					<Switches>
@@ -126,5 +175,5 @@
 			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{0E353958-1309-F4A6-0027-7239EC3CAB53}</FileHash>
+	<FileHash>{8540FC82-48E5-4933-6453-99CEC0C9C96F}</FileHash>
 </SoundBanksInfo>

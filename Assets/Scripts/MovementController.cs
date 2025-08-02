@@ -36,6 +36,10 @@ public class MovementController : MonoBehaviour
 
     float  timeSinceLeftGround;
     float  timeSinceJumpPressed;
+    
+    private bool isRollingSoundPlaying = false;
+    private bool wasGroundedLastFrame = true;
+
 
     public Vector2 CurrentVelocity => rb.linearVelocity;
 
@@ -68,6 +72,9 @@ public class MovementController : MonoBehaviour
         {
             PerformJump();
         }
+        
+        HandleRollingSFX(); 
+        HandleJumpLandSFX();
     }
 
     void FixedUpdate()
@@ -115,6 +122,79 @@ public class MovementController : MonoBehaviour
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpVel);
         timeSinceJumpPressed = jumpBuffer + 1f;
     }
+    
+    void HandleRollingSFX()
+    {
+        var ghost = GetComponent<GhostController>();
+        if (ghost != null && ghost.enabled)
+            return;
+
+        bool isMovingHorizontally = Mathf.Abs(rb.linearVelocity.x) > 0.05f;
+
+        if (isMovingHorizontally && !isRollingSoundPlaying)
+        {
+            AkSoundEngine.PostEvent("Play_Rolling", gameObject);
+            isRollingSoundPlaying = true;
+        }
+        else if (!isMovingHorizontally && isRollingSoundPlaying)
+        {
+            AkSoundEngine.PostEvent("Stop_Rolling", gameObject);
+            isRollingSoundPlaying = false;
+        }
+    }
+
+
+    
+    void OnDestroy()
+    {
+        var ghost = GetComponent<GhostController>();
+        if (ghost != null && ghost.enabled)
+            return;
+
+        if (isRollingSoundPlaying)
+        {
+            AkSoundEngine.PostEvent("Stop_Rolling", gameObject);
+            isRollingSoundPlaying = false;
+        }
+    }
+
+    
+    void OnDisable()
+    {
+        var ghost = GetComponent<GhostController>();
+        if (ghost != null && ghost.enabled)
+            return;
+
+        if (isRollingSoundPlaying)
+        {
+            AkSoundEngine.PostEvent("Stop_Rolling", gameObject);
+            isRollingSoundPlaying = false;
+        }
+    }
+    
+    void HandleJumpLandSFX()
+    {
+        var ghost = GetComponent<GhostController>();
+        if (ghost != null && ghost.enabled)
+            return;
+
+        bool isGroundedNow = IsGrounded();
+
+        if (isGroundedNow && !wasGroundedLastFrame)
+        {
+            AkSoundEngine.PostEvent("Play_Landing", gameObject);
+        }
+        
+        if (!isGroundedNow && wasGroundedLastFrame && rb.linearVelocity.y > 0.1f)
+        {
+            AkSoundEngine.PostEvent("Play_Jumping", gameObject);
+        }
+
+        wasGroundedLastFrame = isGroundedNow;
+    }
+
+
+
 
 #if UNITY_EDITOR
     void OnDrawGizmosSelected()

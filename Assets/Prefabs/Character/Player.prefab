@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8222099162268165018}
   - component: {fileID: 1171365776063370477}
   - component: {fileID: 5926560181322337046}
-  - component: {fileID: 6639932304955408398}
   - component: {fileID: 5659049951494545854}
   - component: {fileID: 3561358669770227691}
   - component: {fileID: 5090687958022902127}
@@ -182,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Player
+  isGhost: 0
 --- !u!114 &5926560181322337046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,22 +206,14 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  ghostMask:
+    serializedVersion: 2
+    m_Bits: 0
   groundCheckSize: {x: 0.8, y: 0.1}
   groundCheckOffset: {x: 0, y: -1.2, z: 0}
---- !u!114 &6639932304955408398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696089849162913681}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eb24a13e6bc35b499518d4f0f4192ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ghostLayer: 9
-  transparency: 0.7
 --- !u!114 &5659049951494545854
 MonoBehaviour:
   m_ObjectHideFlags: 0
