@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3596066700475300838}
   - component: {fileID: 1704467050408250649}
-  - component: {fileID: 7252814500220412141}
+  - component: {fileID: 4630458484649090231}
   m_Layer: 0
   m_Name: LevelEnd
   m_TagString: Untagged
@@ -190,7 +190,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.7173028, y: 6.039693}
   m_EdgeRadius: 0
---- !u!114 &7252814500220412141
+--- !u!114 &4630458484649090231
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,6 +199,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3121226371385796980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 135392de244c00e4aba96f5c48737a05, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c97779892aba4f45b1af633241f9529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionTime: 1
