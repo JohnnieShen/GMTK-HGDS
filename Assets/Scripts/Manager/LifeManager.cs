@@ -93,6 +93,40 @@ public class LifeManager : MonoBehaviour
 
         float lifeEndClock = TimelineManager.Instance.GetCurrentTime();
         float lifeDuration = Mathf.Abs(lifeEndClock - lifeStartClock);
+        Debug.Log($"Life duration: {lifeDuration:0.00}s, remaining time: {timeRemaining:0.00}s, total budget: {totalTimeBudget:0.00}s");
+
+        timeRemaining = Mathf.Max(0f, timeRemaining - lifeDuration);
+        UpdateSlider(timeRemaining);
+
+        currentRec.StopRecording();
+
+        var log = new LifeLog
+        {
+            frames = currentRec.InputHistory,
+            spawnPos = currentRec.GetSpawnPosition(),
+            startTime = lifeStartTime,
+            endTime = currentRec.InputHistory[^1].time
+        };
+        completedLives.Add(log);
+
+        var ghost = SpawnGhost(log);
+        ghosts.Add(ghost);
+
+        GameManager.Instance.UnregisterPlayer(playerGO);
+        Destroy(playerGO);
+        playerGO = null;
+        currentRec = null;
+    }
+
+    public void EndCurrentLifePostLoop()
+    {
+        Debug.Log("Ending current life...");
+        if (currentRec == null) return;
+        Debug.Log($"LifeManager: Ending life at t={TimelineManager.Instance.GetCurrentTime():0.00}s");
+
+        float lifeEndClock = TimelineManager.Instance.GetCurrentTime() + TimelineManager.Instance.timelineDuration;
+        float lifeDuration = Mathf.Abs(lifeEndClock - lifeStartClock);
+        Debug.Log($"Life duration: {lifeDuration:0.00}s, remaining time: {timeRemaining:0.00}s, total budget: {totalTimeBudget:0.00}s");
 
         timeRemaining = Mathf.Max(0f, timeRemaining - lifeDuration);
         UpdateSlider(timeRemaining);
@@ -155,7 +189,7 @@ public class LifeManager : MonoBehaviour
 
     void HandleLoop()
     {
-        if (currentRec != null) EndCurrentLife();
+        if (currentRec != null) EndCurrentLifePostLoop();
     }
 
     float GetCurrentTimeRemaining()
