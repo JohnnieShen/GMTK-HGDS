@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Lever : MonoBehaviour, RecordableProp
+public class Lever : Interactable, RecordableProp
 {
     [Header("Target")]
     public GameObject targetObject;
@@ -38,6 +38,12 @@ public class Lever : MonoBehaviour, RecordableProp
         }
     }
 
+    public override void Interact()
+    {
+        if (!isProcessing)
+            StartCoroutine(ToggleLever());
+    }
+
     IEnumerator ToggleLever()
     {
         isProcessing = true;
@@ -45,7 +51,7 @@ public class Lever : MonoBehaviour, RecordableProp
         if (spriteRenderer && activatingSprite)
             spriteRenderer.sprite = activatingSprite;
 
-        yield return new WaitForSeconds(delayOn);
+        yield return StartCoroutine(WaitForTimelineSeconds(delayOn));
 
         isActive = !isActive;
         ApplyVisuals();
@@ -87,5 +93,27 @@ public class Lever : MonoBehaviour, RecordableProp
 
         if (spriteRenderer)
             spriteRenderer.sprite = isActive ? onSprite : offSprite;
+    }
+
+    IEnumerator WaitForTimelineSeconds(float timelineSecs)
+    {
+        float remaining = timelineSecs;
+        float prev = TimelineManager.Instance.GetCurrentTime();
+        float duration = TimelineManager.Instance.timelineDuration;
+
+        while (remaining > 0f)
+        {
+            yield return null;
+
+            float now = TimelineManager.Instance.GetCurrentTime();
+            float speed = TimelineManager.Instance.timelineSpeed;
+
+            float delta = speed >= 0f
+                ? (now - prev + duration) % duration
+                : (prev - now + duration) % duration;
+
+            remaining -= delta;
+            prev = now;
+        }
     }
 }

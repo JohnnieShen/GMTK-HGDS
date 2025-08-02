@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Button : MonoBehaviour, RecordableProp
+public class Button : Interactable, RecordableProp
 {
     [Header("Target")]
     public GameObject targetObject;
@@ -31,11 +31,41 @@ public class Button : MonoBehaviour, RecordableProp
         ApplyVisuals();
     }
 
+    public override void Interact()
+    {
+        Debug.Log("Button pressed by interaction");
+        if (!isProcessing)
+            StartCoroutine(PressSequence());
+    }
+
     void Update()
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.T) && !isProcessing)
             StartCoroutine(PressSequence());
     }
+
+    IEnumerator WaitForTimelineSeconds(float timelineSecs)
+    {
+        float remaining = timelineSecs;
+        float prev = TimelineManager.Instance.GetCurrentTime();
+        float duration = TimelineManager.Instance.timelineDuration;
+
+        while (remaining > 0f)
+        {
+            yield return null;
+
+            float now = TimelineManager.Instance.GetCurrentTime();
+            float speed = TimelineManager.Instance.timelineSpeed;
+
+            float delta = speed >= 0f
+                ? (now - prev + duration) % duration
+                : (prev - now + duration) % duration;
+
+            remaining -= delta;
+            prev = now;
+        }
+    }
+
 
     IEnumerator PressSequence()
     {
@@ -45,14 +75,14 @@ public class Button : MonoBehaviour, RecordableProp
         if (spriteRenderer && activatingSprite)
             spriteRenderer.sprite = activatingSprite;
 
-        yield return new WaitForSeconds(delayOn);
+        yield return StartCoroutine(WaitForTimelineSeconds(delayOn));
 
         // Toggle to non-default state
         isPressed = true; // Button becomes visually pressed
         targetActive = !defaultPressed; // Target goes to opposite of default
         ApplyVisuals();
 
-        yield return new WaitForSeconds(delayOff);
+        yield return StartCoroutine(WaitForTimelineSeconds(delayOff));
 
         // Return to default state
         isPressed = false; // Button returns to not pressed
@@ -90,8 +120,8 @@ public class Button : MonoBehaviour, RecordableProp
     public void ApplyFrame(PropStatusFrame frame)
     {
         targetActive = frame.active;
-        // Don't change isPressed here - let the visual state be controlled by the press sequence
         transform.position = frame.position;
+        isPressed = targetActive != defaultPressed;
         ApplyVisuals();
     }
 }

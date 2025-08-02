@@ -26,22 +26,19 @@ public class PropManager : MonoBehaviour
     public void Register   (PropRecorder r) => recorders.Add(r);
     public void Unregister (PropRecorder r) => recorders.Remove(r);
 
-    void OnTick(float currentTime)
-{
-    float speed = TimelineManager.Instance.timelineSpeed;
-
-    bool record = speed >  0f;
-    bool playback = speed <  0f;
-
-    foreach (var r in recorders)
+    void OnTick(float t)
     {
-        if (record)
-            r.RecordFrame(currentTime);
+        var mgr    = TimelineManager.Instance;
+        float spd  = mgr.timelineSpeed;
+        bool record   = spd >  0f && !mgr.IsFastForwarding;
+        bool playback = spd <  0f || mgr.IsFastForwarding;
 
-        if (playback)
-            r.ApplyAtTime(currentTime);
+        foreach (var r in recorders) {
+            if (record)   r.RecordFrame(t);
+            if (playback) r.ApplyAtTime(t);
+        }
     }
-}
+
 
 
     public void SeekAll(float time)
