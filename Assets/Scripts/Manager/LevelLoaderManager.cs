@@ -54,6 +54,7 @@ public class LevelLoaderManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        LifeManager.PersistentBudget = 0f;
         LifeManager.Instance?.FullReset();
         loading = false;
     }
