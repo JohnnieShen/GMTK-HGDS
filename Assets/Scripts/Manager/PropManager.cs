@@ -27,13 +27,22 @@ public class PropManager : MonoBehaviour
     public void Unregister (PropRecorder r) => recorders.Remove(r);
 
     void OnTick(float currentTime)
+{
+    float speed = TimelineManager.Instance.timelineSpeed;
+
+    bool record = speed >  0f;
+    bool playback = speed <  0f;
+
+    foreach (var r in recorders)
     {
-        foreach (var r in recorders)
-        {
+        if (record)
             r.RecordFrame(currentTime);
+
+        if (playback)
             r.ApplyAtTime(currentTime);
-        }
     }
+}
+
 
     public void SeekAll(float time)
     {

@@ -28,9 +28,6 @@ public class Lever : MonoBehaviour, RecordableProp
     {
         isActive = defaultActive;
         ApplyVisuals();
-
-        recorder = GetComponent<PropRecorder>() ?? gameObject.AddComponent<PropRecorder>();
-        PropManager.Instance.Register(recorder);
     }
 
     void Update()

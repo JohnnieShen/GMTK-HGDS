@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3931199253679328820}
   - component: {fileID: 2139303406094349722}
   - component: {fileID: 5054675215529836877}
+  - component: {fileID: 7959876502382452220}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -105,3 +106,15 @@ MonoBehaviour:
   spawnPoint: {fileID: 0}
   totalTimeBudget: 10
   timeBudgetSlider: {fileID: 0}
+--- !u!114 &7959876502382452220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8789673278222443759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 155358d0c9c6e8a41a25dcd8f469d023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

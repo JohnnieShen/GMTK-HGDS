@@ -9,8 +9,6 @@ public class HazardInstantKill : MonoBehaviour, RecordableProp
     void Start()
     {
         isActive = true;
-        recorder = GetComponent<PropRecorder>() ?? gameObject.AddComponent<PropRecorder>();
-        PropManager.Instance.Register(recorder);
     }
 
     void Update()

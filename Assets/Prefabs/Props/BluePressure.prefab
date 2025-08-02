@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8587316991135925520}
   - component: {fileID: 496985616850123853}
   - component: {fileID: 2006174340572178241}
+  - component: {fileID: -5618052815045745787}
   m_Layer: 0
   m_Name: BluePressure
   m_TagString: Untagged
@@ -150,8 +151,20 @@ MonoBehaviour:
   targetObject: {fileID: 0}
   delayOn: 0
   delayOff: 0
-  defaultStateIsOn: 1
+  defaultActive: 0
   spriteRenderer: {fileID: 8587316991135925520}
   idleSprite: {fileID: 2262686526604635532, guid: 533bef8eaae724c41814460635268888, type: 3}
   pressedSprite: {fileID: -8198574232401945530, guid: 533bef8eaae724c41814460635268888, type: 3}
   activatingSprite: {fileID: -8198574232401945530, guid: 533bef8eaae724c41814460635268888, type: 3}
+--- !u!114 &-5618052815045745787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7623182486518363383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f984821381abb9645b4c5a04d2841fa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

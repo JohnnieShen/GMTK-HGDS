@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PressurePlateHold : MonoBehaviour
+public class PressurePlateHold : MonoBehaviour, RecordableProp
 {
     [Header("Target")]
     public GameObject targetObject;
@@ -21,17 +21,14 @@ public class PressurePlateHold : MonoBehaviour
 
     private bool isSomethingOnPlate = false;
     private Coroutine delayCoroutine;
+
     bool isActive;
     Coroutine delayCo;
-    PropRecorder recorder;
 
     void Start()
     {
         isActive = defaultActive;
         ApplyVisuals();
-
-        recorder = GetComponent<PropRecorder>() ?? gameObject.AddComponent<PropRecorder>();
-        PropManager.Instance.Register(recorder);
     }
 
     void OnTriggerEnter2D(Collider2D other)

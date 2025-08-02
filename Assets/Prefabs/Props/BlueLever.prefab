@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7434864125607094106}
   - component: {fileID: 6846987879784542823}
   - component: {fileID: 3125250026142420369}
+  - component: {fileID: 7167615164223622378}
   m_Layer: 0
   m_Name: BlueLever
   m_TagString: Untagged
@@ -103,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObject: {fileID: 0}
   delayOn: 0
-  defaultStateIsOn: 1
+  defaultActive: 1
   spriteRenderer: {fileID: 7434864125607094106}
   offSprite: {fileID: -6949385356650754131, guid: 533bef8eaae724c41814460635268888, type: 3}
   onSprite: {fileID: -5321099399631716182, guid: 533bef8eaae724c41814460635268888, type: 3}
@@ -154,3 +155,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 6.4500003, y: 4.090829}
   m_EdgeRadius: 0
+--- !u!114 &7167615164223622378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785731563245931371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f984821381abb9645b4c5a04d2841fa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

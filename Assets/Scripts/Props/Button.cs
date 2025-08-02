@@ -29,9 +29,6 @@ public class Button : MonoBehaviour, RecordableProp
         targetActive = defaultPressed; // Target starts in its default state
 
         ApplyVisuals();
-
-        recorder = GetComponent<PropRecorder>() ?? gameObject.AddComponent<PropRecorder>();
-        PropManager.Instance.Register(recorder);
     }
 
     void Update()

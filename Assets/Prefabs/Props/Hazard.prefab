@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6605804501020097832}
   - component: {fileID: 4444439664922390869}
   - component: {fileID: 7099933402041480523}
+  - component: {fileID: -8596729917821197961}
   m_Layer: 0
   m_Name: Hazard
   m_TagString: Untagged
@@ -98,5 +99,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf168ddef28a6da42b1d734816faaf35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 1
+--- !u!114 &-8596729917821197961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8580207664029442832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f984821381abb9645b4c5a04d2841fa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

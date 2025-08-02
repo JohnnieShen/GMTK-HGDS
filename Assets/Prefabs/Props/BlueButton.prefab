@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7891793271120121962}
   - component: {fileID: 4225774908949414715}
   - component: {fileID: 4301923492280756739}
+  - component: {fileID: 8701396000164926539}
   m_Layer: 0
   m_Name: BlueButton
   m_TagString: Untagged
@@ -104,7 +105,7 @@ MonoBehaviour:
   targetObject: {fileID: 0}
   delayOn: 0
   delayOff: 2
-  defaultStateIsOn: 0
+  defaultPressed: 0
   spriteRenderer: {fileID: 7891793271120121962}
   idleSprite: {fileID: -3146629568311226097, guid: 533bef8eaae724c41814460635268888, type: 3}
   pressedSprite: {fileID: 6133340304394382675, guid: 533bef8eaae724c41814460635268888, type: 3}
@@ -155,3 +156,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 4.9700003, y: 2.8405755}
   m_EdgeRadius: 0
+--- !u!114 &8701396000164926539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8377513049670768150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f984821381abb9645b4c5a04d2841fa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

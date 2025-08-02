@@ -1,95 +1,81 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class PlatformMover : MonoBehaviour
+public class PlatformMover : MonoBehaviour, RecordableProp
 {
+    [Header("Path")]
     public Vector2 pointA;
     public Vector2 pointB;
-    public float speed = 2f;
+    public float   speed = 2f;
 
-    private Vector2 target;
-    private Vector2 lastPosition;
-    private List<Transform> playersOnPlatform = new List<Transform>();
+    Vector2  target;
+    bool directionBA;
+    bool paused;
 
-    public bool isActive;
+    readonly List<Transform> playersOnPlatform = new ();
+
     PropRecorder recorder;
 
     void Start()
     {
+        directionBA = false;
         target = pointB;
-        lastPosition = transform.position;
-        isActive = true;
-
-        recorder = GetComponent<PropRecorder>() ?? gameObject.AddComponent<PropRecorder>();
-        PropManager.Instance.Register(recorder);
     }
 
     void Update()
     {
-        isActive = !TimelineManager.Instance.IsPaused;
-        if (!isActive) return;
-        Vector2 previousPosition = transform.position;
-        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        
-        // Calculate movement delta
-        Vector2 movementDelta = (Vector2)transform.position - previousPosition;
+        paused = TimelineManager.Instance.IsPaused;
+        if (paused) return;
 
-        // Move all players on the platform
-        foreach (Transform player in playersOnPlatform)
+        bool simulate = TimelineManager.Instance.timelineSpeed > 0f;
+
+        if (!simulate) return;
+
+        float dt = Time.deltaTime * TimelineManager.Instance.timelineSpeed;
+
+        Vector2 prevPos = transform.position;
+        transform.position = Vector2.MoveTowards(prevPos, target, speed * dt);
+
+        Vector2 delta = (Vector2)transform.position - prevPos;
+        foreach (var p in playersOnPlatform)
+            if (p) p.position += (Vector3)delta;
+
+        if (Vector2.Distance(transform.position, target) < 0.05f)
         {
-            if (player != null)
-            {
-                player.position += (Vector3)movementDelta;
-            }
-        }
-
-        if (Vector2.Distance(transform.position, target) < 0.1f)
-        {
-            target = (target == pointA) ? pointB : pointA;
-        }
-    }
-
-    public void SetActive(bool value) => isActive = value;
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Check if something landed on top of the platform
-        if (collision.transform.CompareTag("Player") && collision.contacts[0].normal.y < -0.5f)
-        {
-            if (!playersOnPlatform.Contains(collision.transform))
-            {
-                playersOnPlatform.Add(collision.transform);
-            }
+            directionBA = !directionBA;
+            target = directionBA ? pointA : pointB;
         }
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D c)
     {
-        // Remove player from platform when they leave
-        if (collision.transform.CompareTag("Player"))
-        {
-            playersOnPlatform.Remove(collision.transform);
-        }
+        if (c.transform.CompareTag("Player") && c.contacts[0].normal.y < -0.5f
+            && !playersOnPlatform.Contains(c.transform))
+            playersOnPlatform.Add(c.transform);
+    }
+    void OnCollisionExit2D (Collision2D c)
+    {
+        if (c.transform.CompareTag("Player"))
+            playersOnPlatform.Remove(c.transform);
     }
 
     public PropStatusFrame CaptureFrame()
     {
+        Debug.Log($"Capturing frame for {gameObject.name} at time {TimelineManager.Instance.GetCurrentTime()}, active: {directionBA}, position: {transform.position}");
         return new PropStatusFrame(
             gameObject.GetInstanceID(),
             TimelineManager.Instance.GetCurrentTime(),
-            isActive,
+            directionBA,
             transform.position
         );
     }
 
-    public void ApplyFrame(PropStatusFrame frame)
+    public void ApplyFrame(PropStatusFrame f)
     {
-        isActive = frame.active;
-        transform.position = frame.position;
-
-        target = (Vector2.Distance(transform.position, pointA) <
-                  Vector2.Distance(transform.position, pointB))
-                 ? pointB : pointA;
+        Debug.Log($"Applying frame to {gameObject.name} at time {f.time}, active: {f.active}, position: {f.position}");
+        directionBA = f.active;
+        transform.position = f.position;
+        target = directionBA ? pointA : pointB;
     }
 
     void OnDrawGizmosSelected()
