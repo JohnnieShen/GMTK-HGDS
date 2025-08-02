@@ -50,7 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSpawnTime: 0
   timelineDuration: 10
-  pausePanel: {fileID: 0}
+  pausePanel: {fileID: 1187370651329884235, guid: 59b75fc48a7703d49a7877fb21ea22cd, type: 3}
+  levelLoader: {fileID: 2327858813770681927, guid: 86cfee4db2c1bca49ad13517a2884d99, type: 3}
 --- !u!114 &3931199253679328820
 MonoBehaviour:
   m_ObjectHideFlags: 0

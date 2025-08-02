@@ -158,7 +158,7 @@ SpriteRenderer:
   m_SortingLayerID: -1994422721
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 184509271508132499, guid: 62abe71f4ef1cd54396746bb12454d5a, type: 3}
+  m_Sprite: {fileID: 7157958308137782638, guid: f1380a606e92acb4b81486e8d8a7809a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
   moveSpeed: 5
   accelTime: 0.1
   airAccelTime: 0.2
-  jumpHeight: 3
+  jumpHeight: 4
   timeToApex: 0.5
   upGravityMult: 2
   downGravityMult: 1.25
@@ -206,6 +206,12 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  ghostMask:
+    serializedVersion: 2
+    m_Bits: 0
   groundCheckSize: {x: 0.28, y: -0.03}
   groundCheckOffset: {x: 0, y: -0.4, z: 0}
 --- !u!114 &6639932304955408398
@@ -256,7 +262,7 @@ Animator:
   m_GameObject: {fileID: 1696089849162913681}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: de8dc75d84f99ea42980c71ca56b5cdc, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4f0200209e63645469d505124d47a577, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

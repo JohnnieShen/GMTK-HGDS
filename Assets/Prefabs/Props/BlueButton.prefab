@@ -103,6 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 0}
+  targetActiveSprite: {fileID: 0}
+  targetInactiveSprite: {fileID: 0}
   delayOn: 0
   delayOff: 2
   defaultPressed: 0

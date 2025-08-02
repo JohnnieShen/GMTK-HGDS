@@ -33,12 +33,12 @@ public class InputRecorder : MonoBehaviour
     {
         isRecording = false;
     }
-    public void RecordInput(float horizontal, bool jumpHeld, bool interact)
+    public void RecordInput(float horizontal, bool jumpHeld, bool interact, int interactPropId)
     {
         if (isRecording)
         {
             float time = TimelineManager.Instance.GetCurrentTime();
-            inputHistory.Add(new PlayerInputFrame(horizontal, jumpHeld, time, rb.linearVelocity, transform.position, interact));
+            inputHistory.Add(new PlayerInputFrame(horizontal, jumpHeld, time, rb.linearVelocity, transform.position, interact, interactPropId));
         }
     }
 

@@ -8,8 +8,9 @@ public class PlayerInputFrame
     public Vector2 velocity;
     public Vector2 position;
     public bool interact;
+    public int interactPropId;
 
-    public PlayerInputFrame(float horizontal, bool jump, float time, Vector2 velocity, Vector2 position, bool interact)
+    public PlayerInputFrame(float horizontal, bool jump, float time, Vector2 velocity, Vector2 position, bool interact, int interactPropId)
     {
         this.horizontal = horizontal;
         this.jump = jump;
@@ -17,5 +18,6 @@ public class PlayerInputFrame
         this.velocity = velocity;
         this.position = position;
         this.interact = interact;
+        this.interactPropId = interactPropId;
     }
 }

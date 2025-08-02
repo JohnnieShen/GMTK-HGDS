@@ -40,6 +40,10 @@ public class TimelineManager : MonoBehaviour
     }
     public void TogglePause() => SetPaused(!isPaused);
 
+    public bool IsFastForwarding  => holdForward;
+    public bool IsRewinding => holdBackward;
+
+
     void Awake()
     {
         if (Instance == null)
@@ -87,7 +91,7 @@ public class TimelineManager : MonoBehaviour
             currentTime -= timelineDuration; looped = true;
         }
         if (currentTime < 0f) {
-            currentTime += timelineDuration; looped = true;
+            currentTime = 0f;
         }
 
         if (looped) OnTimelineLoop?.Invoke();

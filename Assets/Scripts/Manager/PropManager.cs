@@ -14,35 +14,39 @@ public class PropManager : MonoBehaviour
         else { Destroy(gameObject); return; }
 
         TimelineManager.Instance.OnTimelineTick += OnTick;
+        TimelineManager.Instance.OnTimelineLoop += OnLoop;
     }
 
     void OnDestroy()
     {
         if (TimelineManager.Instance != null)
+        {
             TimelineManager.Instance.OnTimelineTick -= OnTick;
+            TimelineManager.Instance.OnTimelineLoop -= OnLoop;
+        }
         if (Instance == this) Instance = null;
     }
 
     public void Register   (PropRecorder r) => recorders.Add(r);
     public void Unregister (PropRecorder r) => recorders.Remove(r);
 
-    void OnTick(float currentTime)
-{
-    float speed = TimelineManager.Instance.timelineSpeed;
-
-    bool record = speed >  0f;
-    bool playback = speed <  0f;
-
-    foreach (var r in recorders)
+    void OnTick(float t)
     {
-        if (record)
-            r.RecordFrame(currentTime);
+        float spd = TimelineManager.Instance.timelineSpeed;
+        bool record   = spd > 0f;   // record on any forward speed
+        bool playback = spd < 0f;   // only play back when truly rewinding
 
-        if (playback)
-            r.ApplyAtTime(currentTime);
+        foreach (var r in recorders) {
+            if (record)   r.RecordFrame(t);
+            if (playback) r.ApplyAtTime(t);
+        }
     }
-}
 
+
+    void OnLoop()
+    {
+        SeekAll(0f);
+    }
 
     public void SeekAll(float time)
     {

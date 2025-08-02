@@ -1,10 +1,12 @@
 using UnityEngine;
 using System.Collections;
 
-public class Button : MonoBehaviour, RecordableProp, Interactable
+public class Button : Interactable, RecordableProp
 {
     [Header("Target")]
     public GameObject targetObject;
+    public Sprite targetActiveSprite;
+    public Sprite targetInactiveSprite;
 
     [Header("Timing")]
     public float delayOn = 0f;
@@ -31,8 +33,9 @@ public class Button : MonoBehaviour, RecordableProp, Interactable
         ApplyVisuals();
     }
 
-    public void Interact()
+    public override void Interact()
     {
+        Debug.Log("Button pressed by interaction");
         if (!isProcessing)
             StartCoroutine(PressSequence());
     }
@@ -43,6 +46,29 @@ public class Button : MonoBehaviour, RecordableProp, Interactable
             StartCoroutine(PressSequence());
     }
 
+    IEnumerator WaitForTimelineSeconds(float timelineSecs)
+    {
+        float remaining = timelineSecs;
+        float prev = TimelineManager.Instance.GetCurrentTime();
+        float duration = TimelineManager.Instance.timelineDuration;
+
+        while (remaining > 0f)
+        {
+            yield return null;
+
+            float now = TimelineManager.Instance.GetCurrentTime();
+            float speed = TimelineManager.Instance.timelineSpeed;
+
+            float delta = speed >= 0f
+                ? (now - prev + duration) % duration
+                : (prev - now + duration) % duration;
+
+            remaining -= delta;
+            prev = now;
+        }
+    }
+
+
     IEnumerator PressSequence()
     {
         isProcessing = true;
@@ -51,14 +77,14 @@ public class Button : MonoBehaviour, RecordableProp, Interactable
         if (spriteRenderer && activatingSprite)
             spriteRenderer.sprite = activatingSprite;
 
-        yield return new WaitForSeconds(delayOn);
+        yield return StartCoroutine(WaitForTimelineSeconds(delayOn));
 
         // Toggle to non-default state
         isPressed = true; // Button becomes visually pressed
         targetActive = !defaultPressed; // Target goes to opposite of default
         ApplyVisuals();
 
-        yield return new WaitForSeconds(delayOff);
+        yield return StartCoroutine(WaitForTimelineSeconds(delayOff));
 
         // Return to default state
         isPressed = false; // Button returns to not pressed
@@ -70,8 +96,24 @@ public class Button : MonoBehaviour, RecordableProp, Interactable
 
     void ApplyVisuals()
     {
-        if (targetObject) targetObject.SetActive(targetActive);
+        // Change target object sprite and collider state
+        if (targetObject)
+        {
+            SpriteRenderer targetSpriteRenderer = targetObject.GetComponent<SpriteRenderer>();
+            Collider2D targetCollider = targetObject.GetComponent<Collider2D>();
+            
+            if (targetSpriteRenderer)
+            {
+                targetSpriteRenderer.sprite = targetActive ? targetActiveSprite : targetInactiveSprite;
+            }
+            
+            if (targetCollider)
+            {
+                targetCollider.enabled = targetActive;
+            }
+        }
 
+        // Change button sprite
         if (spriteRenderer)
             spriteRenderer.sprite = isPressed ? pressedSprite : idleSprite;
     }

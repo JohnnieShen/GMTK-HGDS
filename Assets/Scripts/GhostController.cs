@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEditor;
 
 [RequireComponent(typeof(MovementController))]
 public class GhostController : MonoBehaviour
@@ -63,14 +64,23 @@ public class GhostController : MonoBehaviour
         rb.linearVelocity = (speed < 0f) ? -frame.velocity : frame.velocity;
         prevJumpHeld = frame.jump;
         
-        if (frame.interact)
-            TryInteract();
+        Debug.Log($"Ghost frame at t={frame.time:0.00}s: pos={frame.position}, vel={rb.linearVelocity}, jump={frame.jump}, interact={frame.interact}, propId={frame.interactPropId}");
+        if (frame.interact && frame.interactPropId != -1)
+        {
+            Debug.Log($"Ghost interacting with prop ID: {frame.interactPropId}");
+            var go = EditorUtility.InstanceIDToObject(frame.interactPropId) as GameObject;
+            if (go != null)
+            {
+                var i = go.GetComponent<Interactable>();
+                if (i != null) i.Interact();
+            }
+        }
     }
     
     void TryInteract()
     {
         Debug.Log("Ghost trying to interact");
-        float radius = 0.5f;
+        float radius = 0.7f;
         var hits = Physics2D.OverlapCircleAll(transform.position, radius);
         foreach (var c in hits)
         {
