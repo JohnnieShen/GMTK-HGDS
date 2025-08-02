@@ -28,11 +28,12 @@ public class PlayerInputHandler : MonoBehaviour
 
         float horizontal = Input.GetAxisRaw("Horizontal");
         bool jumpHeld = Input.GetKey(KeyCode.Space);
+        bool interact = Input.GetKey(KeyCode.T);
 
         movement.Move(horizontal);
         movement.Jump(jumpDownBuffered, jumpHeld);
 
-        recorder.RecordInput(horizontal, jumpHeld);
+        recorder.RecordInput(horizontal, jumpHeld, interact);
         
         jumpDownBuffered = false;
     }

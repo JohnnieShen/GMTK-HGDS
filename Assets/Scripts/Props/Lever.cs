@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Lever : MonoBehaviour, RecordableProp
+public class Lever : MonoBehaviour, RecordableProp, Interactable
 {
     [Header("Target")]
     public GameObject targetObject;
@@ -36,6 +36,12 @@ public class Lever : MonoBehaviour, RecordableProp
         {
             StartCoroutine(ToggleLever());
         }
+    }
+
+    public void Interact()
+    {
+        if (!isProcessing)
+            StartCoroutine(ToggleLever());
     }
 
     IEnumerator ToggleLever()

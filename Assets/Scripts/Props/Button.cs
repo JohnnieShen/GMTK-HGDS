@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Button : MonoBehaviour, RecordableProp
+public class Button : MonoBehaviour, RecordableProp, Interactable
 {
     [Header("Target")]
     public GameObject targetObject;
@@ -29,6 +29,12 @@ public class Button : MonoBehaviour, RecordableProp
         targetActive = defaultPressed; // Target starts in its default state
 
         ApplyVisuals();
+    }
+
+    public void Interact()
+    {
+        if (!isProcessing)
+            StartCoroutine(PressSequence());
     }
 
     void Update()
@@ -90,8 +96,8 @@ public class Button : MonoBehaviour, RecordableProp
     public void ApplyFrame(PropStatusFrame frame)
     {
         targetActive = frame.active;
-        // Don't change isPressed here - let the visual state be controlled by the press sequence
         transform.position = frame.position;
+        isPressed = targetActive != defaultPressed;
         ApplyVisuals();
     }
 }

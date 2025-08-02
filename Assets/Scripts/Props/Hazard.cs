@@ -30,8 +30,7 @@ public class HazardInstantKill : MonoBehaviour, RecordableProp
     {
         if (other.CompareTag("Player")&& isActive)
         {
-            Destroy(other.gameObject);
+            LifeManager.Instance.EndCurrentLife();
         }
-
     }
 }

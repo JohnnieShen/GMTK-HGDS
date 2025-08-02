@@ -58,10 +58,29 @@ public class GhostController : MonoBehaviour
         //     movement.Jump(jumpDown, frame.jump);
         //     prevJumpHeld = frame.jump;
         // }
-        
+
         movement.SetPosition(frame.position);
         rb.linearVelocity = (speed < 0f) ? -frame.velocity : frame.velocity;
         prevJumpHeld = frame.jump;
+        
+        if (frame.interact)
+            TryInteract();
+    }
+    
+    void TryInteract()
+    {
+        Debug.Log("Ghost trying to interact");
+        float radius = 0.5f;
+        var hits = Physics2D.OverlapCircleAll(transform.position, radius);
+        foreach (var c in hits)
+        {
+            var interactable = c.GetComponent<Interactable>();
+            if (interactable != null)
+            {
+                interactable.Interact();
+                break;
+            }
+        }
     }
     
     public void Seek(float time)
@@ -76,7 +95,7 @@ public class GhostController : MonoBehaviour
         rb.linearVelocity = frame.velocity;
 
         prevJumpHeld = frame.jump;
-        replayIndex  = inputFrames.IndexOf(frame);
+        replayIndex = inputFrames.IndexOf(frame);
     }
 
     public void Initialize(List<PlayerInputFrame> frames, float start, float end)
