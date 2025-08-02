@@ -196,6 +196,7 @@ public class GameManager : MonoBehaviour
     
     void HandlePlayerTrigger(bool entered)
     {
+        Debug.Log($"Player trigger event: {(entered ? "Entered" : "Exited")}");
         TimelineManager.Instance?.SetPaused(entered);
 
         if (pausePanel != null)

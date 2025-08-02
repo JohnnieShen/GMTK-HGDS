@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LifeManager : MonoBehaviour
 {
@@ -21,17 +22,38 @@ public class LifeManager : MonoBehaviour
     [Header("Player Spawn Settings")]
     [SerializeField] Transform spawnPoint;
 
+    [Header("Time-Budget")]
+    public float totalTimeBudget = 30f;
+    [SerializeField] Slider timeBudgetSlider;
+
+    float timeRemaining;
+    float lifeStartClock;
+    float lastShownValue;
+
     void Awake()
     {
         Instance = this;
         TimelineManager.Instance.OnTimelineLoop += HandleLoop;
     }
 
-    void Start() => TimelineManager.Instance.SetPaused(true);
+    void Start()
+    {
+        timeRemaining   = totalTimeBudget;
+        lastShownValue  = totalTimeBudget;
+        UpdateSlider(timeRemaining);
+        TimelineManager.Instance.SetPaused(true);
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        float effectiveRemaining = GetCurrentTimeRemaining();
+        if (!Mathf.Approximately(effectiveRemaining, lastShownValue))
+        {
+            lastShownValue = effectiveRemaining;
+            UpdateSlider(effectiveRemaining);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K) || (GameManager.Instance.CurrentPlayer != null && effectiveRemaining <= 0f))
             EndCurrentLife();
 
         if (Input.GetKeyDown(KeyCode.L))
@@ -54,6 +76,13 @@ public class LifeManager : MonoBehaviour
         Debug.Log("Ending current life...");
         if (currentRec == null) return;
         Debug.Log($"LifeManager: Ending life at t={TimelineManager.Instance.GetCurrentTime():0.00}s");
+
+        float lifeEndClock = TimelineManager.Instance.GetCurrentTime();
+        float lifeDuration = Mathf.Abs(lifeEndClock - lifeStartClock);
+
+        timeRemaining = Mathf.Max(0f, timeRemaining - lifeDuration);
+        UpdateSlider(timeRemaining);
+
         currentRec.StopRecording();
 
         var log = new LifeLog
@@ -76,6 +105,10 @@ public class LifeManager : MonoBehaviour
 
     public void StartNewLife(float spawnTime)
     {
+        if (timeRemaining <= 0f) return;
+
+        lifeStartClock = TimelineManager.Instance.GetCurrentTime();
+
         playerGO = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
         var anim = playerGO.GetComponent<Animator>();
         var col = playerGO.GetComponent<Collider2D>();
@@ -105,9 +138,27 @@ public class LifeManager : MonoBehaviour
 
     public float GetTimelineDuration() => TimelineManager.Instance.timelineDuration;
     public IReadOnlyList<LifeLog> Lives => completedLives;
-    
+
     void HandleLoop()
     {
         if (currentRec != null) EndCurrentLife();
+    }
+
+    float GetCurrentTimeRemaining()
+    {
+        if (currentRec == null) return timeRemaining;
+
+        float elapsed = Mathf.Abs(
+            TimelineManager.Instance.GetCurrentTime() - lifeStartClock);
+
+        return Mathf.Max(0f, timeRemaining - elapsed);
+    }
+    
+    void UpdateSlider(float value)
+    {
+        if (!timeBudgetSlider) return;
+
+        timeBudgetSlider.maxValue = totalTimeBudget;
+        timeBudgetSlider.SetValueWithoutNotify(value);
     }
 }

@@ -20,6 +20,9 @@ public class MovementController : MonoBehaviour
 
     [Header("Ground Check")]
     [SerializeField] LayerMask groundMask;
+
+    [SerializeField] LayerMask playerMask;
+    [SerializeField] LayerMask ghostMask;
     [SerializeField] Vector2  groundCheckSize = new(0.8f, 0.1f);
     [SerializeField] Vector3  groundCheckOffset = new(0f, -0.51f, 0f);
 
@@ -105,7 +108,7 @@ public class MovementController : MonoBehaviour
 
     public bool IsGrounded() =>
         Physics2D.OverlapBox(transform.position + groundCheckOffset,
-                             groundCheckSize, 0f, groundMask);
+                             groundCheckSize, 0f, groundMask | playerMask | ghostMask);
 
     void PerformJump()
     {
