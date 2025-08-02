@@ -194,12 +194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c677277d24228fe4c8177bd2c18ed72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 5
   accelTime: 0.1
   airAccelTime: 0.2
   jumpHeight: 3
   timeToApex: 0.5
-  upGravityMult: 0.75
+  upGravityMult: 2
   downGravityMult: 1.25
   coyoteTime: 0.1
   jumpBuffer: 0.1

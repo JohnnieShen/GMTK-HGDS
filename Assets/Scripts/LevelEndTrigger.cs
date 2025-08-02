@@ -11,6 +11,7 @@ public class LevelEndTrigger : MonoBehaviour
 
             // Replace "NextLevel" with actual scene name or use build index
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Debug.Log("Level completed! Loading next level...");
         }
     }
 }
