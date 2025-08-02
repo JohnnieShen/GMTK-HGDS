@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "GMTK-HGDS.sln"
+    "dotnet.defaultSolution": "GMTK-HGDS-2.sln"
 }
