@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     private Vector3 respawnPosition;
     private bool waitingToRespawn = false;
 
+    [Header("Scene Transition")]
+    public LevelLoader levelLoader;
+
     struct BodyState
     {
         public Rigidbody2D rb;
@@ -201,5 +204,7 @@ public class GameManager : MonoBehaviour
 
         if (pausePanel != null)
             pausePanel.SetActive(entered);
+
+        levelLoader.LoadNextLevel();
     }
 }
