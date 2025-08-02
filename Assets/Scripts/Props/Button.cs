@@ -9,7 +9,7 @@ public class Button : MonoBehaviour, RecordableProp
     [Header("Timing")]
     public float delayOn = 0f;
     public float delayOff = 1f;
-    public bool defaultPressed = false;
+    public bool defaultPressed = false; // Whether target object's default state is on or off
 
     [Header("Sprites")]
     public SpriteRenderer spriteRenderer;
@@ -19,12 +19,14 @@ public class Button : MonoBehaviour, RecordableProp
 
     private bool playerInRange = false;
     private bool isProcessing = false;
-    bool isPressed;
+    bool isPressed = false; // Button visual state - always starts not pressed
+    bool targetActive; // Current state of the target object
     PropRecorder recorder;
 
     void Start()
     {
-        isPressed = defaultPressed;
+        isPressed = false; // Button always starts visually not pressed
+        targetActive = defaultPressed; // Target starts in its default state
 
         ApplyVisuals();
 
@@ -34,7 +36,7 @@ public class Button : MonoBehaviour, RecordableProp
 
     void Update()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.E) && !isProcessing)
+        if (playerInRange && Input.GetKeyDown(KeyCode.T) && !isProcessing)
             StartCoroutine(PressSequence());
     }
 
@@ -42,17 +44,22 @@ public class Button : MonoBehaviour, RecordableProp
     {
         isProcessing = true;
 
+        // Show activating sprite
         if (spriteRenderer && activatingSprite)
             spriteRenderer.sprite = activatingSprite;
 
         yield return new WaitForSeconds(delayOn);
 
-        isPressed = !isPressed;
+        // Toggle to non-default state
+        isPressed = true; // Button becomes visually pressed
+        targetActive = !defaultPressed; // Target goes to opposite of default
         ApplyVisuals();
 
         yield return new WaitForSeconds(delayOff);
 
-        isPressed = defaultPressed;
+        // Return to default state
+        isPressed = false; // Button returns to not pressed
+        targetActive = defaultPressed; // Target returns to default
         ApplyVisuals();
 
         isProcessing = false;
@@ -60,7 +67,7 @@ public class Button : MonoBehaviour, RecordableProp
 
     void ApplyVisuals()
     {
-        if (targetObject) targetObject.SetActive(isPressed);
+        if (targetObject) targetObject.SetActive(targetActive);
 
         if (spriteRenderer)
             spriteRenderer.sprite = isPressed ? pressedSprite : idleSprite;
@@ -80,12 +87,13 @@ public class Button : MonoBehaviour, RecordableProp
 
     public PropStatusFrame CaptureFrame()
     {
-        return new PropStatusFrame(gameObject.GetInstanceID(), TimelineManager.Instance.GetCurrentTime(), isPressed, transform.position);
+        return new PropStatusFrame(gameObject.GetInstanceID(), TimelineManager.Instance.GetCurrentTime(), targetActive, transform.position);
     }
 
     public void ApplyFrame(PropStatusFrame frame)
     {
-        isPressed = frame.active;
+        targetActive = frame.active;
+        // Don't change isPressed here - let the visual state be controlled by the press sequence
         transform.position = frame.position;
         ApplyVisuals();
     }
