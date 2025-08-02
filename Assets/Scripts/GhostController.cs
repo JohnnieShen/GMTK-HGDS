@@ -80,7 +80,7 @@ public class GhostController : MonoBehaviour
     void TryInteract()
     {
         Debug.Log("Ghost trying to interact");
-        float radius = 0.5f;
+        float radius = 0.7f;
         var hits = Physics2D.OverlapCircleAll(transform.position, radius);
         foreach (var c in hits)
         {
