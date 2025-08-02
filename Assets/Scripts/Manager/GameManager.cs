@@ -218,7 +218,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"Player trigger event: {(entered ? "Entered" : "Exited")}");
 
-        levelLoader.LoadNextLevel();
+        if (entered && !levelLoader.isLoading()) levelLoader.LoadNextLevel();
 //Time.timeScale = entered ? 0f : 1f;
 
         if (pausePanel != null)
