@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     private Vector3 respawnPosition;
     private bool waitingToRespawn = false;
 
+    [Header("Scene Transition")]
+    public LevelLoader levelLoader;
+
     struct BodyState
     {
         public Rigidbody2D rb;
@@ -214,7 +217,9 @@ public class GameManager : MonoBehaviour
     void HandlePlayerTrigger(bool entered)
     {
         Debug.Log($"Player trigger event: {(entered ? "Entered" : "Exited")}");
-        Time.timeScale = entered ? 0f : 1f;
+
+        if (entered && !levelLoader.isLoading()) levelLoader.LoadNextLevel();
+//Time.timeScale = entered ? 0f : 1f;
 
         if (pausePanel != null)
             pausePanel.SetActive(entered);
