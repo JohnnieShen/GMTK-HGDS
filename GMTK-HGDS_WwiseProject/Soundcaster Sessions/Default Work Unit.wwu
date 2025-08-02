@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{AB72747C-2B85-4548-B236-320D8CB618D8}" SchemaVersion="119">
 	<SoundcasterSessions>
-		<WorkUnit Name="Default Work Unit" ID="{AB72747C-2B85-4548-B236-320D8CB618D8}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{AB72747C-2B85-4548-B236-320D8CB618D8}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundcasterSession Name="New Soundcaster Session" ID="{E9E1DA10-41E0-4B07-8BD6-7DB8BD88833B}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="Play_BGM" ID="{690CB4D5-80B0-4E7F-8ADD-5B5C04D5931A}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Play_Rolling" ID="{BD070407-2B36-4E7C-8A6A-CF816A48F8D2}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}"/>
+							<Position X="0" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Play_Jumping" ID="{8EAB502F-03D0-4A69-B8AD-C15EC6893E67}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}"/>
+							<Position X="0" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Stop_BGM" ID="{CA686283-8F8E-4E35-990A-1691040BA711}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}"/>
+							<Position X="1" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Stop_Rolling" ID="{4B16AB9E-576B-4B81-A6AD-3D63603BE8D1}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}"/>
+							<Position X="1" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Play_Landing" ID="{B77786FD-343D-4D80-8AC3-7898B0411CE2}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}"/>
+							<Position X="1" Y="3"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true"/>
+					<CurrentStateList ShowAll="true"/>
+					<CurrentSwitchList ShowAll="true">
+						<CurrentSwitchRef Name="Chapter4" ID="{0E2DF485-4095-4B67-ACCD-E3F34B9FF2CA}"/>
+					</CurrentSwitchList>
+				</SoundcasterSession>
+			</ChildrenList>
+		</WorkUnit>
 	</SoundcasterSessions>
 </WwiseDocument>

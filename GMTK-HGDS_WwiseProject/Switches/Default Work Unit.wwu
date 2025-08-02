@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{7A5FADCD-F7A1-43D5-961E-ECCE45152DC7}" SchemaVersion="119">
 	<Switches>
-		<WorkUnit Name="Default Work Unit" ID="{7A5FADCD-F7A1-43D5-961E-ECCE45152DC7}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{7A5FADCD-F7A1-43D5-961E-ECCE45152DC7}" PersistMode="Standalone">
+			<ChildrenList>
+				<SwitchGroup Name="BGM" ID="{982C1AE0-E561-4BEE-9581-05D1C34C7069}">
+					<ChildrenList>
+						<Switch Name="MainMenu" ID="{1DCC56F4-010B-4F2B-A9D6-7B9CC90923D3}"/>
+						<Switch Name="Chapter1" ID="{4F53BEB2-A123-40DB-A716-2C6F930746E1}"/>
+						<Switch Name="Chapter2" ID="{435F2326-9A82-4EDC-94C6-96895F7E732B}"/>
+						<Switch Name="Chapter3" ID="{9540AB77-4675-4C74-B4B6-7F62C136A6B4}"/>
+						<Switch Name="Chapter4" ID="{0E2DF485-4095-4B67-ACCD-E3F34B9FF2CA}"/>
+						<Switch Name="Chapter5" ID="{D048F098-54A6-49A9-B3F1-1AF2F46CAECB}"/>
+					</ChildrenList>
+				</SwitchGroup>
+			</ChildrenList>
+		</WorkUnit>
 	</Switches>
 </WwiseDocument>

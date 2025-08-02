@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{92854CE2-937A-4D63-979E-A8A7CCE684D5}" SchemaVersion="119">
 	<SoundBanks>
-		<WorkUnit Name="Default Work Unit" ID="{92854CE2-937A-4D63-979E-A8A7CCE684D5}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{92854CE2-937A-4D63-979E-A8A7CCE684D5}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="Default" ID="{EC5B19C2-0419-4A9E-8AD1-901A7D007224}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Play_Jumping" ID="{8EAB502F-03D0-4A69-B8AD-C15EC6893E67}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stop_Rolling" ID="{4B16AB9E-576B-4B81-A6AD-3D63603BE8D1}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Landing" ID="{B77786FD-343D-4D80-8AC3-7898B0411CE2}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stop_BGM" ID="{CA686283-8F8E-4E35-990A-1691040BA711}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Rolling" ID="{BD070407-2B36-4E7C-8A6A-CF816A48F8D2}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_BGM" ID="{690CB4D5-80B0-4E7F-8ADD-5B5C04D5931A}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
 	</SoundBanks>
 </WwiseDocument>
