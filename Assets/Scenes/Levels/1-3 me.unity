@@ -210,6 +210,14 @@ PrefabInstance:
       propertyPath: defaultPressed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4225774908949414715, guid: d1c7d45f6e8495948a469c6ee35dac17, type: 3}
+      propertyPath: targetActiveSprite
+      value: 
+      objectReference: {fileID: 2819815934189153119, guid: 400c38bd8af968249b8f60f901e0ed0e, type: 3}
+    - target: {fileID: 4225774908949414715, guid: d1c7d45f6e8495948a469c6ee35dac17, type: 3}
+      propertyPath: targetInactiveSprite
+      value: 
+      objectReference: {fileID: 3501540814251876656, guid: 400c38bd8af968249b8f60f901e0ed0e, type: 3}
     - target: {fileID: 8135187691929672061, guid: d1c7d45f6e8495948a469c6ee35dac17, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.7757914
@@ -334,11 +342,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4819589563919756567, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_text
-      value: 'TIMELINE: LOOPS EVERY 10s.'
+      value: 'TIMELINE: LOOPS EVERY 10s. All actions replayed.'
       objectReference: {fileID: 0}
     - target: {fileID: 4819589563919756567, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_margin.x
-      value: -172.68143
+      value: -576.0147
       objectReference: {fileID: 0}
     - target: {fileID: 4819589563919756567, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_margin.z
@@ -367,6 +375,10 @@ PrefabInstance:
     - target: {fileID: 6594921596816688788, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6763802955391342448, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 192
       objectReference: {fileID: 0}
     - target: {fileID: 8748688008334069324, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_Pivot.x
@@ -1825,7 +1837,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 75, y: 0}
+  m_AnchoredPosition: {x: 153.5, y: -24.2}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1827687769
