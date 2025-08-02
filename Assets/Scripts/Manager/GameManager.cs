@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour
     void HandlePlayerTrigger(bool entered)
     {
         Debug.Log($"Player trigger event: {(entered ? "Entered" : "Exited")}");
-        TimelineManager.Instance?.SetPaused(entered);
+        Time.timeScale = entered ? 0f : 1f;
 
         if (pausePanel != null)
             pausePanel.SetActive(entered);
