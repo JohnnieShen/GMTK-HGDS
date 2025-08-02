@@ -26,6 +26,7 @@ public class PlatformMover : MonoBehaviour
 
     void Update()
     {
+        isActive = !TimelineManager.Instance.IsPaused;
         if (!isActive) return;
         Vector2 previousPosition = transform.position;
         transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
