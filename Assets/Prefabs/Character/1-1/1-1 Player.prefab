@@ -197,7 +197,7 @@ MonoBehaviour:
   moveSpeed: 5
   accelTime: 0.1
   airAccelTime: 0.2
-  jumpHeight: 3
+  jumpHeight: 4
   timeToApex: 0.5
   upGravityMult: 2
   downGravityMult: 1.25

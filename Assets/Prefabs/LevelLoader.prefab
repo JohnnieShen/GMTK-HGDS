@@ -46,8 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c97779892aba4f45b1af633241f9529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transition: {fileID: 1932096938011134574}
-  transitionTime: 1
+  transitionTime: 0
 --- !u!95 &1932096938011134574
 Animator:
   serializedVersion: 7
