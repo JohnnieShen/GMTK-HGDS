@@ -40,6 +40,10 @@ public class TimelineManager : MonoBehaviour
     }
     public void TogglePause() => SetPaused(!isPaused);
 
+    public bool IsFastForwarding  => holdForward;
+    public bool IsRewinding => holdBackward;
+
+
     void Awake()
     {
         if (Instance == null)
