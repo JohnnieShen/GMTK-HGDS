@@ -310,15 +310,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4819589563919756567, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_text
-      value: 'TIMELINE: LOOPS EVERY 10s. Press ''L'' to spawn in!'
+      value: 'TIMELINE: LOOPS EVERY 10s. Press ''L'' to spawn in, ''F'' to pause/unpause
+        time.'
       objectReference: {fileID: 0}
     - target: {fileID: 4819589563919756567, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_margin.x
-      value: -450.17694
+      value: -860.76447
       objectReference: {fileID: 0}
     - target: {fileID: 4819589563919756567, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_margin.z
-      value: -386.60843
+      value: -607.136
       objectReference: {fileID: 0}
     - target: {fileID: 5096913994180170482, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_AnchorMax.y
@@ -356,7 +357,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6763802955391342448, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 73
+      value: 169
+      objectReference: {fileID: 0}
+    - target: {fileID: 6763802955391342448, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -365
       objectReference: {fileID: 0}
     - target: {fileID: 8748688008334069324, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_Pivot.x

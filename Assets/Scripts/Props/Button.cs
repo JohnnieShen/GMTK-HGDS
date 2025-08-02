@@ -5,6 +5,8 @@ public class Button : Interactable, RecordableProp
 {
     [Header("Target")]
     public GameObject targetObject;
+    public Sprite targetActiveSprite;
+    public Sprite targetInactiveSprite;
 
     [Header("Timing")]
     public float delayOn = 0f;
@@ -94,8 +96,24 @@ public class Button : Interactable, RecordableProp
 
     void ApplyVisuals()
     {
-        if (targetObject) targetObject.SetActive(targetActive);
+        // Change target object sprite and collider state
+        if (targetObject)
+        {
+            SpriteRenderer targetSpriteRenderer = targetObject.GetComponent<SpriteRenderer>();
+            Collider2D targetCollider = targetObject.GetComponent<Collider2D>();
+            
+            if (targetSpriteRenderer)
+            {
+                targetSpriteRenderer.sprite = targetActive ? targetActiveSprite : targetInactiveSprite;
+            }
+            
+            if (targetCollider)
+            {
+                targetCollider.enabled = targetActive;
+            }
+        }
 
+        // Change button sprite
         if (spriteRenderer)
             spriteRenderer.sprite = isPressed ? pressedSprite : idleSprite;
     }
