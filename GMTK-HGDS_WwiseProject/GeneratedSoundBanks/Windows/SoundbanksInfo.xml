@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="150">
+	<RootPaths>
+		<ProjectRoot>../..</ProjectRoot>
+		<SourceFilesRoot>../../.cache/Windows</SourceFilesRoot>
+		<SoundBanksRoot>.</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>.</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<SoundBanks>
+		<SoundBank Id="782826392" Type="User" Language="SFX" Hash="{2E472C93-B38F-70E4-5C04-457A0C41172C}">
+			<ShortName>Default</ShortName>
+			<Path>Default.bnk</Path>
+			<Media>
+				<File Id="148771695" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>DéjàYou - CHAPTER 4.v2.wav</ShortName>
+					<CachePath>SFX/DéjàYou - CHAPTER 4.v2_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="349871890" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>DéjàYou - CHAPTER 3.v2.wav</ShortName>
+					<CachePath>SFX/DéjàYou - CHAPTER 3.v2_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="541674770" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>DéjàYou - CHAPTER 5.v2.wav</ShortName>
+					<CachePath>SFX/DéjàYou - CHAPTER 5.v2_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="645034010" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>DéjàYou - CHAPTER 1.v2.wav</ShortName>
+					<CachePath>SFX/DéjàYou - CHAPTER 1.v2_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="768716440" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>DéjàYou - MAIN THEME.v1.wav</ShortName>
+					<CachePath>SFX/DéjàYou - MAIN THEME.v1_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="981914805" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>DéjàYou - CHAPTER 2.v2.wav</ShortName>
+					<CachePath>SFX/DéjàYou - CHAPTER 2.v2_FBC78EF0.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3126765036" Name="Play_BGM" DurationType="Infinite">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="412724365" Id="3604647259"/>
+							<MediaRefs>
+								<MediaRef Id="768716440"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="412724365" Id="1183684777"/>
+							<MediaRefs>
+								<MediaRef Id="645034010"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="412724365" Id="1183684778"/>
+							<MediaRefs>
+								<MediaRef Id="981914805"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="412724365" Id="1183684779"/>
+							<MediaRefs>
+								<MediaRef Id="349871890"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="412724365" Id="1183684780"/>
+							<MediaRefs>
+								<MediaRef Id="148771695"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="412724365" Id="1183684781"/>
+							<MediaRefs>
+								<MediaRef Id="541674770"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="412724365" Id="0"/>
+							<MediaRefs>
+								<MediaRef Id="768716440"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
+				<Event Id="1073466678" Name="Stop_BGM" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+			</Events>
+			<SwitchGroups>
+				<SwitchGroup Id="412724365" Name="BGM">
+					<Switches>
+						<Switch Id="1183684777" Name="Chapter1"/>
+						<Switch Id="1183684778" Name="Chapter2"/>
+						<Switch Id="1183684779" Name="Chapter3"/>
+						<Switch Id="1183684780" Name="Chapter4"/>
+						<Switch Id="1183684781" Name="Chapter5"/>
+						<Switch Id="3604647259" Name="MainMenu"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
+		</SoundBank>
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{B6CBD692-12EC-CDBA-0932-48F63C40C91F}">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<Plugins>
+				<AudioDevices>
+					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
+					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
+				</AudioDevices>
+			</Plugins>
+			<Busses>
+				<Bus Id="3803692087" Name="Master Audio Bus"/>
+			</Busses>
+			<SwitchGroups>
+				<SwitchGroup Id="412724365" Name="BGM">
+					<Switches>
+						<Switch Id="1183684777" Name="Chapter1"/>
+						<Switch Id="1183684778" Name="Chapter2"/>
+						<Switch Id="1183684779" Name="Chapter3"/>
+						<Switch Id="1183684780" Name="Chapter4"/>
+						<Switch Id="1183684781" Name="Chapter5"/>
+						<Switch Id="3604647259" Name="MainMenu"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{E746D872-7427-2847-A30F-C3D17C77DC14}</FileHash>
+</SoundBanksInfo>
