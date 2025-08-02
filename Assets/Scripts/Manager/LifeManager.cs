@@ -29,6 +29,7 @@ public class LifeManager : MonoBehaviour
     float timeRemaining;
     float lifeStartClock;
     float lastShownValue;
+    public static float PersistentBudget;
 
     void Awake()
     {
@@ -47,7 +48,10 @@ public class LifeManager : MonoBehaviour
 
     void Start()
     {
-        timeRemaining = totalTimeBudget;
+        if (PersistentBudget <= 0f)
+            timeRemaining = totalTimeBudget;
+        else
+            timeRemaining = PersistentBudget;
         lastShownValue = totalTimeBudget;
         UpdateSlider(timeRemaining);
         TimelineManager.Instance.SetPaused(true);
@@ -76,6 +80,7 @@ public class LifeManager : MonoBehaviour
 
     void OnDestroy()
     {
+        PersistentBudget = timeRemaining;
         if (TimelineManager.Instance != null)
             TimelineManager.Instance.OnTimelineLoop -= HandleLoop;
     }
