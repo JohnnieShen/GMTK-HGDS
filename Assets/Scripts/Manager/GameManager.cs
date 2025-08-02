@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -62,8 +63,24 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        foreach (var g in ghosts)
-            UpdateOneGhost(g);
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetRuntimeState();
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);
+            TimelineManager.Instance.SetPaused(true);
+            TimelineManager.Instance.currentTime = 0.05f;
+        }
+
+        for (int i = ghosts.Count - 1; i >= 0; i--)
+        {
+            if (ghosts[i].gc == null)
+            {
+                ghosts.RemoveAt(i);
+                continue;
+            }
+            UpdateOneGhost(ghosts[i]);
+        }
 
         if (!waitingToRespawn)
         {
@@ -108,7 +125,7 @@ public class GameManager : MonoBehaviour
 
     private void RespawnPlayer()
     {
-        if (playerToRespawn != null)
+        if (playerToRespawn != null && waitingToRespawn)
         {
             float currentTime = TimelineManager.Instance.GetCurrentTime();
             Debug.Log($"Respawning player! Timeline time: {currentTime}, Target: {selectedSpawnTime}");
@@ -196,15 +213,39 @@ public class GameManager : MonoBehaviour
             g.active = false;
         }
     }
-    
+
     void HandlePlayerTrigger(bool entered)
     {
         Debug.Log($"Player trigger event: {(entered ? "Entered" : "Exited")}");
-        TimelineManager.Instance?.SetPaused(entered);
+        Time.timeScale = entered ? 0f : 1f;
 
         if (pausePanel != null)
             pausePanel.SetActive(entered);
 
         levelLoader.LoadNextLevel();
+    }
+    
+    void ResetRuntimeState()
+    {
+        foreach (var g in ghosts)
+            if (g.gc != null)
+                Destroy(g.gc.gameObject);
+
+        ghosts.Clear();
+
+        if (CurrentPlayer != null)
+            Destroy(CurrentPlayer);
+        CurrentPlayer = null;
+
+        waitingToRespawn = false;
+        playerToRespawn = null;
+        selectedSpawnTime = 0f;
+        frozenBodies.Clear();
+
+        if (LifeManager.Instance != null)
+            LifeManager.Instance.FullReset();
+
+        if (PropManager.Exists)
+            PropManager.Instance.SeekAll(0f);
     }
 }

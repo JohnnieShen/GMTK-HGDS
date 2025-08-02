@@ -190,7 +190,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.7173028, y: 6.039693}
   m_EdgeRadius: 0
---- !u!114 &1018079178766999866
+--- !u!114 &7252814500220412141
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

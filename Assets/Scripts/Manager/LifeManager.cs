@@ -32,14 +32,23 @@ public class LifeManager : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            // DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         TimelineManager.Instance.OnTimelineLoop += HandleLoop;
     }
 
     void Start()
     {
-        timeRemaining   = totalTimeBudget;
-        lastShownValue  = totalTimeBudget;
+        timeRemaining = totalTimeBudget;
+        lastShownValue = totalTimeBudget;
         UpdateSlider(timeRemaining);
         TimelineManager.Instance.SetPaused(true);
     }
@@ -153,12 +162,32 @@ public class LifeManager : MonoBehaviour
 
         return Mathf.Max(0f, timeRemaining - elapsed);
     }
-    
+
     void UpdateSlider(float value)
     {
         if (!timeBudgetSlider) return;
 
         timeBudgetSlider.maxValue = totalTimeBudget;
         timeBudgetSlider.SetValueWithoutNotify(value);
+    }
+    
+    public void FullReset()
+    {
+        foreach (var g in ghosts)
+            if (g != null)
+                Destroy(g.gameObject);
+        ghosts.Clear();
+
+        completedLives.Clear();
+        timeRemaining = totalTimeBudget;
+        lastShownValue = totalTimeBudget;
+        UpdateSlider(timeRemaining);
+
+        if (playerGO != null)
+            Destroy(playerGO);
+        playerGO = null;
+        currentRec  = null;
+
+        TimelineManager.Instance.SetPaused(true);
     }
 }
