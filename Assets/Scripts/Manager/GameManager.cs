@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
         public GhostController gc;
         public float start;
         public float end;
-        public bool  active;
+        public bool active;
     }
 
     public static GameManager Instance;
@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public float selectedSpawnTime = 5f;
 
     public float timelineDuration = 10f;
+    [Header("Pause UI")]
+    [SerializeField] GameObject pausePanel;
 
     private GameObject playerToRespawn;
     private Vector3 respawnPosition;
@@ -47,6 +49,12 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        TriggerNotifier.PlayerTriggerEvent += HandlePlayerTrigger;
+    }
+
+    void OnDestroy()
+    {
+        TriggerNotifier.PlayerTriggerEvent -= HandlePlayerTrigger;
     }
 
     void Update()
@@ -161,10 +169,10 @@ public class GameManager : MonoBehaviour
     {
         ghosts.RemoveAll(g => g.gc == gc);
     }
-    
+
     void UpdateOneGhost(GhostWindow g)
     {
-        float t   = TimelineManager.Instance.GetCurrentTime();
+        float t = TimelineManager.Instance.GetCurrentTime();
         float len = TimelineManager.Instance.timelineDuration;
 
         bool inside = (g.start <= g.end)
@@ -184,5 +192,13 @@ public class GameManager : MonoBehaviour
             g.gc.gameObject.SetActive(false);
             g.active = false;
         }
+    }
+    
+    void HandlePlayerTrigger(bool entered)
+    {
+        TimelineManager.Instance?.SetPaused(entered);
+
+        if (pausePanel != null)
+            pausePanel.SetActive(entered);
     }
 }

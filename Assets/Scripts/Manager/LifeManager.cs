@@ -8,11 +8,11 @@ public class LifeManager : MonoBehaviour
     public TimelineProgressUI timelineProgressUI;
 
     readonly List<LifeLog> completedLives = new();
-    readonly List<GhostController> ghosts      = new();
+    readonly List<GhostController> ghosts = new();
 
-    GameObject          playerGO;
-    InputRecorder       currentRec;
-    float               lifeStartTime;
+    GameObject playerGO;
+    InputRecorder currentRec;
+    float lifeStartTime;
 
     [Header("Prefabs")]
     [SerializeField] GameObject playerPrefab;
@@ -21,9 +21,13 @@ public class LifeManager : MonoBehaviour
     [Header("Player Spawn Settings")]
     [SerializeField] Transform spawnPoint;
 
-    void Awake() => Instance = this;
+    void Awake()
+    {
+        Instance = this;
+        TimelineManager.Instance.OnTimelineLoop += HandleLoop;
+    }
 
-    void Start()  => StartNewLife(0f);
+    void Start() => TimelineManager.Instance.SetPaused(true);
 
     void Update()
     {
@@ -37,6 +41,12 @@ public class LifeManager : MonoBehaviour
                         TimelineManager.Instance.timelineDuration;
             StartNewLife(target);
         }
+    }
+
+    void OnDestroy()
+    {
+        if (TimelineManager.Instance != null)
+            TimelineManager.Instance.OnTimelineLoop -= HandleLoop;
     }
 
     public void EndCurrentLife()
@@ -81,6 +91,7 @@ public class LifeManager : MonoBehaviour
         currentRec = playerGO.GetComponent<InputRecorder>();
         currentRec.StartRecording();
         lifeStartTime = spawnTime;
+        TimelineManager.Instance.SetPaused(false);
     }
 
 
@@ -94,4 +105,9 @@ public class LifeManager : MonoBehaviour
 
     public float GetTimelineDuration() => TimelineManager.Instance.timelineDuration;
     public IReadOnlyList<LifeLog> Lives => completedLives;
+    
+    void HandleLoop()
+    {
+        if (currentRec != null) EndCurrentLife();
+    }
 }

@@ -19,6 +19,7 @@ public class TimelineManager : MonoBehaviour
     public float fastSpeedMultiplier = 3f;
 
     public event System.Action<float> OnTimelineTick;
+    public event System.Action OnTimelineLoop;
 
     float defaultSpeed;
     bool holdForward;
@@ -78,10 +79,18 @@ public class TimelineManager : MonoBehaviour
 
         if (isPaused) return;
 
+        float prev = currentTime;
         currentTime += Time.deltaTime * timelineSpeed;
 
-        if (currentTime > timelineDuration) currentTime -= timelineDuration;
-        if (currentTime < 0f) currentTime += timelineDuration;
+        bool looped = false;
+        if (currentTime > timelineDuration) {                 
+            currentTime -= timelineDuration; looped = true;
+        }
+        if (currentTime < 0f) {
+            currentTime += timelineDuration; looped = true;
+        }
+
+        if (looped) OnTimelineLoop?.Invoke();
 
         OnTimelineTick?.Invoke(currentTime);
     }
