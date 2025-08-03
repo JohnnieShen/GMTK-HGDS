@@ -3,12 +3,16 @@
 	<UserProjectSettingsInfo>
 		<UserProjectSettings Name="" ID="{46CABE1C-BF9A-4AAE-8349-F64B6DD750C3}">
 			<PropertyList>
+				<Property Name="Event Action List\{4AC480E7-13DC-4F55-A583-88D0D3BF8592}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{4B16AB9E-576B-4B81-A6AD-3D63603BE8D1}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{690CB4D5-80B0-4E7F-8ADD-5B5C04D5931A}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{72695843-0C9F-4CE4-8169-9A05BE3B2F38}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{8EAB502F-03D0-4A69-B8AD-C15EC6893E67}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{B650439E-383F-4F8A-B869-56597D671367}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{B77786FD-343D-4D80-8AC3-7898B0411CE2}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{BD070407-2B36-4E7C-8A6A-CF816A48F8D2}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{CA686283-8F8E-4E35-990A-1691040BA711}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{D1E2EED4-5CB5-4263-AF6B-41DE1A9B8726}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="ExternalSourcesInputPath" Type="string">
 					<ValueList>
 						<Value Platform="Windows"></Value>
@@ -81,7 +85,7 @@
 						<Value Platform="Mac"></Value>
 					</ValueList>
 				</Property>
-				<Property Name="SoundEngine\BusMapping\{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" Type="string" Value=""/>
+				<Property Name="SoundEngine\BusMapping\{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" Type="string" Value="{9FC8CBF3-DE45-4FDD-927C-85FF4AAC87BF}978185369"/>
 				<Property Name="Soundcaster\PreviousSession" Type="string" Value="{E9E1DA10-41E0-4B07-8BD6-7DB8BD88833B}"/>
 			</PropertyList>
 		</UserProjectSettings>

@@ -9,10 +9,14 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="782826392" Type="User" Language="SFX" Hash="{BFDBB1D1-7382-9477-47EB-E1736485C842}">
+		<SoundBank Id="782826392" Type="User" Language="SFX" Hash="{AC9EBAA0-C739-B04A-B3AF-983B6DEEEFC9}">
 			<ShortName>Default</ShortName>
 			<Path>Default.bnk</Path>
 			<Media>
+				<File Id="22541151" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Button Press.wav</ShortName>
+					<CachePath>SFX/Button Press_818F3B66.wem</CachePath>
+				</File>
 				<File Id="37369419" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Jumping.wav</ShortName>
 					<CachePath>SFX/Jumping_818F3B66.wem</CachePath>
@@ -20,6 +24,10 @@
 				<File Id="148771695" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>DéjàYou - CHAPTER 4.v2.wav</ShortName>
 					<CachePath>SFX/DéjàYou - CHAPTER 4.v2_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="319595816" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Create Lifetime.wav</ShortName>
+					<CachePath>SFX/Create Lifetime_818F3B66.wem</CachePath>
 				</File>
 				<File Id="344276529" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Rolling.wav</ShortName>
@@ -44,6 +52,10 @@
 				<File Id="768716440" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>DéjàYou - MAIN THEME.v1.wav</ShortName>
 					<CachePath>SFX/DéjàYou - MAIN THEME.v1_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="979247378" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>End Lifetime.wav</ShortName>
+					<CachePath>SFX/End Lifetime_818F3B66.wem</CachePath>
 				</File>
 				<File Id="981914805" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>DéjàYou - CHAPTER 2.v2.wav</ShortName>
@@ -97,6 +109,22 @@
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
+				<Event Id="2652178615" Name="Play_ButtonPress" DurationType="OneShot" DurationMin="0.433515" DurationMax="0.5461947">
+					<MediaRefs>
+						<MediaRef Id="22541151"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="348963605" Name="Reverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="3092915528" Name="Play_Die" DurationType="OneShot" DurationMin="3.737613" DurationMax="4.444796">
+					<MediaRefs>
+						<MediaRef Id="979247378"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="348963605" Name="Reverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="2756694246" Name="Play_Jumping" DurationType="OneShot" DurationMin="1.4901316" DurationMax="1.772075">
 					<MediaRefs>
 						<MediaRef Id="37369419"/>
@@ -116,6 +144,14 @@
 				<Event Id="1834004125" Name="Play_Rolling" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="344276529"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="348963605" Name="Reverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="1012143543" Name="Play_Spawn" DurationType="OneShot" DurationMin="1.7399254" DurationMax="1.8974018">
+					<MediaRefs>
+						<MediaRef Id="319595816"/>
 					</MediaRefs>
 					<AuxBusRefs>
 						<AuxBusRef Id="348963605" Name="Reverb"/>
@@ -175,5 +211,5 @@
 			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{D9DF07E5-0C53-B5C7-00D6-26721262668E}</FileHash>
+	<FileHash>{ED6A5A84-AA51-4AB6-3BC5-37B9BAAB2228}</FileHash>
 </SoundBanksInfo>

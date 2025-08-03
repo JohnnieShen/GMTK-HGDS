@@ -121,6 +121,7 @@ public class GameManager : MonoBehaviour
     {
         if (playerToRespawn != null && waitingToRespawn)
         {
+            
             float currentTime = TimelineManager.Instance.GetCurrentTime();
             Debug.Log($"Respawning player! Timeline time: {currentTime}, Target: {selectedSpawnTime}");
 

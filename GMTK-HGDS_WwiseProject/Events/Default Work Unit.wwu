@@ -103,6 +103,51 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="ButtonPress" ID="{931C12CD-DD4A-4FE1-9366-2E8D355875E0}" ShortID="627019293">
+					<ChildrenList>
+						<Event Name="Play_ButtonPress" ID="{4AC480E7-13DC-4F55-A583-88D0D3BF8592}">
+							<ChildrenList>
+								<Action Name="" ID="{5C76C1E7-0EBC-44C6-B533-FD7F102ECD4C}" ShortID="29089189">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Button Press" ID="{791E1A51-8297-46E5-ACA8-9B3E04EAC284}" WorkUnitID="{FFCCD728-4249-4E66-919F-BEC7F9397FDC}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Spawn" ID="{2AFC092A-C330-4AF9-A451-306DE3A80457}" ShortID="277581212">
+					<ChildrenList>
+						<Event Name="Play_Spawn" ID="{72695843-0C9F-4CE4-8169-9A05BE3B2F38}">
+							<ChildrenList>
+								<Action Name="" ID="{911BE2A0-F87B-440E-A396-18B1E6FC0C01}" ShortID="490173719">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Create Lifetime" ID="{99EC93B5-4303-42A6-A683-A0BE1DC81701}" WorkUnitID="{FFCCD728-4249-4E66-919F-BEC7F9397FDC}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Die" ID="{4C823F80-A5A6-4A88-B9DE-BC3F3EBB90D4}" ShortID="156916822">
+					<ChildrenList>
+						<Event Name="Play_Die" ID="{B650439E-383F-4F8A-B869-56597D671367}">
+							<ChildrenList>
+								<Action Name="" ID="{7471384B-8B99-475F-8A09-942218B8A13F}" ShortID="246007892">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="End Lifetime" ID="{652D2C69-0C2C-487E-8F9D-2A784F382262}" WorkUnitID="{FFCCD728-4249-4E66-919F-BEC7F9397FDC}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

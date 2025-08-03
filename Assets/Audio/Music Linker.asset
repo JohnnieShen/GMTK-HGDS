@@ -33,3 +33,5 @@ MonoBehaviour:
     musicSwitch: 2
   - sceneName: AUDIO 3
     musicSwitch: 1
+  - sceneName: AUDIO 4
+    musicSwitch: 4

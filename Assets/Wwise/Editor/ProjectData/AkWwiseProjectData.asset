@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy/Default Work Unit
     guid: 3617986aef8711449028502b468d97fa
     GuidInternal: 
-    m_lastTime: -8584474523470835607
+    m_lastTime: -8584474331405293713
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -54,6 +54,23 @@ MonoBehaviour:
         ObjectType: 2
         guid: d8a41415a61d2a41a17e75ca0c2149f3
       Path: Master-Mixer Hierarchy/Default Work Unit/Master Audio Bus
+    - name: Reverb
+      guid: 12644ac972c1bf4dbbac445245509c5d
+      id: 348963605
+      PathAndIcons:
+      - ElementName: Master-Mixer Hierarchy
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 3617986aef8711449028502b468d97fa
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+        guid: d8a41415a61d2a41a17e75ca0c2149f3
+      - ElementName: Reverb
+        ObjectType: 1
+        guid: 12644ac972c1bf4dbbac445245509c5d
+      Path: Master-Mixer Hierarchy/Default Work Unit/Master Audio Bus/Reverb
   BankWwu:
   - PhysicalPath: SoundBanks/Default Work Unit.wwu
     PathAndIcons:
@@ -66,7 +83,7 @@ MonoBehaviour:
     ParentPath: SoundBanks/Default Work Unit
     guid: e24c85927a93634d979ea8a7cce684d5
     GuidInternal: 
-    m_lastTime: -8584474361277368064
+    m_lastTime: -8584474277449569978
     List:
     - name: Default
       guid: c2195bec19049e4a8ad1901a7d007224
@@ -94,8 +111,76 @@ MonoBehaviour:
     ParentPath: Events/Default Work Unit
     guid: 224162c7e2a8ff439a370b378ab17c13
     GuidInternal: 
-    m_lastTime: -8584474361277413267
+    m_lastTime: -8584474277524734813
     List:
+    - name: ButtonPress
+      guid: cd121c934adde14f93662e8d355875e0
+      id: 317641954
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 224162c7e2a8ff439a370b378ab17c13
+      - ElementName: ButtonPress
+        ObjectType: 4
+        guid: cd121c934adde14f93662e8d355875e0
+      Path: Events/Default Work Unit/ButtonPress
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Die
+      guid: 803f824ca6a5884ab9debc3f3ebb90d4
+      id: 445985469
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 224162c7e2a8ff439a370b378ab17c13
+      - ElementName: Die
+        ObjectType: 4
+        guid: 803f824ca6a5884ab9debc3f3ebb90d4
+      Path: Events/Default Work Unit/Die
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Jumping
+      guid: edd0cd8ec23b9b4faceed1ba5440c787
+      id: 68157183
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 224162c7e2a8ff439a370b378ab17c13
+      - ElementName: Jumping
+        ObjectType: 4
+        guid: edd0cd8ec23b9b4faceed1ba5440c787
+      Path: Events/Default Work Unit/Jumping
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Landing
+      guid: ed0be51086dffc408856432d19d43721
+      id: 2548270042
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 224162c7e2a8ff439a370b378ab17c13
+      - ElementName: Landing
+        ObjectType: 4
+        guid: ed0be51086dffc408856432d19d43721
+      Path: Events/Default Work Unit/Landing
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Play_BGM
       guid: d5b40c69b0807f4e8add5b5c04d5931a
       id: 3126765036
@@ -113,6 +198,86 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Play_ButtonPress
+      guid: e780c44adc13554fa58388d0d3bf8592
+      id: 2652178615
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 224162c7e2a8ff439a370b378ab17c13
+      - ElementName: ButtonPress
+        ObjectType: 4
+        guid: cd121c934adde14f93662e8d355875e0
+      - ElementName: Play_ButtonPress
+        ObjectType: 3
+        guid: e780c44adc13554fa58388d0d3bf8592
+      Path: Events/Default Work Unit/ButtonPress/Play_ButtonPress
+      maxAttenuation: 0
+      maxDuration: 0.5461947
+      minDuration: 0.433515
+    - name: Play_Die
+      guid: 9e4350b63f388a4fb86956597d671367
+      id: 3092915528
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 224162c7e2a8ff439a370b378ab17c13
+      - ElementName: Die
+        ObjectType: 4
+        guid: 803f824ca6a5884ab9debc3f3ebb90d4
+      - ElementName: Play_Die
+        ObjectType: 3
+        guid: 9e4350b63f388a4fb86956597d671367
+      Path: Events/Default Work Unit/Die/Play_Die
+      maxAttenuation: 0
+      maxDuration: 4.444796
+      minDuration: 3.737613
+    - name: Play_Jumping
+      guid: 2f50ab8ed003694ab8adc15ec6893e67
+      id: 2756694246
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 224162c7e2a8ff439a370b378ab17c13
+      - ElementName: Jumping
+        ObjectType: 4
+        guid: edd0cd8ec23b9b4faceed1ba5440c787
+      - ElementName: Play_Jumping
+        ObjectType: 3
+        guid: 2f50ab8ed003694ab8adc15ec6893e67
+      Path: Events/Default Work Unit/Jumping/Play_Jumping
+      maxAttenuation: 0
+      maxDuration: 1.772075
+      minDuration: 1.4901316
+    - name: Play_Landing
+      guid: fd8677b73d34804d8ac37898b0411ce2
+      id: 2323405115
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 224162c7e2a8ff439a370b378ab17c13
+      - ElementName: Landing
+        ObjectType: 4
+        guid: ed0be51086dffc408856432d19d43721
+      - ElementName: Play_Landing
+        ObjectType: 3
+        guid: fd8677b73d34804d8ac37898b0411ce2
+      Path: Events/Default Work Unit/Landing/Play_Landing
+      maxAttenuation: 0
+      maxDuration: 1.3049227
+      minDuration: 0.97758746
     - name: Play_Rolling
       guid: 070407bd362b7c4e8a6acf816a48f8d2
       id: 1834004125
@@ -133,6 +298,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Play_Spawn
+      guid: 435869729f0ce44c81699a05be3b2f38
+      id: 1012143543
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 224162c7e2a8ff439a370b378ab17c13
+      - ElementName: Spawn
+        ObjectType: 4
+        guid: 2a09fc2a30c3f94aa451306de3a80457
+      - ElementName: Play_Spawn
+        ObjectType: 3
+        guid: 435869729f0ce44c81699a05be3b2f38
+      Path: Events/Default Work Unit/Spawn/Play_Spawn
+      maxAttenuation: 0
+      maxDuration: 1.8974018
+      minDuration: 1.7399254
     - name: Rolling
       guid: ea02065354c2ab46b53ff9f4525537d5
       id: 4227290872
@@ -147,6 +332,23 @@ MonoBehaviour:
         ObjectType: 4
         guid: ea02065354c2ab46b53ff9f4525537d5
       Path: Events/Default Work Unit/Rolling
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Spawn
+      guid: 2a09fc2a30c3f94aa451306de3a80457
+      id: 71202558
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 224162c7e2a8ff439a370b378ab17c13
+      - ElementName: Spawn
+        ObjectType: 4
+        guid: 2a09fc2a30c3f94aa451306de3a80457
+      Path: Events/Default Work Unit/Spawn
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1

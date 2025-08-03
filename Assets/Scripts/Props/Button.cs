@@ -36,6 +36,9 @@ public class Button : Interactable, RecordableProp
     public override void Interact()
     {
         Debug.Log("Button pressed by interaction");
+        
+        AkSoundEngine.PostEvent("Play_ButtonPress", gameObject);
+        
         if (!isProcessing)
             StartCoroutine(PressSequence());
     }

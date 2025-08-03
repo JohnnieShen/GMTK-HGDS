@@ -14,9 +14,12 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID PLAY_BGM = 3126765036U;
+        static const AkUniqueID PLAY_BUTTONPRESS = 2652178615U;
+        static const AkUniqueID PLAY_DIE = 3092915528U;
         static const AkUniqueID PLAY_JUMPING = 2756694246U;
         static const AkUniqueID PLAY_LANDING = 2323405115U;
         static const AkUniqueID PLAY_ROLLING = 1834004125U;
+        static const AkUniqueID PLAY_SPAWN = 1012143543U;
         static const AkUniqueID STOP_BGM = 1073466678U;
         static const AkUniqueID STOP_ROLLING = 2567045767U;
     } // namespace EVENTS

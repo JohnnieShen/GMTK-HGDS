@@ -87,6 +87,7 @@ public class LifeManager : MonoBehaviour
 
     public void EndCurrentLife()
     {
+        AkSoundEngine.PostEvent("Play_Die", gameObject);
         Debug.Log("Ending current life...");
         if (currentRec == null) return;
         Debug.Log($"LifeManager: Ending life at t={TimelineManager.Instance.GetCurrentTime():0.00}s");
@@ -166,6 +167,8 @@ public class LifeManager : MonoBehaviour
         anim.Rebind();
         anim.Update(0f);
         playerGO.SetActive(true);
+        
+        AkSoundEngine.PostEvent("Play_Spawn", gameObject);
 
         GameManager.Instance.RegisterPlayer(playerGO);
 
@@ -179,6 +182,9 @@ public class LifeManager : MonoBehaviour
     GhostController SpawnGhost(LifeLog log)
     {
         var go = Instantiate(ghostPrefab, log.spawnPos, Quaternion.identity);
+        
+        // AkSoundEngine.PostEvent("Play_Spawn", gameObject);
+        
         var gc = go.GetComponent<GhostController>() ?? go.AddComponent<GhostController>();
         gc.Initialize(log.frames, log.startTime, log.endTime);
         return gc;
