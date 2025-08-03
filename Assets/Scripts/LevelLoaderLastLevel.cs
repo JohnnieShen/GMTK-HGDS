@@ -24,7 +24,7 @@ public class LevelLoaderLastLevel : MonoBehaviour
             {
                 portalBurst.Play(); 
             }
-            
+            Debug.Log("Last level portal triggered, loading level 0");
             OnLevelLoadRequested?.Invoke(0);
         }
     }

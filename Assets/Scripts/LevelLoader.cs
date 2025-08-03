@@ -25,6 +25,7 @@ public class LevelLoader : MonoBehaviour
                 portalBurst.Play(); 
             }
 
+            Debug.Log("Level portal triggered, loading next level");
             int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
             OnLevelLoadRequested?.Invoke(nextLevel);
         }

@@ -29,23 +29,27 @@ public class LevelLoaderManager : MonoBehaviour
     void OnEnable()
     {
         LevelLoader.OnLevelLoadRequested += HandleLoadRequest;
+        LevelLoaderLastLevel.OnLevelLoadRequested += HandleLoadRequest;
         SceneManager.sceneLoaded         += OnSceneLoaded;
     }
 
     void OnDisable()
     {
         LevelLoader.OnLevelLoadRequested -= HandleLoadRequest;
+        LevelLoaderLastLevel.OnLevelLoadRequested -= HandleLoadRequest;
         SceneManager.sceneLoaded         -= OnSceneLoaded;
     }
 
     private void HandleLoadRequest(int levelIndex)
     {
+        Debug.Log("Level load requested for level index: " + levelIndex);
         if (loading) return;
         StartCoroutine(TransitionAndLoad(levelIndex));
     }
 
     IEnumerator TransitionAndLoad(int levelIndex)
     {
+        Debug.Log("Starting transition to load level index: " + levelIndex);
         loading = true;
 
         yield return new WaitForSeconds(transitionTime);
