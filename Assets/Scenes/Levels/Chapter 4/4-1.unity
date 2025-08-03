@@ -670,6 +670,22 @@ PrefabInstance:
       propertyPath: m_text
       value: Time Budget:20s
       objectReference: {fileID: 0}
+    - target: {fileID: 6051054463252900339, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6051054463252900339, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.79414684
+      objectReference: {fileID: 0}
+    - target: {fileID: 6051054463252900339, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6051054463252900339, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278242303
+      objectReference: {fileID: 0}
     - target: {fileID: 6579826383514569945, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_text
       value: ESTEEM /// CRESCENDO
