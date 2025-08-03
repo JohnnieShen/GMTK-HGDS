@@ -63,4 +63,8 @@ public class LevelSelectUI : MonoBehaviour
     {
         SceneManager.LoadScene(16);
     }
+    public void backToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
