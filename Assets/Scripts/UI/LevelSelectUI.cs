@@ -39,4 +39,28 @@ public class LevelSelectUI : MonoBehaviour
     {
         SceneManager.LoadScene(10);
     }
+    public void Load3_1()
+    {
+        SceneManager.LoadScene(11);
+    }
+    public void Load3_2()
+    {
+        SceneManager.LoadScene(12);
+    }
+    public void Load3_3()
+    {
+        SceneManager.LoadScene(13);
+    }
+    public void Load4_1()
+    {
+        SceneManager.LoadScene(14);
+    }
+    public void Load4_2()
+    {
+        SceneManager.LoadScene(15);
+    }
+    public void Load5_1()
+    {
+        SceneManager.LoadScene(16);
+    }
 }

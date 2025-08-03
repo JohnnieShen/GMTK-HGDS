@@ -15,8 +15,10 @@ public class LevelLoader : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Trigger entered by: " + other.gameObject.name);
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Player entered level loader trigger.");
             int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
             OnLevelLoadRequested?.Invoke(nextLevel);
         }
