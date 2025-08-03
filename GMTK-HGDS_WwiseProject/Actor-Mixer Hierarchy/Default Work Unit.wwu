@@ -547,6 +547,123 @@
 						<ActiveSource Name="Rolling" ID="{AF3D78BE-AA2B-4CD3-A737-A0EF65C605ED}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<RandomSequenceContainer Name="UI Click" ID="{52B06B3E-5859-4406-A7CF-ECA61177D87E}" ShortID="544215042">
+					<PropertyList>
+						<Property Name="Pitch" Type="int32">
+							<ModifierList>
+								<ModifierInfo>
+									<Modifier Name="" ID="{86984CF7-901B-43B9-9A19-AA8C87619E68}">
+										<PropertyList>
+											<Property Name="Enabled" Type="bool" Value="True"/>
+											<Property Name="Max" Type="Real64" Value="150"/>
+											<Property Name="Min" Type="Real64" Value="-150"/>
+										</PropertyList>
+									</Modifier>
+								</ModifierInfo>
+							</ModifierList>
+						</Property>
+						<Property Name="UserAuxSendVolume0" Type="Real64">
+							<ValueList>
+								<Value>-6</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-12</Value>
+							</ValueList>
+							<ModifierList>
+								<ModifierInfo>
+									<Modifier Name="" ID="{C3E00742-727E-4ACB-B3CD-49E77AE72B45}">
+										<PropertyList>
+											<Property Name="Enabled" Type="bool" Value="True"/>
+											<Property Name="Max" Type="Real64" Value="2"/>
+											<Property Name="Min" Type="Real64" Value="-2"/>
+										</PropertyList>
+									</Modifier>
+								</ModifierInfo>
+							</ModifierList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+						</Reference>
+						<Reference Name="UserAuxSend0">
+							<ObjectRef Name="Reverb" ID="{C94A6412-C172-4DBF-BBAC-445245509C5D}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="262398-Tech_Button_13" ID="{0D328DB8-7048-4B40-AB58-1A19BAD14D08}" ShortID="869573461">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="262398-Tech_Button_13" ID="{EA43C3B1-D6E8-4DF0-BAEE-91E4464A3B64}">
+									<Language>SFX</Language>
+									<AudioFile>262398-Tech_Button_13.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="746026775"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="262398-Tech_Button_13" ID="{EA43C3B1-D6E8-4DF0-BAEE-91E4464A3B64}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="262404-Tech_Button_19" ID="{53D0DA6A-F962-46EA-873B-D0017CB63C01}" ShortID="540702060">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="262404-Tech_Button_19" ID="{B89B4CFD-09FD-4BCD-A0E3-312EFFB15693}">
+									<Language>SFX</Language>
+									<AudioFile>262404-Tech_Button_19.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="452706031"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="262404-Tech_Button_19" ID="{B89B4CFD-09FD-4BCD-A0E3-312EFFB15693}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="262407-Tech_Button_22" ID="{130CAA8E-4F8E-4818-AEB3-AB6D21B601B6}" ShortID="1033333856">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="262407-Tech_Button_22" ID="{3CCEB164-07E9-4197-B773-CE642FD4D4AB}">
+									<Language>SFX</Language>
+									<AudioFile>262407-Tech_Button_22.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="857879824"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="262407-Tech_Button_22" ID="{3CCEB164-07E9-4197-B773-CE642FD4D4AB}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</RandomSequenceContainer>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

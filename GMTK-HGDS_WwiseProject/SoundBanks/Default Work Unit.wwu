@@ -7,6 +7,7 @@
 					<ObjectInclusionList>
 						<ObjectRef Name="Stop_Rewind" ID="{8C897E8E-23BC-4408-BB43-28CF91F9E6E9}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_EndLevel" ID="{13365941-1A55-47E7-8311-9887D577B67C}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_ClickUI" ID="{1D3184C0-5905-481F-AE68-2F40C93C9854}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Rewind" ID="{C88AA15F-9A58-4939-8AD3-129629190F78}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Jumping" ID="{8EAB502F-03D0-4A69-B8AD-C15EC6893E67}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Stop_Rolling" ID="{4B16AB9E-576B-4B81-A6AD-3D63603BE8D1}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}" Origin="Manual" Filter="7"/>
