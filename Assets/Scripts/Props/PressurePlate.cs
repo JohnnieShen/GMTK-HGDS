@@ -24,6 +24,9 @@ public class PressurePlateHold : MonoBehaviour, RecordableProp
     private bool targetActive; // Current state of the target object
     private Coroutine delayCo;
 
+    void Awake()  => PropManager.Instance?.RegisterGameObject(gameObject);
+    void OnDestroy() => PropManager.Instance?.UnregisterGameObject(gameObject);
+
     void Start()
     {
         isPressed = false; // Pressure plate always starts visually not pressed

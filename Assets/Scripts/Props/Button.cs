@@ -32,13 +32,16 @@ public class Button : Interactable, RecordableProp
 
         ApplyVisuals();
     }
+    
+    void Awake()  => PropManager.Instance?.RegisterGameObject(gameObject);
+    void OnDestroy() => PropManager.Instance?.UnregisterGameObject(gameObject);
 
     public override void Interact()
     {
         Debug.Log("Button pressed by interaction");
-        
+
         AkSoundEngine.PostEvent("Play_ButtonPress", gameObject);
-        
+
         if (!isProcessing)
             StartCoroutine(PressSequence());
     }

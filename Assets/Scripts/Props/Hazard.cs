@@ -11,6 +11,9 @@ public class HazardInstantKill : MonoBehaviour, RecordableProp
         isActive = true;
     }
 
+    void Awake()  => PropManager.Instance?.RegisterGameObject(gameObject);
+    void OnDestroy() => PropManager.Instance?.UnregisterGameObject(gameObject);
+
     void Update()
     {
         isActive = !TimelineManager.Instance.IsPaused;

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEditor;
 
 [RequireComponent(typeof(MovementController))]
 public class GhostController : MonoBehaviour
@@ -86,7 +85,7 @@ public class GhostController : MonoBehaviour
     {
         if (f.interact && f.interactPropId != -1)
         {
-            var go = UnityEditor.EditorUtility.InstanceIDToObject(f.interactPropId) as GameObject;
+            var go = PropManager.Instance?.GetProp(f.interactPropId);
             go?.GetComponent<Interactable>()?.Interact();
         }
     }

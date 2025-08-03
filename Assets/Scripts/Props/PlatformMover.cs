@@ -16,6 +16,9 @@ public class PlatformMover : MonoBehaviour, RecordableProp
 
     PropRecorder recorder;
 
+    void Awake()  => PropManager.Instance?.RegisterGameObject(gameObject);
+    void OnDestroy() => PropManager.Instance?.UnregisterGameObject(gameObject);
+
     void Start()
     {
         directionBA = false;

@@ -30,6 +30,9 @@ public class Lever : Interactable, RecordableProp
         ApplyVisuals();
     }
 
+    void Awake()  => PropManager.Instance?.RegisterGameObject(gameObject);
+    void OnDestroy() => PropManager.Instance?.UnregisterGameObject(gameObject);
+
     void Update()
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E) && !isProcessing)

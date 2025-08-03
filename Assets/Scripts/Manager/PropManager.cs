@@ -4,6 +4,8 @@ using System.Collections.Generic;
 public class PropManager : MonoBehaviour
 {
     public static PropManager Instance { get; private set; }
+
+    readonly Dictionary<int, GameObject> props = new();
     public static bool Exists => Instance != null;
 
     readonly List<PropRecorder> recorders = new();
@@ -27,8 +29,38 @@ public class PropManager : MonoBehaviour
         if (Instance == this) Instance = null;
     }
 
-    public void Register   (PropRecorder r) => recorders.Add(r);
-    public void Unregister (PropRecorder r) => recorders.Remove(r);
+    public void RegisterGameObject(GameObject go)
+    {
+        if (go == null) return;
+        props[go.GetInstanceID()] = go;
+    }
+
+    public void UnregisterGameObject(GameObject go)
+    {
+        if (go == null) return;
+        props.Remove(go.GetInstanceID());
+    }
+
+    public GameObject GetProp(int instanceId)
+        => props.TryGetValue(instanceId, out var go) ? go : null;
+
+    public void Register(PropRecorder r)
+    {
+        if (r == null) return;
+
+        if (!recorders.Contains(r))
+            recorders.Add(r);
+
+        props[r.gameObject.GetInstanceID()] = r.gameObject;
+    }
+
+    public void Unregister(PropRecorder r)
+    {
+        if (r == null) return;
+
+        recorders.Remove(r);
+        props.Remove(r.gameObject.GetInstanceID());
+    }
 
     void OnTick(float t)
     {
