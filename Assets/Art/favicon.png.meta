@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      favicon_0: 5390781785914689683
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
