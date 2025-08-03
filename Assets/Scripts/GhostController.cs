@@ -133,34 +133,15 @@ public class GhostController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D c)
     {
-        if (c.transform.CompareTag("Player"))
-        {
-            // Check if player is landing on top of the ghost (not hitting from the side)
-            bool isOnTop = false;
-            foreach (ContactPoint2D contact in c.contacts)
-            {
-                if (contact.normal.y < -0.5f) // Normal pointing down means player is on top
-                {
-                    isOnTop = true;
-                    break;
-                }
-            }
-            
-            if (isOnTop && !playersOnGhost.Contains(c.transform))
-            {
-                playersOnGhost.Add(c.transform);
-                Debug.Log($"Player {c.transform.name} is now riding ghost");
-            }
-        }
+        if (c.transform.CompareTag("Player") && c.contacts[0].normal.y < -0.5f
+            && !playersOnGhost.Contains(c.transform))
+            playersOnGhost.Add(c.transform);
     }
     
     void OnCollisionExit2D(Collision2D c)
     {
         if (c.transform.CompareTag("Player"))
-        {
             playersOnGhost.Remove(c.transform);
-            Debug.Log($"Player {c.transform.name} stopped riding ghost");
-        }
     }
 
     void ApplyFrame(PlayerInputFrame f, float speed)
