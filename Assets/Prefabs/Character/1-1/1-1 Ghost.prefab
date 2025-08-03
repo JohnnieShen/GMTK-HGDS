@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Player
+  isGhost: 0
 --- !u!114 &5926560181322337046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ MonoBehaviour:
   ghostMask:
     serializedVersion: 2
     m_Bits: 0
-  groundCheckSize: {x: 0.28, y: -0.03}
+  groundCheckSize: {x: 0.37, y: -0.03}
   groundCheckOffset: {x: 0, y: -0.4, z: 0}
 --- !u!114 &6639932304955408398
 MonoBehaviour:

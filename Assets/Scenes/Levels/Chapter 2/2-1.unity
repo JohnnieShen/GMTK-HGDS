@@ -525,7 +525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4819589563919756567, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_text
-      value: 'TIMELINE: LOOPS EVERY 10s. Learn to ride your clones!'
+      value: 'TIMELINE: LOOPS EVERY 10s. Ride your Lifetimes!'
       objectReference: {fileID: 0}
     - target: {fileID: 4819589563919756567, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_margin.x
