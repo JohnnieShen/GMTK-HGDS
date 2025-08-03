@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     public static event Action<int> OnLevelLoadRequested;
+    public ParticleSystem portalBurst;
 
     void Start()
     {
@@ -18,9 +19,15 @@ public class LevelLoader : MonoBehaviour
         Debug.Log("Trigger entered by: " + other.gameObject.name);
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player entered level loader trigger.");
+
+            if (portalBurst != null)
+            {
+                portalBurst.Play(); 
+            }
+
             int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
             OnLevelLoadRequested?.Invoke(nextLevel);
         }
     }
+
 }
