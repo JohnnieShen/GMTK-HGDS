@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.7017, y: -3.3757, z: 0}
-  m_LocalScale: {x: 0.21676211, y: 0.25813124, z: 1}
+  m_LocalScale: {x: 0.09, y: 0.25813124, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -149,9 +149,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 0}
+  targetActiveSprite: {fileID: 0}
+  targetInactiveSprite: {fileID: 0}
   delayOn: 0
   delayOff: 0
-  defaultActive: 0
+  defaultPressed: 0
   spriteRenderer: {fileID: 8587316991135925520}
   idleSprite: {fileID: -6388650513183194314, guid: 533bef8eaae724c41814460635268888, type: 3}
   pressedSprite: {fileID: -8872633310243311932, guid: 533bef8eaae724c41814460635268888, type: 3}
