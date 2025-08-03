@@ -25,11 +25,13 @@ public class PauseMenu : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        AkSoundEngine.PostEvent("Play_ClickUI", gameObject);
         SceneManager.LoadScene(0);
     }
 
     public void GoToLevelSelect()
     {
+        AkSoundEngine.PostEvent("Play_ClickUI", gameObject);
         SceneManager.LoadScene(1);
     }
 }
