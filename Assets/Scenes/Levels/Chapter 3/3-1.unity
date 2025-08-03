@@ -447,7 +447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6579826383514569945, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_text
-      value: BELONGING /// INITIATION
+      value: BELONGING /// EXPOSITION
       objectReference: {fileID: 0}
     - target: {fileID: 6579826383514569945, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_margin.x

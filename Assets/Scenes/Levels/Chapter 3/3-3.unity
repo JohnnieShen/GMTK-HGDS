@@ -847,7 +847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3206344099211239838, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 193
+      value: 241
       objectReference: {fileID: 0}
     - target: {fileID: 4745037145741012366, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_text
@@ -895,7 +895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6579826383514569945, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_text
-      value: BELONGING /// BREAKPOINT
+      value: BELONGING /// CLIMAX
       objectReference: {fileID: 0}
     - target: {fileID: 6579826383514569945, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_margin.x
@@ -903,7 +903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6579826383514569945, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_margin.z
-      value: -166.18808
+      value: -259.85312
       objectReference: {fileID: 0}
     - target: {fileID: 6594921596816688788, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_Name
