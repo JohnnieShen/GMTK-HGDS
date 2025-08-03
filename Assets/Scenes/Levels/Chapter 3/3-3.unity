@@ -891,7 +891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6051054463252900339, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_text
-      value: Time Budget:20s
+      value: Time Budget:30s
       objectReference: {fileID: 0}
     - target: {fileID: 6579826383514569945, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_text
@@ -3348,7 +3348,7 @@ PrefabInstance:
       objectReference: {fileID: 1696089849162913681, guid: 6de0c74818ee24644b07105b66814894, type: 3}
     - target: {fileID: 5054675215529836877, guid: a403df46c0a82a745a6df14a48033e90, type: 3}
       propertyPath: totalTimeBudget
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5054675215529836877, guid: a403df46c0a82a745a6df14a48033e90, type: 3}
       propertyPath: timeBudgetSlider

@@ -437,15 +437,15 @@ PrefabInstance:
       objectReference: {fileID: -3082418949445837481, guid: 398a7be9bca3b6341887d088e2e1006e, type: 3}
     - target: {fileID: 4301923492280756739, guid: b0d4112bd60ea9e48b979f74f6ee6316, type: 3}
       propertyPath: m_Size.y
-      value: 5.0267854
+      value: 4.165922
       objectReference: {fileID: 0}
     - target: {fileID: 4301923492280756739, guid: b0d4112bd60ea9e48b979f74f6ee6316, type: 3}
       propertyPath: m_Offset.y
-      value: 1.0931046
+      value: 0.66267335
       objectReference: {fileID: 0}
     - target: {fileID: 8135187691929672061, guid: b0d4112bd60ea9e48b979f74f6ee6316, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.71
+      value: -2.8
       objectReference: {fileID: 0}
     - target: {fileID: 8135187691929672061, guid: b0d4112bd60ea9e48b979f74f6ee6316, type: 3}
       propertyPath: m_LocalPosition.y
@@ -656,7 +656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4819589563919756567, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_text
-      value: 'TIMELINE: LOOPS EVERY 20s.'
+      value: 'TIMELINE: LOOPS EVERY 15s.'
       objectReference: {fileID: 0}
     - target: {fileID: 4819589563919756567, guid: 28050a8fb799b9b4cb305557ae1db9d3, type: 3}
       propertyPath: m_margin.x
@@ -2325,7 +2325,7 @@ PrefabInstance:
       objectReference: {fileID: 1696089849162913681, guid: 6de0c74818ee24644b07105b66814894, type: 3}
     - target: {fileID: 3931199253679328820, guid: a403df46c0a82a745a6df14a48033e90, type: 3}
       propertyPath: timelineDuration
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5054675215529836877, guid: a403df46c0a82a745a6df14a48033e90, type: 3}
       propertyPath: spawnPoint
@@ -2357,7 +2357,7 @@ PrefabInstance:
       objectReference: {fileID: 1187370651329884235, guid: 59b75fc48a7703d49a7877fb21ea22cd, type: 3}
     - target: {fileID: 7403190808612056245, guid: a403df46c0a82a745a6df14a48033e90, type: 3}
       propertyPath: timelineDuration
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8789673278222443759, guid: a403df46c0a82a745a6df14a48033e90, type: 3}
       propertyPath: m_Name
