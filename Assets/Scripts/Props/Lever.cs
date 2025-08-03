@@ -5,12 +5,12 @@ public class Lever : Interactable, RecordableProp
 {
     [Header("Target")]
     public GameObject targetObject;
+    public Sprite targetActiveSprite;
+    public Sprite targetInactiveSprite;
 
-    [Header("Settings")]
+    [Header("Timing")]
     public float delayOn = 0f;
-
-    [Header("Default")]
-    public bool defaultActive = true;
+    public bool defaultPressed = false; // Whether target object's default state is on or off
 
     [Header("Sprites")]
     public SpriteRenderer spriteRenderer;
@@ -20,13 +20,14 @@ public class Lever : Interactable, RecordableProp
 
     private bool playerInRange = false;
     private bool isProcessing = false;
-    private bool currentState;
-    bool isActive;
+    bool isPressed = false; // Lever visual state
+    bool targetActive; // Current state of the target object
     PropRecorder recorder;
 
     void Start()
     {
-        isActive = defaultActive;
+        isPressed = false; // Lever always starts visually not pressed (off position)
+        targetActive = defaultPressed; // Target starts in its default state
         ApplyVisuals();
     }
 
@@ -56,7 +57,9 @@ public class Lever : Interactable, RecordableProp
 
         yield return StartCoroutine(WaitForTimelineSeconds(delayOn));
 
-        isActive = !isActive;
+        // Toggle the lever state permanently
+        isPressed = !isPressed; // Toggle lever visual state
+        targetActive = isPressed ? !defaultPressed : defaultPressed; // Target matches lever state
         ApplyVisuals();
 
         isProcessing = false;
@@ -79,23 +82,41 @@ public class Lever : Interactable, RecordableProp
         return new PropStatusFrame(
             gameObject.GetInstanceID(),
             TimelineManager.Instance.GetCurrentTime(),
-            isActive,
+            targetActive,
             transform.position
         );
     }
 
     public void ApplyFrame(PropStatusFrame frame)
     {
-        isActive = frame.active;
+        targetActive = frame.active;
         transform.position = frame.position;
+        isPressed = targetActive != defaultPressed;
         ApplyVisuals();
     }
+
     void ApplyVisuals()
     {
-        if (targetObject) targetObject.SetActive(isActive);
+        // Change target object sprite and collider state
+        if (targetObject)
+        {
+            SpriteRenderer targetSpriteRenderer = targetObject.GetComponent<SpriteRenderer>();
+            Collider2D targetCollider = targetObject.GetComponent<Collider2D>();
+            
+            if (targetSpriteRenderer)
+            {
+                targetSpriteRenderer.sprite = targetActive ? targetActiveSprite : targetInactiveSprite;
+            }
+            
+            if (targetCollider)
+            {
+                targetCollider.enabled = targetActive;
+            }
+        }
 
+        // Change lever sprite
         if (spriteRenderer)
-            spriteRenderer.sprite = isActive ? onSprite : offSprite;
+            spriteRenderer.sprite = isPressed ? onSprite : offSprite;
     }
 
     IEnumerator WaitForTimelineSeconds(float timelineSecs)
