@@ -75,6 +75,8 @@ public class Button : Interactable, RecordableProp
     IEnumerator PressSequence()
     {
         isProcessing = true;
+        
+        AkSoundEngine.PostEvent("Play_ButtonPress", gameObject);
 
         // Show activating sprite
         if (spriteRenderer && activatingSprite)
