@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="782826392" Type="User" Language="SFX" Hash="{BB0C806D-FD7F-D216-0064-C31E91E2D2E3}">
+		<SoundBank Id="782826392" Type="User" Language="SFX" Hash="{C21A4AF2-8992-5157-AEEA-9F941BCBAE1E}">
 			<ShortName>Default</ShortName>
 			<Path>Default.bnk</Path>
 			<Media>
@@ -41,6 +41,10 @@
 					<ShortName>DéjàYou - CHAPTER 3.v2.wav</ShortName>
 					<CachePath>SFX/DéjàYou - CHAPTER 3.v2_FBC78EF0.wem</CachePath>
 				</File>
+				<File Id="452706031" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>262404-Tech_Button_19.wav</ShortName>
+					<CachePath>SFX/262404-Tech_Button_19_818F3B66.wem</CachePath>
+				</File>
 				<File Id="541674770" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>DéjàYou - CHAPTER 5.v2.wav</ShortName>
 					<CachePath>SFX/DéjàYou - CHAPTER 5.v2_FBC78EF0.wem</CachePath>
@@ -57,9 +61,17 @@
 					<ShortName>End Level Collect.wav</ShortName>
 					<CachePath>SFX/End Level Collect_818F3B66.wem</CachePath>
 				</File>
+				<File Id="746026775" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>262398-Tech_Button_13.wav</ShortName>
+					<CachePath>SFX/262398-Tech_Button_13_818F3B66.wem</CachePath>
+				</File>
 				<File Id="768716440" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>DéjàYou - MAIN THEME.v1.wav</ShortName>
 					<CachePath>SFX/DéjàYou - MAIN THEME.v1_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="857879824" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>262407-Tech_Button_22.wav</ShortName>
+					<CachePath>SFX/262407-Tech_Button_22_818F3B66.wem</CachePath>
 				</File>
 				<File Id="979247378" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>End Lifetime.wav</ShortName>
@@ -120,6 +132,16 @@
 				<Event Id="2652178615" Name="Play_ButtonPress" DurationType="OneShot" DurationMin="0.433515" DurationMax="0.5461947">
 					<MediaRefs>
 						<MediaRef Id="22541151"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="348963605" Name="Reverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="4257816096" Name="Play_ClickUI" DurationType="OneShot" DurationMin="0.071163334" DurationMax="0.0885356">
+					<MediaRefs>
+						<MediaRef Id="452706031"/>
+						<MediaRef Id="746026775"/>
+						<MediaRef Id="857879824"/>
 					</MediaRefs>
 					<AuxBusRefs>
 						<AuxBusRef Id="348963605" Name="Reverb"/>
@@ -248,5 +270,5 @@
 			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{4320C722-8090-B2F1-3981-8AD1E120D584}</FileHash>
+	<FileHash>{2ABDFDB4-093C-3A83-BC47-DAE170769B9A}</FileHash>
 </SoundBanksInfo>

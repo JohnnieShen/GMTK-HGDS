@@ -11,6 +11,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	3092915528	Play_Die			\Default Work Unit\Die\Play_Die	
 	3126765036	Play_BGM			\Default Work Unit\Play_BGM	
 	4083890705	Play_EndLevel			\Default Work Unit\EndLevel\Play_EndLevel	
+	4257816096	Play_ClickUI			\Default Work Unit\Play_ClickUI	
 
 Switch Group	ID	Name			Wwise Object Path	Notes
 	412724365	BGM			\Default Work Unit\BGM	
@@ -34,11 +35,14 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	344276529	Rolling	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\Rolling_FBC78EF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Rolling		1038268
 	345306008	Landing	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\Landing_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Landing		217000
 	349871890	DéjàYou - CHAPTER 3_v2	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\DéjàYou - CHAPTER 3.v2_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\BGM-Switch\Chapter3-PL\DéjàYou - CHAPTER 3_v2\DéjàYou - CHAPTER 3_v2		11520144
+	452706031	262404-Tech_Button_19	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\262404-Tech_Button_19_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI Click\262404-Tech_Button_19		14996
 	541674770	DéjàYou - CHAPTER 5_v2	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\DéjàYou - CHAPTER 5.v2_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\BGM-Switch\Chapter5-PL\DéjàYou - CHAPTER 5_v2\DéjàYou - CHAPTER 5_v2		8418604
 	628720373	Rewind	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\Rewind_FBC78EF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Rewind		1231668
 	645034010	DéjàYou - CHAPTER 1_v2	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\DéjàYou - CHAPTER 1.v2_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\BGM-Switch\Chapter1-PL\DéjàYou - CHAPTER 1_v2\DéjàYou - CHAPTER 1_v2		12672144
 	696347180	End Level Collect	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\End Level Collect_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\End Level Collect		412428
+	746026775	262398-Tech_Button_13	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\262398-Tech_Button_13_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI Click\262398-Tech_Button_13		15684
 	768716440	DéjàYou - MAIN THEME_v1	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\DéjàYou - MAIN THEME.v1_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\BGM-Switch\Main-PL\DéjàYou - MAIN THEME_v1\DéjàYou - MAIN THEME_v1		9216144
+	857879824	262407-Tech_Button_22	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\262407-Tech_Button_22_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI Click\262407-Tech_Button_22		15588
 	979247378	End Lifetime	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\End Lifetime_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\End Lifetime		782716
 	981914805	DéjàYou - CHAPTER 2_v2	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Mac\SFX\DéjàYou - CHAPTER 2.v2_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\BGM-Switch\Chapter2-PL\DéjàYou - CHAPTER 2_v2\DéjàYou - CHAPTER 2_v2		10861860
 

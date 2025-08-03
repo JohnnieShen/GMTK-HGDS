@@ -193,6 +193,17 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Event Name="Play_ClickUI" ID="{1D3184C0-5905-481F-AE68-2F40C93C9854}">
+					<ChildrenList>
+						<Action Name="" ID="{78BFC968-43FE-4F02-B8F0-A9B2A2C991C8}" ShortID="380792487">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="UI Click" ID="{52B06B3E-5859-4406-A7CF-ECA61177D87E}" WorkUnitID="{FFCCD728-4249-4E66-919F-BEC7F9397FDC}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

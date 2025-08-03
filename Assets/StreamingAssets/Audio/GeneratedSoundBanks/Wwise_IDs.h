@@ -15,6 +15,7 @@ namespace AK
     {
         static const AkUniqueID PLAY_BGM = 3126765036U;
         static const AkUniqueID PLAY_BUTTONPRESS = 2652178615U;
+        static const AkUniqueID PLAY_CLICKUI = 4257816096U;
         static const AkUniqueID PLAY_DIE = 3092915528U;
         static const AkUniqueID PLAY_ENDLEVEL = 4083890705U;
         static const AkUniqueID PLAY_JUMPING = 2756694246U;
