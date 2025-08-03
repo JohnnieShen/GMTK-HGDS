@@ -24,6 +24,7 @@ public class GhostController : MonoBehaviour
 
     float startTime;
     float endTime;
+    int frameIndex;
 
     void Awake()
     {
@@ -40,52 +41,29 @@ public class GhostController : MonoBehaviour
     {
         if (inputFrames == null || inputFrames.Count == 0) return;
 
-        float t = TimelineManager.Instance.GetCurrentTime();
-        float speed = TimelineManager.Instance.timelineSpeed;
+        float   t     = TimelineManager.Instance.GetCurrentTime();
+        float   speed = TimelineManager.Instance.timelineSpeed;
 
-        var frame = inputFrames.OrderBy(f => Mathf.Abs(f.time - t)).First();
-
-        // Store previous position for movement calculation
-        Vector2 prevPos = transform.position;
-
-        movement.SetPosition(frame.position);
-        rb.linearVelocity = (speed < 0f) ? -frame.velocity : frame.velocity;
-        prevJumpHeld = frame.jump;
-
-        Debug.Log($"Ghost frame at t={frame.time:0.00}s: pos={frame.position}, vel={rb.linearVelocity}, jump={frame.jump}, interact={frame.interact}, propId={frame.interactPropId}");
-        if (frame.interact && frame.interactPropId != -1)
+        if (speed >= 0f)
         {
-            Debug.Log($"Ghost interacting with prop ID: {frame.interactPropId}");
-            var go = EditorUtility.InstanceIDToObject(frame.interactPropId) as GameObject;
-            if (go != null)
+            while (frameIndex < inputFrames.Count - 1 &&
+                   inputFrames[frameIndex + 1].time <= t)
             {
-                var i = go.GetComponent<Interactable>();
-                if (i != null) i.Interact();
+                frameIndex++;
+                ProcessInteraction(inputFrames[frameIndex]);
+            }
+        }
+        else
+        {
+            while (frameIndex > 0 &&
+                   inputFrames[frameIndex - 1].time >= t)
+            {
+                frameIndex--;
+                ProcessInteraction(inputFrames[frameIndex]);
             }
         }
 
-        // Calculate movement delta and move players riding the ghost
-        Vector2 currentPos = transform.position;
-        Vector2 delta = currentPos - prevPos;
-        
-        // Move all players riding on the ghost
-        foreach (var p in playersOnGhost)
-        {
-            if (p != null)
-            {
-                // Move the player by the same amount the ghost moved
-                p.position += (Vector3)delta;
-                
-                // Optional: Match ghost's horizontal velocity to prevent sliding
-                Rigidbody2D playerRb = p.GetComponent<Rigidbody2D>();
-                if (playerRb != null)
-                {
-                    Vector2 playerVel = playerRb.linearVelocity;
-                    playerVel.x = rb.linearVelocity.x; // Match ghost's horizontal velocity
-                    playerRb.linearVelocity = playerVel;
-                }
-            }
-        }
+        ApplyFrame(inputFrames[frameIndex], speed);
     }
 
     void TryInteract()
@@ -104,19 +82,26 @@ public class GhostController : MonoBehaviour
         }
     }
 
+    void ProcessInteraction(PlayerInputFrame f)
+    {
+        if (f.interact && f.interactPropId != -1)
+        {
+            var go = UnityEditor.EditorUtility.InstanceIDToObject(f.interactPropId) as GameObject;
+            go?.GetComponent<Interactable>()?.Interact();
+        }
+    }
+
+
     public void Seek(float time)
     {
         if (inputFrames == null || inputFrames.Count == 0) return;
 
-        PlayerInputFrame frame = inputFrames
-                                .OrderBy(f => Mathf.Abs(f.time - time))
-                                .First();
+        frameIndex = inputFrames.FindLastIndex(f => f.time <= time);
+        if (frameIndex < 0) frameIndex = 0;
 
-        movement.SetPosition(frame.position);
-        rb.linearVelocity = frame.velocity;
-
-        prevJumpHeld = frame.jump;
-        replayIndex = inputFrames.IndexOf(frame);
+        var f = inputFrames[frameIndex];
+        movement.SetPosition(f.position);
+        rb.linearVelocity = f.velocity;
     }
 
     public void Initialize(List<PlayerInputFrame> frames, float start, float end)
@@ -148,36 +133,38 @@ public class GhostController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D c)
     {
-        if (c.transform.CompareTag("Player"))
-        {
-            // Check if player is landing on top of the ghost (not hitting from the side)
-            bool isOnTop = false;
-            foreach (ContactPoint2D contact in c.contacts)
-            {
-                if (contact.normal.y < -0.5f) // Normal pointing down means player is on top
-                {
-                    isOnTop = true;
-                    break;
-                }
-            }
-            
-            if (isOnTop && !playersOnGhost.Contains(c.transform))
-            {
-                playersOnGhost.Add(c.transform);
-                Debug.Log($"Player {c.transform.name} is now riding ghost");
-            }
-        }
+        if (c.transform.CompareTag("Player") && c.contacts[0].normal.y < -0.5f
+            && !playersOnGhost.Contains(c.transform))
+            playersOnGhost.Add(c.transform);
     }
     
     void OnCollisionExit2D(Collision2D c)
     {
         if (c.transform.CompareTag("Player"))
-        {
             playersOnGhost.Remove(c.transform);
-            Debug.Log($"Player {c.transform.name} stopped riding ghost");
-        }
     }
 
-    
-    
+    void ApplyFrame(PlayerInputFrame f, float speed)
+    {
+        Vector2 prevPos = transform.position;
+
+        movement.SetPosition(f.position);
+        rb.linearVelocity = (speed < 0f) ? -f.velocity : f.velocity;
+
+        Vector2 delta = (Vector2)transform.position - prevPos;
+        foreach (var p in playersOnGhost)
+        {
+            if (p == null) continue;
+
+            p.position += (Vector3)delta;
+
+            Rigidbody2D prb = p.GetComponent<Rigidbody2D>();
+            if (prb != null)
+            {
+                Vector2 vel = prb.linearVelocity;
+                vel.x = rb.linearVelocity.x;
+                prb.linearVelocity = vel;
+            }
+        }
+    }
 }

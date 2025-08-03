@@ -34,7 +34,7 @@ public class PropManager : MonoBehaviour
     {
         float spd = TimelineManager.Instance.timelineSpeed;
         bool record   = spd > 0f;   // record on any forward speed
-        bool playback = spd < 0f;   // only play back when truly rewinding
+        bool playback = true;
 
         foreach (var r in recorders) {
             if (record)   r.RecordFrame(t);

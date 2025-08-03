@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0024414062, y: -0.0009765625}
+  m_AnchoredPosition: {x: 0.0024414062, y: -0.0012207031}
   m_SizeDelta: {x: 0.0048828, y: -0.0021973}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &168404316
@@ -876,23 +876,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5539752527927573022, guid: 9bc46d65280b6bc49b723e100eb69f29, type: 3}
       propertyPath: m_Size.x
-      value: 2.4393077
+      value: 3.5549169
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539752527927573022, guid: 9bc46d65280b6bc49b723e100eb69f29, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3807471
       objectReference: {fileID: 0}
     - target: {fileID: 5539752527927573022, guid: 9bc46d65280b6bc49b723e100eb69f29, type: 3}
       propertyPath: m_Offset.x
-      value: 0.00027561188
+      value: 0.024523497
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539752527927573022, guid: 9bc46d65280b6bc49b723e100eb69f29, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.043482393
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539752527927573022, guid: 9bc46d65280b6bc49b723e100eb69f29, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 4.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539752527927573022, guid: 9bc46d65280b6bc49b723e100eb69f29, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.99
       objectReference: {fileID: 0}
     - target: {fileID: 5702892600953854490, guid: 9bc46d65280b6bc49b723e100eb69f29, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.85
+      value: 1.1410501
       objectReference: {fileID: 0}
     - target: {fileID: 5702892600953854490, guid: 9bc46d65280b6bc49b723e100eb69f29, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.19330354
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 5702892600953854490, guid: 9bc46d65280b6bc49b723e100eb69f29, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.25
+      value: -0.9997
       objectReference: {fileID: 0}
     - target: {fileID: 5702892600953854490, guid: 9bc46d65280b6bc49b723e100eb69f29, type: 3}
       propertyPath: m_LocalPosition.y
@@ -928,6 +944,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5702892600953854490, guid: 9bc46d65280b6bc49b723e100eb69f29, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305089501793848765, guid: 9bc46d65280b6bc49b723e100eb69f29, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7453331761025500185, guid: 398a7be9bca3b6341887d088e2e1006e, type: 3}
+    - target: {fileID: 7305089501793848765, guid: 9bc46d65280b6bc49b723e100eb69f29, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305089501793848765, guid: 9bc46d65280b6bc49b723e100eb69f29, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305089501793848765, guid: 9bc46d65280b6bc49b723e100eb69f29, type: 3}
+      propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1244,7 +1276,7 @@ Transform:
   m_GameObject: {fileID: 1530638382}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.9999611, w: 0.008825855}
-  m_LocalPosition: {x: -3.161, y: -0.719, z: 0}
+  m_LocalPosition: {x: -3.114, y: -0.721, z: 0}
   m_LocalScale: {x: 0.13679999, y: 0.14604, z: 0.24}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1273,7 +1305,7 @@ PrefabInstance:
     - target: {fileID: 2006174340572178241, guid: 2553aed8fff72d14099e8317dc282894, type: 3}
       propertyPath: targetActiveSprite
       value: 
-      objectReference: {fileID: 8950681845281696607, guid: 63c2223d5744aa44b9ace3fb80c41dfd, type: 3}
+      objectReference: {fileID: 7453331761025500185, guid: 398a7be9bca3b6341887d088e2e1006e, type: 3}
     - target: {fileID: 7623182486518363383, guid: 2553aed8fff72d14099e8317dc282894, type: 3}
       propertyPath: m_Name
       value: BluePressure
