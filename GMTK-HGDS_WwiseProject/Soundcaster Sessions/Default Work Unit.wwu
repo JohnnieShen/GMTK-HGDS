@@ -18,6 +18,10 @@
 							<Position X="0" Y="3"/>
 						</Module>
 						<Module>
+							<ObjectRef Name="Play_EndLevel" ID="{13365941-1A55-47E7-8311-9887D577B67C}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}"/>
+							<Position X="0" Y="4"/>
+						</Module>
+						<Module>
 							<ObjectRef Name="Stop_BGM" ID="{CA686283-8F8E-4E35-990A-1691040BA711}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}"/>
 							<Position X="1" Y="1"/>
 						</Module>
@@ -30,8 +34,16 @@
 							<Position X="1" Y="3"/>
 						</Module>
 						<Module>
+							<ObjectRef Name="Play_Rewind" ID="{C88AA15F-9A58-4939-8AD3-129629190F78}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}"/>
+							<Position X="1" Y="4"/>
+						</Module>
+						<Module>
 							<ObjectRef Name="Play_ButtonPress" ID="{4AC480E7-13DC-4F55-A583-88D0D3BF8592}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}"/>
 							<Position X="2" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Stop_Rewind" ID="{8C897E8E-23BC-4408-BB43-28CF91F9E6E9}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}"/>
+							<Position X="2" Y="4"/>
 						</Module>
 						<Module>
 							<ObjectRef Name="Play_Spawn" ID="{72695843-0C9F-4CE4-8169-9A05BE3B2F38}" WorkUnitID="{C7624122-A8E2-43FF-9A37-0B378AB17C13}"/>
@@ -42,7 +54,12 @@
 							<Position X="4" Y="3"/>
 						</Module>
 					</ModuleList>
-					<RTPCValueList ShowAll="true"/>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="Speed" ID="{72C3053E-7BBE-4FE1-95EE-45BF8AEB7155}"/>
+							<Value>0</Value>
+						</RTPCValue>
+					</RTPCValueList>
 					<CurrentStateList ShowAll="true"/>
 					<CurrentSwitchList ShowAll="true">
 						<CurrentSwitchRef Name="Chapter1" ID="{4F53BEB2-A123-40DB-A716-2C6F930746E1}"/>

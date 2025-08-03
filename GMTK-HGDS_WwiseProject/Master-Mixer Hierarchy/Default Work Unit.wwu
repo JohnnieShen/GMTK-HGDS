@@ -27,6 +27,20 @@
 								</ObjectList>
 							</ObjectLists>
 						</AuxBus>
+						<Bus Name="Music" ID="{88F2E2BC-93FE-493E-AA13-2BA3A0587ED6}"/>
+						<Bus Name="Effects" ID="{49601813-2E7F-455C-8CC9-E4A8D0296570}">
+							<DuckingList>
+								<DuckItem>
+									<BusRef Name="Music" ID="{88F2E2BC-93FE-493E-AA13-2BA3A0587ED6}"/>
+									<DuckingParam>
+										<Volume>-9</Volume>
+										<FadeInTime>0.699999988079071</FadeInTime>
+										<FadeOutTime>0.699999988079071</FadeOutTime>
+										<FadeCurve>FadeLinear</FadeCurve>
+									</DuckingParam>
+								</DuckItem>
+							</DuckingList>
+						</Bus>
 					</ChildrenList>
 				</Bus>
 			</ChildrenList>

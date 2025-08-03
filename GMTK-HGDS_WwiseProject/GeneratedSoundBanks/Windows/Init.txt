@@ -1,5 +1,13 @@
+State Group	ID	Name			Wwise Object Path	Notes
+	782826392	Default			\Default Work Unit\Default	
+
+State	ID	Name	State Group			Notes
+	748895195	None	Default			
+
 Audio Bus	ID	Name			Wwise Object Path	Notes
+	1942696649	Effects			\Default Work Unit\Master Audio Bus\Effects	
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+	3991942870	Music			\Default Work Unit\Master Audio Bus\Music	
 
 Auxiliary Bus	ID	Name			Wwise Object Path	Notes
 	348963605	Reverb			\Default Work Unit\Master Audio Bus\Reverb	
