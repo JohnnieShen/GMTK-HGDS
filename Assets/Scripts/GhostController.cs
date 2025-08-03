@@ -153,7 +153,18 @@ public class GhostController : MonoBehaviour
 
         Vector2 delta = (Vector2)transform.position - prevPos;
         foreach (var p in playersOnGhost)
-            if (p) p.position += (Vector3)delta;
+        {
+            if (p == null) continue;
+
+            p.position += (Vector3)delta;
+
+            Rigidbody2D prb = p.GetComponent<Rigidbody2D>();
+            if (prb != null)
+            {
+                Vector2 vel = prb.linearVelocity;
+                vel.x = rb.linearVelocity.x;
+                prb.linearVelocity = vel;
+            }
+        }
     }
-    
 }
