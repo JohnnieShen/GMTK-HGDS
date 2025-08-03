@@ -1,4 +1,6 @@
 Event	ID	Name			Wwise Object Path	Notes
+	564679353	Stop_Rewind			\Default Work Unit\Rewind\Stop_Rewind	
+	869704911	Play_Rewind			\Default Work Unit\Rewind\Play_Rewind	
 	1012143543	Play_Spawn			\Default Work Unit\Spawn\Play_Spawn	
 	1073466678	Stop_BGM			\Default Work Unit\Stop_BGM	
 	1834004125	Play_Rolling			\Default Work Unit\Rolling\Play_Rolling	
@@ -8,6 +10,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	2756694246	Play_Jumping			\Default Work Unit\Jumping\Play_Jumping	
 	3092915528	Play_Die			\Default Work Unit\Die\Play_Die	
 	3126765036	Play_BGM			\Default Work Unit\Play_BGM	
+	4083890705	Play_EndLevel			\Default Work Unit\EndLevel\Play_EndLevel	
 
 Switch Group	ID	Name			Wwise Object Path	Notes
 	412724365	BGM			\Default Work Unit\BGM	
@@ -20,6 +23,9 @@ Switch	ID	Name	Switch Group			Notes
 	1183684781	Chapter5	BGM			
 	3604647259	MainMenu	BGM			
 
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	640949982	Speed			\Default Work Unit\Speed	
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	22541151	Button Press	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Windows\SFX\Button Press_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Button Press		93572
 	37369419	Jumping	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Windows\SFX\Jumping_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Jumping		312144
@@ -29,7 +35,9 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	345306008	Landing	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Windows\SFX\Landing_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Landing		217000
 	349871890	DéjàYou - CHAPTER 3_v2	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Windows\SFX\DéjàYou - CHAPTER 3.v2_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\BGM-Switch\Chapter3-PL\DéjàYou - CHAPTER 3_v2\DéjàYou - CHAPTER 3_v2		11520144
 	541674770	DéjàYou - CHAPTER 5_v2	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Windows\SFX\DéjàYou - CHAPTER 5.v2_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\BGM-Switch\Chapter5-PL\DéjàYou - CHAPTER 5_v2\DéjàYou - CHAPTER 5_v2		8418604
+	628720373	Rewind	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Windows\SFX\Rewind_FBC78EF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Rewind		1231668
 	645034010	DéjàYou - CHAPTER 1_v2	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Windows\SFX\DéjàYou - CHAPTER 1.v2_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\BGM-Switch\Chapter1-PL\DéjàYou - CHAPTER 1_v2\DéjàYou - CHAPTER 1_v2		12672144
+	696347180	End Level Collect	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Windows\SFX\End Level Collect_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\End Level Collect		412428
 	768716440	DéjàYou - MAIN THEME_v1	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Windows\SFX\DéjàYou - MAIN THEME.v1_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\BGM-Switch\Main-PL\DéjàYou - MAIN THEME_v1\DéjàYou - MAIN THEME_v1		9216144
 	979247378	End Lifetime	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Windows\SFX\End Lifetime_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\End Lifetime		782716
 	981914805	DéjàYou - CHAPTER 2_v2	Y:\Desktop\Desktop - MacBook Pro (2)\GameMaking\GMTK-HGDS\GMTK-HGDS_WwiseProject\.cache\Windows\SFX\DéjàYou - CHAPTER 2.v2_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\BGM-Switch\Chapter2-PL\DéjàYou - CHAPTER 2_v2\DéjàYou - CHAPTER 2_v2		10861860

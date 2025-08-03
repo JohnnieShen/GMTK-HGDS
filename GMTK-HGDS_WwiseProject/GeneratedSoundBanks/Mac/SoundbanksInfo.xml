@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="782826392" Type="User" Language="SFX" Hash="{AC9EBAA0-C739-B04A-B3AF-983B6DEEEFC9}">
+		<SoundBank Id="782826392" Type="User" Language="SFX" Hash="{BB0C806D-FD7F-D216-0064-C31E91E2D2E3}">
 			<ShortName>Default</ShortName>
 			<Path>Default.bnk</Path>
 			<Media>
@@ -45,9 +45,17 @@
 					<ShortName>DéjàYou - CHAPTER 5.v2.wav</ShortName>
 					<CachePath>SFX/DéjàYou - CHAPTER 5.v2_FBC78EF0.wem</CachePath>
 				</File>
+				<File Id="628720373" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Rewind.wav</ShortName>
+					<CachePath>SFX/Rewind_FBC78EF0.wem</CachePath>
+				</File>
 				<File Id="645034010" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>DéjàYou - CHAPTER 1.v2.wav</ShortName>
 					<CachePath>SFX/DéjàYou - CHAPTER 1.v2_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="696347180" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>End Level Collect.wav</ShortName>
+					<CachePath>SFX/End Level Collect_818F3B66.wem</CachePath>
 				</File>
 				<File Id="768716440" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>DéjàYou - MAIN THEME.v1.wav</ShortName>
@@ -125,6 +133,11 @@
 						<AuxBusRef Id="348963605" Name="Reverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="4083890705" Name="Play_EndLevel" DurationType="OneShot" DurationMin="2.0562735" DurationMax="2.242382">
+					<MediaRefs>
+						<MediaRef Id="696347180"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="2756694246" Name="Play_Jumping" DurationType="OneShot" DurationMin="1.4901316" DurationMax="1.772075">
 					<MediaRefs>
 						<MediaRef Id="37369419"/>
@@ -136,6 +149,14 @@
 				<Event Id="2323405115" Name="Play_Landing" DurationType="OneShot" DurationMin="0.97758746" DurationMax="1.3049227">
 					<MediaRefs>
 						<MediaRef Id="345306008"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="348963605" Name="Reverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="869704911" Name="Play_Rewind" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="628720373"/>
 					</MediaRefs>
 					<AuxBusRefs>
 						<AuxBusRef Id="348963605" Name="Reverb"/>
@@ -158,8 +179,12 @@
 					</AuxBusRefs>
 				</Event>
 				<Event Id="1073466678" Name="Stop_BGM" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="564679353" Name="Stop_Rewind" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="2567045767" Name="Stop_Rolling" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 			</Events>
+			<GameParameters>
+				<GameParameter Id="640949982" Name="Speed"/>
+			</GameParameters>
 			<SwitchGroups>
 				<SwitchGroup Id="412724365" Name="BGM">
 					<Switches>
@@ -173,7 +198,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{60ED9925-1083-90AE-7FBF-3FB11498A7A4}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{46873B15-225B-B355-5A50-54A43E90DCF2}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -186,7 +211,9 @@
 				</AudioDevices>
 			</Plugins>
 			<Busses>
+				<Bus Id="1942696649" Name="Effects"/>
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
+				<Bus Id="3991942870" Name="Music"/>
 			</Busses>
 			<AuxBusses>
 				<AuxBus Id="348963605" Name="Reverb">
@@ -197,6 +224,16 @@
 					</PluginRefs>
 				</AuxBus>
 			</AuxBusses>
+			<GameParameters>
+				<GameParameter Id="640949982" Name="Speed"/>
+			</GameParameters>
+			<StateGroups>
+				<StateGroup Id="782826392" Name="Default">
+					<States>
+						<State Id="748895195" Name="None"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
 			<SwitchGroups>
 				<SwitchGroup Id="412724365" Name="BGM">
 					<Switches>
@@ -211,5 +248,5 @@
 			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{222B4203-CD43-6523-FA1D-F5CCFD89C577}</FileHash>
+	<FileHash>{778A745E-2E4D-8461-BA57-B22FC089A42A}</FileHash>
 </SoundBanksInfo>

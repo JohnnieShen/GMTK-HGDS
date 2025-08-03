@@ -148,6 +148,51 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="EndLevel" ID="{833AE38B-B53F-4671-99B7-34B71986BFD9}" ShortID="958956389">
+					<ChildrenList>
+						<Event Name="Play_EndLevel" ID="{13365941-1A55-47E7-8311-9887D577B67C}">
+							<ChildrenList>
+								<Action Name="" ID="{F7CEA885-520B-4984-806B-C4ED004D6FB0}" ShortID="332765053">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="End Level Collect" ID="{BD2DF4A3-0575-44C6-A16B-B5A9D110F43C}" WorkUnitID="{FFCCD728-4249-4E66-919F-BEC7F9397FDC}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Rewind" ID="{93BFFF9D-CD40-40DF-AD9A-362303D41DEB}" ShortID="290199453">
+					<ChildrenList>
+						<Event Name="Play_Rewind" ID="{C88AA15F-9A58-4939-8AD3-129629190F78}">
+							<ChildrenList>
+								<Action Name="" ID="{999AB531-3D18-4BFE-9136-1EC73A9F994E}" ShortID="141984098">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Rewind" ID="{82E69001-FF05-4217-843A-7D1FB3A10276}" WorkUnitID="{FFCCD728-4249-4E66-919F-BEC7F9397FDC}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_Rewind" ID="{8C897E8E-23BC-4408-BB43-28CF91F9E6E9}">
+							<ChildrenList>
+								<Action Name="" ID="{029F0E11-D0BA-4339-94AF-DFDFDDDF13FD}" ShortID="239350199">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="FadeTime" Type="Real64" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Rewind" ID="{82E69001-FF05-4217-843A-7D1FB3A10276}" WorkUnitID="{FFCCD728-4249-4E66-919F-BEC7F9397FDC}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
