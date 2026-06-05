@@ -90,6 +90,7 @@ public class LifeManager : MonoBehaviour
         WwiseAudioGate.PostCharacterLifetimeEvent("Play_Die", gameObject);
         Debug.Log("Ending current life...");
         if (currentRec == null) return;
+        currentRec.GetComponent<SpectralImprintSource>()?.PlayDieDetached();
         Debug.Log($"LifeManager: Ending life at t={TimelineManager.Instance.GetCurrentTime():0.00}s");
 
         float lifeEndClock = TimelineManager.Instance.GetCurrentTime();
@@ -159,6 +160,8 @@ public class LifeManager : MonoBehaviour
         lifeStartClock = TimelineManager.Instance.GetCurrentTime();
 
         playerGO = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
+        var spectralImprint = playerGO.GetComponent<SpectralImprintSource>();
+        spectralImprint?.SetGenerationIndex(0);
         var anim = playerGO.GetComponent<Animator>();
         var col = playerGO.GetComponent<Collider2D>();
         col.isTrigger = false;
@@ -169,6 +172,7 @@ public class LifeManager : MonoBehaviour
         playerGO.SetActive(true);
         
         WwiseAudioGate.PostCharacterLifetimeEvent("Play_Spawn", gameObject);
+        spectralImprint?.PlaySpawn();
 
         GameManager.Instance.RegisterPlayer(playerGO);
 
@@ -181,12 +185,15 @@ public class LifeManager : MonoBehaviour
 
     GhostController SpawnGhost(LifeLog log)
     {
+        AgeExistingGhosts();
+
         var go = Instantiate(ghostPrefab, log.spawnPos, Quaternion.identity);
+        go.GetComponent<SpectralImprintSource>()?.SetGenerationIndex(0);
         
         // AkSoundEngine.PostEvent("Play_Spawn", gameObject);
         
         var gc = go.GetComponent<GhostController>() ?? go.AddComponent<GhostController>();
-        gc.Initialize(log.frames, log.startTime, log.endTime);
+        gc.Initialize(log.frames, log.startTime, log.endTime, 0);
         return gc;
     }
 
@@ -214,6 +221,22 @@ public class LifeManager : MonoBehaviour
 
         timeBudgetSlider.maxValue = totalTimeBudget;
         timeBudgetSlider.SetValueWithoutNotify(value);
+    }
+
+    void AgeExistingGhosts()
+    {
+        // Generation is relative age: each new ghost makes every older ghost feel one lifetime older.
+        for (int i = ghosts.Count - 1; i >= 0; i--)
+        {
+            var ghost = ghosts[i];
+            if (ghost == null)
+            {
+                ghosts.RemoveAt(i);
+                continue;
+            }
+
+            ghost.SetGenerationIndex(ghost.GenerationIndex + 1);
+        }
     }
     
     public void FullReset()

@@ -5,13 +5,16 @@ public class PlayerInputHandler : MonoBehaviour
 {
     MovementController movement;
     InputRecorder      recorder;
+    SpectralImprintSource spectralImprint;
     private bool jumpDownBuffered     = false;
     private bool interactDownBuffered = false;
+    bool wasGroundedLastFrame = true;
 
     void Awake()
     {
         movement = GetComponent<MovementController>();
         recorder = GetComponent<InputRecorder>();
+        spectralImprint = GetComponent<SpectralImprintSource>();
     }
 
     void Update()
@@ -33,6 +36,9 @@ public class PlayerInputHandler : MonoBehaviour
 
         bool jumpDown   = jumpDownBuffered;
         bool interact   = interactDownBuffered;
+        bool groundedNow = movement.IsGrounded();
+        bool landed = groundedNow && !wasGroundedLastFrame;
+        wasGroundedLastFrame = groundedNow;
 
         jumpDownBuffered     = false;
         interactDownBuffered = false;
@@ -48,6 +54,7 @@ public class PlayerInputHandler : MonoBehaviour
                 if (i != null)
                 {
                     interactPropId = c.gameObject.GetInstanceID();
+                    GetSpectralImprint()?.PlayInteract();
                     break;
                 }
             }
@@ -59,7 +66,17 @@ public class PlayerInputHandler : MonoBehaviour
         Debug.Log($"Recording input: {horizontal}, {jumpHeld}, {interact}, {interactPropId}");
         recorder.RecordInput(horizontal,
                              jumpHeld,
+                             jumpDown,
+                             landed,
                              interact,
                              interactPropId);
+    }
+
+    SpectralImprintSource GetSpectralImprint()
+    {
+        if (spectralImprint == null)
+            spectralImprint = GetComponent<SpectralImprintSource>();
+
+        return spectralImprint;
     }
 }
