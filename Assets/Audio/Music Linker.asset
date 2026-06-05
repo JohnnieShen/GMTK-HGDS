@@ -49,3 +49,9 @@ MonoBehaviour:
     musicSwitch: 4
   - sceneName: 5-1
     musicSwitch: 5
+  - sceneName: Level Select
+    musicSwitch: 0
+  - sceneName: 2-3
+    musicSwitch: 2
+  - sceneName: 2-4
+    musicSwitch: 2

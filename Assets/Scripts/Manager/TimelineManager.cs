@@ -101,11 +101,14 @@ public class TimelineManager : MonoBehaviour
 
     void OnForwardDown(BaseEventData _)
     {
+        Debug.LogWarning("WE ARE HERE");
         if (holdForward) return;
         holdForward = true;
         LifeManager.Instance.EndCurrentLife();
         SetPaused(false);
         timelineSpeed = Mathf.Abs(defaultSpeed) * fastSpeedMultiplier;
+        
+        AkSoundEngine.SetRTPCValue("Speed", 100);
     }
 
     void OnForwardUp(BaseEventData _)
@@ -114,6 +117,8 @@ public class TimelineManager : MonoBehaviour
         holdForward = false;
         SetPaused(true);
         timelineSpeed = defaultSpeed;
+        
+        AkSoundEngine.SetRTPCValue("Speed", 0);
     }
 
     void OnBackwardDown(BaseEventData _)
@@ -123,6 +128,8 @@ public class TimelineManager : MonoBehaviour
         LifeManager.Instance.EndCurrentLife();
         SetPaused(false);
         timelineSpeed = -Mathf.Abs(defaultSpeed) * fastSpeedMultiplier;
+        
+        AkSoundEngine.PostEvent("Play_Rewind", gameObject);
     }
 
     void OnBackwardUp(BaseEventData _)
@@ -131,6 +138,8 @@ public class TimelineManager : MonoBehaviour
         holdBackward = false;
         SetPaused(true);
         timelineSpeed = defaultSpeed;
+        
+        AkSoundEngine.PostEvent("Stop_Rewind", gameObject);
     }
 
     public float GetCurrentTime() => currentTime;
@@ -159,6 +168,12 @@ public class TimelineManager : MonoBehaviour
         trig.triggers.Add(entry);
     }
     
+    void OnDisable()
+    {
+        AkSoundEngine.SetRTPCValue("Speed", 0);
+        AkSoundEngine.PostEvent("Stop_Rewind", gameObject);
+    }
+    
     void OnDestroy()
     {
         if (fastForwardButton != null)
@@ -173,6 +188,9 @@ public class TimelineManager : MonoBehaviour
             if (bt != null)
                 bt.triggers.Clear();
         }
+        
+        AkSoundEngine.SetRTPCValue("Speed", 0);
+        AkSoundEngine.PostEvent("Stop_Rewind", gameObject);
 
         if (Instance == this)
             Instance = null;

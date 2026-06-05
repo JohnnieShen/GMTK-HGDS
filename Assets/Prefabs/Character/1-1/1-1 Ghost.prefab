@@ -102,7 +102,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.002254963, y: -0.03137684}
+  m_Offset: {x: -0.12566686, y: 0.16035938}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -112,7 +112,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 8.860185, y: 13.209858}
+  m_Size: {x: 10.094305, y: 13.59333}
   m_EdgeRadius: 0
 --- !u!212 &8222099162268165018
 SpriteRenderer:
@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Player
+  isGhost: 0
 --- !u!114 &5926560181322337046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ MonoBehaviour:
   ghostMask:
     serializedVersion: 2
     m_Bits: 0
-  groundCheckSize: {x: 0.28, y: -0.03}
+  groundCheckSize: {x: 0.37, y: -0.03}
   groundCheckOffset: {x: 0, y: -0.4, z: 0}
 --- !u!114 &6639932304955408398
 MonoBehaviour:

@@ -16,7 +16,7 @@
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{76D50652-1B41-4C93-AAB7-92B843FB85A6}"/>
 						</Reference>
 						<Reference Name="OutputBus">
-							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
+							<ObjectRef Name="Music" ID="{88F2E2BC-93FE-493E-AA13-2BA3A0587ED6}" WorkUnitID="{6A981736-87EF-4411-9028-502B468D97FA}"/>
 						</Reference>
 						<Reference Name="TransitionRoot">
 							<Custom>
@@ -1061,6 +1061,43 @@
 											</ObjectList>
 										</ObjectLists>
 									</MultiSwitchEntry>
+								</Local>
+							</Reference>
+						</ObjectList>
+						<ObjectList Name="RTPC">
+							<Reference>
+								<Local>
+									<RTPC Name="" ID="{EA9BA5C3-945A-487D-A77C-BC25557CE402}" ShortID="654935439">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="PlaybackSpeed"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<ObjectRef Name="Speed" ID="{72C3053E-7BBE-4FE1-95EE-45BF8AEB7155}" WorkUnitID="{E50556E4-CFCC-4A97-B357-3E0820109EE6}"/>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{B0BB288A-74E2-4628-9B2B-EB16104C9E01}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>1</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>1.667</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
 								</Local>
 							</Reference>
 						</ObjectList>
