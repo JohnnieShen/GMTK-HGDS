@@ -133,12 +133,12 @@ public class MovementController : MonoBehaviour
 
         if (isMovingHorizontally && !isRollingSoundPlaying)
         {
-            AkSoundEngine.PostEvent("Play_Rolling", gameObject);
+            WwiseAudioGate.PostCharacterLifetimeEvent("Play_Rolling", gameObject);
             isRollingSoundPlaying = true;
         }
         else if (!isMovingHorizontally && isRollingSoundPlaying)
         {
-            AkSoundEngine.PostEvent("Stop_Rolling", gameObject);
+            WwiseAudioGate.PostCharacterLifetimeEvent("Stop_Rolling", gameObject);
             isRollingSoundPlaying = false;
         }
     }
@@ -153,7 +153,7 @@ public class MovementController : MonoBehaviour
 
         if (isRollingSoundPlaying)
         {
-            AkSoundEngine.PostEvent("Stop_Rolling", gameObject);
+            WwiseAudioGate.PostCharacterLifetimeEvent("Stop_Rolling", gameObject);
             isRollingSoundPlaying = false;
         }
     }
@@ -167,7 +167,7 @@ public class MovementController : MonoBehaviour
 
         if (isRollingSoundPlaying)
         {
-            AkSoundEngine.PostEvent("Stop_Rolling", gameObject);
+            WwiseAudioGate.PostCharacterLifetimeEvent("Stop_Rolling", gameObject);
             isRollingSoundPlaying = false;
         }
     }
@@ -182,12 +182,12 @@ public class MovementController : MonoBehaviour
 
         if (isGroundedNow && !wasGroundedLastFrame)
         {
-            AkSoundEngine.PostEvent("Play_Landing", gameObject);
+            WwiseAudioGate.PostCharacterLifetimeEvent("Play_Landing", gameObject);
         }
         
         if (!isGroundedNow && wasGroundedLastFrame && rb.linearVelocity.y > 0.1f)
         {
-            AkSoundEngine.PostEvent("Play_Jumping", gameObject);
+            WwiseAudioGate.PostCharacterLifetimeEvent("Play_Jumping", gameObject);
         }
 
         wasGroundedLastFrame = isGroundedNow;

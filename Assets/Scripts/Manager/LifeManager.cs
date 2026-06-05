@@ -87,7 +87,7 @@ public class LifeManager : MonoBehaviour
 
     public void EndCurrentLife()
     {
-        AkSoundEngine.PostEvent("Play_Die", gameObject);
+        WwiseAudioGate.PostCharacterLifetimeEvent("Play_Die", gameObject);
         Debug.Log("Ending current life...");
         if (currentRec == null) return;
         Debug.Log($"LifeManager: Ending life at t={TimelineManager.Instance.GetCurrentTime():0.00}s");
@@ -168,7 +168,7 @@ public class LifeManager : MonoBehaviour
         anim.Update(0f);
         playerGO.SetActive(true);
         
-        AkSoundEngine.PostEvent("Play_Spawn", gameObject);
+        WwiseAudioGate.PostCharacterLifetimeEvent("Play_Spawn", gameObject);
 
         GameManager.Instance.RegisterPlayer(playerGO);
 
