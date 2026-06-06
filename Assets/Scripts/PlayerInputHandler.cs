@@ -8,7 +8,6 @@ public class PlayerInputHandler : MonoBehaviour
     SpectralImprintSource spectralImprint;
     private bool jumpDownBuffered     = false;
     private bool interactDownBuffered = false;
-    bool wasGroundedLastFrame = true;
 
     void Awake()
     {
@@ -36,9 +35,6 @@ public class PlayerInputHandler : MonoBehaviour
 
         bool jumpDown   = jumpDownBuffered;
         bool interact   = interactDownBuffered;
-        bool groundedNow = movement.IsGrounded();
-        bool landed = groundedNow && !wasGroundedLastFrame;
-        wasGroundedLastFrame = groundedNow;
 
         jumpDownBuffered     = false;
         interactDownBuffered = false;
@@ -63,10 +59,13 @@ public class PlayerInputHandler : MonoBehaviour
         movement.Move(horizontal);
         movement.Jump(jumpDown, jumpHeld);
 
+        bool jumpPerformed = movement.ConsumeJumpPerformed();
+        bool landed = movement.ConsumeLanded();
+
         Debug.Log($"Recording input: {horizontal}, {jumpHeld}, {interact}, {interactPropId}");
         recorder.RecordInput(horizontal,
                              jumpHeld,
-                             jumpDown,
+                             jumpPerformed,
                              landed,
                              interact,
                              interactPropId);

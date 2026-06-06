@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 5090687958022902127}
   - component: {fileID: 7816208111821142141}
   - component: {fileID: 7250958134567001001}
+  - component: {fileID: 7250958134567001201}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -215,6 +216,7 @@ MonoBehaviour:
     m_Bits: 0
   groundCheckSize: {x: 0.8, y: 0.1}
   groundCheckOffset: {x: 0, y: -1.2, z: 0}
+  landEventCooldown: 0.15
 --- !u!114 &5659049951494545854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,19 +294,49 @@ MonoBehaviour:
   dieClip: {fileID: 8300000, guid: 08178609b1fe54433bd4b42275a6134f, type: 3}
   interactClip: {fileID: 8300000, guid: 6b36b9646024f4f1798f4e670af02692, type: 3}
   playbackEnabled: 1
-  rollingVolume: 0.6
-  oneShotVolume: 1
-  rollingFadeSpeed: 8
+  rollingVolume: 0.3
+  oneShotVolume: 0.6
+  rollingFadeDuration: 0.75
   spatialBlend: 0
   minDistance: 1.5
   maxDistance: 18
+  randomizePlayback: 1
+  pitchRandomSemitones: 0.35
+  volumeRandomAmount: 0.08
   applyGenerationProfile: 1
-  volumeLossPerGeneration: 0.12
-  minGenerationVolume: 0.35
-  pitchLossPerGeneration: 0.035
-  minGenerationPitch: 0.82
-  maxLowPassCutoff: 22000
-  minLowPassCutoff: 1800
-  lowPassFalloff: 0.65
+  volumeLossPerGeneration: 0.1
+  minGenerationVolume: 0.5
+  quietGeneration: 3
+  quietGenerationVolume: 0.04
+  muteQuietGenerations: 0
+  enableCustomDsp: 1
+  maxLowPassCutoff: 16000
+  minLowPassCutoff: 700
+  lowPassFalloff: 0.45
+  maxDelayWet: 0.5
+  maxDelayFeedback: 0.55
+  delayTimeSeconds: 0.12
+  cleanBitDepth: 24
+  minBitDepth: 4
+  maxSampleHold: 8
+  parameterSmoothTime: 0.035
   debugLogging: 0
   debugPlayKey: 112
+  forceAuditionGeneration: 0
+  auditionGeneration: 2
+--- !u!114 &7250958134567001201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696089849162913681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99f91b7fd5f40e5b37ed3a2f1a08d0d, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  generation0Alpha: 1
+  generation1Alpha: 0.85
+  generation2Alpha: 0.65
+  generation3PlusAlpha: 0.4

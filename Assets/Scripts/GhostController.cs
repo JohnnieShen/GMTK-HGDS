@@ -9,6 +9,7 @@ public class GhostController : MonoBehaviour
     private SpriteRenderer sr;
     private Collider2D col;
     private SpectralImprintSource spectralImprint;
+    private SpectralGenerationVisual generationVisual;
     private List<PlayerInputFrame> inputFrames;
     private int replayIndex = 0;
     private bool prevJumpHeld = false;
@@ -36,10 +37,12 @@ public class GhostController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
         spectralImprint = GetComponent<SpectralImprintSource>();
+        generationVisual = GetComponent<SpectralGenerationVisual>();
         rb = GetComponent<Rigidbody2D>();
 
         gameObject.layer = ghostLayer;
-        SetTransparency(transparency);
+        if (generationVisual == null)
+            SetTransparency(transparency);
     }
 
     void FixedUpdate()
@@ -158,6 +161,7 @@ public class GhostController : MonoBehaviour
     {
         generationIndex = Mathf.Max(0, value);
         GetSpectralImprint()?.SetGenerationIndex(generationIndex);
+        GetGenerationVisual()?.SetGenerationIndex(generationIndex);
     }
 
 
@@ -215,5 +219,13 @@ public class GhostController : MonoBehaviour
             spectralImprint = GetComponent<SpectralImprintSource>();
 
         return spectralImprint;
+    }
+
+    SpectralGenerationVisual GetGenerationVisual()
+    {
+        if (generationVisual == null)
+            generationVisual = GetComponent<SpectralGenerationVisual>();
+
+        return generationVisual;
     }
 }

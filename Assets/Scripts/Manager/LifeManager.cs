@@ -157,11 +157,14 @@ public class LifeManager : MonoBehaviour
     {
         if (timeRemaining <= 0f) return;
 
+        AgeExistingGhosts();
+
         lifeStartClock = TimelineManager.Instance.GetCurrentTime();
 
         playerGO = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
         var spectralImprint = playerGO.GetComponent<SpectralImprintSource>();
         spectralImprint?.SetGenerationIndex(0);
+        playerGO.GetComponent<SpectralGenerationVisual>()?.SetGenerationIndex(0);
         var anim = playerGO.GetComponent<Animator>();
         var col = playerGO.GetComponent<Collider2D>();
         col.isTrigger = false;
@@ -185,10 +188,9 @@ public class LifeManager : MonoBehaviour
 
     GhostController SpawnGhost(LifeLog log)
     {
-        AgeExistingGhosts();
-
         var go = Instantiate(ghostPrefab, log.spawnPos, Quaternion.identity);
         go.GetComponent<SpectralImprintSource>()?.SetGenerationIndex(0);
+        go.GetComponent<SpectralGenerationVisual>()?.SetGenerationIndex(0);
         
         // AkSoundEngine.PostEvent("Play_Spawn", gameObject);
         
@@ -199,6 +201,7 @@ public class LifeManager : MonoBehaviour
 
     public float GetTimelineDuration() => TimelineManager.Instance.timelineDuration;
     public IReadOnlyList<LifeLog> Lives => completedLives;
+    public IReadOnlyList<GhostController> Ghosts => ghosts;
 
     void HandleLoop()
     {
