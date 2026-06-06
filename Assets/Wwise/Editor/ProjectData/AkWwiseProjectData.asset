@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy/Default Work Unit
     guid: 3617986aef8711449028502b468d97fa
     GuidInternal: 
-    m_lastTime: -8584209526680995465
+    m_lastTime: -8584208370325456462
     List:
     - name: Effects
       guid: 131860497f2e5c458cc9e4a8d0296570
@@ -546,8 +546,22 @@ MonoBehaviour:
     ParentPath: Game Parameters/Default Work Unit
     guid: e45605e5cccf974ab3573e0820109ee6
     GuidInternal: 
-    m_lastTime: -8584209526683155024
+    m_lastTime: -8584208370325433095
     List:
+    - name: MusicVolume
+      guid: c82687368f381c44a7d72c90d3346702
+      id: 2346531308
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: e45605e5cccf974ab3573e0820109ee6
+      - ElementName: MusicVolume
+        ObjectType: 13
+        guid: c82687368f381c44a7d72c90d3346702
+      Path: Game Parameters/Default Work Unit/MusicVolume
     - name: Speed
       guid: 3e05c372be7be14f95ee45bf8aeb7155
       id: 640949982
@@ -753,7 +767,7 @@ MonoBehaviour:
     m_lastTime: -8584295473029421844
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 1f00000020000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

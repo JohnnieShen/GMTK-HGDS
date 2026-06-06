@@ -60,6 +60,10 @@
 					</ModuleList>
 					<RTPCValueList ShowAll="true">
 						<RTPCValue>
+							<GameParameterRef Name="MusicVolume" ID="{368726C8-388F-441C-A7D7-2C90D3346702}"/>
+							<Value>34</Value>
+						</RTPCValue>
+						<RTPCValue>
 							<GameParameterRef Name="Speed" ID="{72C3053E-7BBE-4FE1-95EE-45BF8AEB7155}"/>
 							<Value>0</Value>
 						</RTPCValue>

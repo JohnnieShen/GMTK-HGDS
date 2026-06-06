@@ -11,6 +11,11 @@
 						<Property Name="SlewRateUp" Type="Real64" Value="200"/>
 					</PropertyList>
 				</GameParameter>
+				<GameParameter Name="MusicVolume" ID="{368726C8-388F-441C-A7D7-2C90D3346702}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="100"/>
+					</PropertyList>
+				</GameParameter>
 			</ChildrenList>
 		</WorkUnit>
 	</GameParameters>

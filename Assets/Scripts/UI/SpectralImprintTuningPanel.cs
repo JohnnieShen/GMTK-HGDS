@@ -226,20 +226,18 @@ public class SpectralImprintTuningPanel : MonoBehaviour
     string BuildStatusText()
     {
         int totalEchoes = 0;
-        int activeEchoes = 0;
 
         for (int i = 0; i < buckets.Length; i++)
         {
             totalEchoes += Mathf.Max(0, buckets[i].totalCount - buckets[i].playerCount);
-            activeEchoes += Mathf.Max(0, buckets[i].activeCount - buckets[i].playerCount);
         }
 
         string mode = SpectralImprintSource.ForceCleanShowcaseMode
             ? "BEFORE clean ghosts"
             : "AFTER spectral DSP";
-        string dspBackend = SpectralImprintNativeDsp.IsAvailable ? "C++ DSP" : "C# fallback";
+        string dspBackend = SpectralImprintNativeDsp.IsAvailable ? "C++ DSP ON" : "C++ DSP OFF";
 
-        return $"{mode}   {dspBackend}   alive echoes {totalEchoes}   audible now {activeEchoes}   F3 panel   F4 mode";
+        return $"{mode}   {dspBackend}   echoes {totalEchoes}   F3 panel   F4 mode";
     }
 
     void ApplyBucket(RowView row, GenerationBucket bucket)
