@@ -8,6 +8,8 @@ public class GhostController : MonoBehaviour
     private MovementController movement;
     private SpriteRenderer sr;
     private Collider2D col;
+    private SpectralImprintSource spectralImprint;
+    private SpectralGenerationVisual generationVisual;
     private List<PlayerInputFrame> inputFrames;
     private int replayIndex = 0;
     private bool prevJumpHeld = false;
@@ -24,16 +26,23 @@ public class GhostController : MonoBehaviour
     float startTime;
     float endTime;
     int frameIndex;
+    int generationIndex;
+    const float RollingVelocityThreshold = 0.05f;
+
+    public int GenerationIndex => generationIndex;
 
     void Awake()
     {
         movement = GetComponent<MovementController>();
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
+        spectralImprint = GetComponent<SpectralImprintSource>();
+        generationVisual = GetComponent<SpectralGenerationVisual>();
         rb = GetComponent<Rigidbody2D>();
 
         gameObject.layer = ghostLayer;
-        SetTransparency(transparency);
+        if (generationVisual == null)
+            SetTransparency(transparency);
     }
 
     void FixedUpdate()
@@ -43,13 +52,19 @@ public class GhostController : MonoBehaviour
         float   t     = TimelineManager.Instance.GetCurrentTime();
         float   speed = TimelineManager.Instance.timelineSpeed;
 
+        if (TimelineManager.Instance.IsPaused || Mathf.Approximately(speed, 0f))
+        {
+            GetSpectralImprint()?.SetRolling(false);
+            return;
+        }
+
         if (speed >= 0f)
         {
             while (frameIndex < inputFrames.Count - 1 &&
                    inputFrames[frameIndex + 1].time <= t)
             {
                 frameIndex++;
-                ProcessInteraction(inputFrames[frameIndex]);
+                ProcessForwardReplayEvents(inputFrames[frameIndex]);
             }
         }
         else
@@ -58,7 +73,7 @@ public class GhostController : MonoBehaviour
                    inputFrames[frameIndex - 1].time >= t)
             {
                 frameIndex--;
-                ProcessInteraction(inputFrames[frameIndex]);
+                ProcessInteraction(inputFrames[frameIndex], false);
             }
         }
 
@@ -81,10 +96,27 @@ public class GhostController : MonoBehaviour
         }
     }
 
-    void ProcessInteraction(PlayerInputFrame f)
+    void ProcessForwardReplayEvents(PlayerInputFrame current)
+    {
+        ProcessInteraction(current, true);
+
+        var imprint = GetSpectralImprint();
+        if (imprint == null) return;
+
+        if (current.jumpPressed)
+            imprint.PlayJump();
+
+        if (current.landed)
+            imprint.PlayLand();
+    }
+
+    void ProcessInteraction(PlayerInputFrame f, bool playAudio)
     {
         if (f.interact && f.interactPropId != -1)
         {
+            if (playAudio)
+                GetSpectralImprint()?.PlayInteract();
+
             var go = PropManager.Instance?.GetProp(f.interactPropId);
             go?.GetComponent<Interactable>()?.Interact();
         }
@@ -103,20 +135,33 @@ public class GhostController : MonoBehaviour
         rb.linearVelocity = f.velocity;
     }
 
-    public void Initialize(List<PlayerInputFrame> frames, float start, float end)
+    public void Initialize(List<PlayerInputFrame> frames, float start, float end, int generation)
     {
         inputFrames = new List<PlayerInputFrame>(frames);
         startTime = start;
         endTime = end;
+        SetGenerationIndex(generation);
 
         Seek(start);
         GameManager.Instance?.RegisterGhost(this, startTime, endTime);
     }
 
+    public void Initialize(List<PlayerInputFrame> frames, float start, float end)
+    {
+        Initialize(frames, start, end, 0);
+    }
+
     public void Initialize(List<PlayerInputFrame> frames, float start)
     {
         float end = frames is { Count: > 0 } ? frames[^1].time : start;
-        Initialize(frames, start, end);
+        Initialize(frames, start, end, 0);
+    }
+
+    public void SetGenerationIndex(int value)
+    {
+        generationIndex = Mathf.Max(0, value);
+        GetSpectralImprint()?.SetGenerationIndex(generationIndex);
+        GetGenerationVisual()?.SetGenerationIndex(generationIndex);
     }
 
 
@@ -149,6 +194,7 @@ public class GhostController : MonoBehaviour
 
         movement.SetPosition(f.position);
         rb.linearVelocity = (speed < 0f) ? -f.velocity : f.velocity;
+        GetSpectralImprint()?.SetRolling(Mathf.Abs(f.velocity.x) > RollingVelocityThreshold);
 
         Vector2 delta = (Vector2)transform.position - prevPos;
         foreach (var p in playersOnGhost)
@@ -165,5 +211,21 @@ public class GhostController : MonoBehaviour
                 prb.linearVelocity = vel;
             }
         }
+    }
+
+    SpectralImprintSource GetSpectralImprint()
+    {
+        if (spectralImprint == null)
+            spectralImprint = GetComponent<SpectralImprintSource>();
+
+        return spectralImprint;
+    }
+
+    SpectralGenerationVisual GetGenerationVisual()
+    {
+        if (generationVisual == null)
+            generationVisual = GetComponent<SpectralGenerationVisual>();
+
+        return generationVisual;
     }
 }

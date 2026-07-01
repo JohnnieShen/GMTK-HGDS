@@ -19,6 +19,8 @@ GameObject:
   - component: {fileID: 3561358669770227691}
   - component: {fileID: 5090687958022902127}
   - component: {fileID: 7816208111821142141}
+  - component: {fileID: 7250958134567001101}
+  - component: {fileID: 7250958134567001301}
   m_Layer: 0
   m_Name: 1-1 Player
   m_TagString: Player
@@ -215,6 +217,7 @@ MonoBehaviour:
     m_Bits: 512
   groundCheckSize: {x: 0.53, y: -0.03}
   groundCheckOffset: {x: 0, y: -0.4, z: 0}
+  landEventCooldown: 0.15
 --- !u!114 &6639932304955408398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,3 +290,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11d7b9e08dee7f4f88fd5dcec9c30cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7250958134567001101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696089849162913681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1e71d65d944ca79a813a7c8327d9f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rollingClip: {fileID: 8300000, guid: a5e116fe7c6d3495ea7c823a9268466a, type: 3}
+  jumpClip: {fileID: 8300000, guid: cfca112c47d6f4d9a8019b3e9b320090, type: 3}
+  landClip: {fileID: 8300000, guid: 77dc3535465284677b1a80ae0a16cfef, type: 3}
+  spawnClip: {fileID: 8300000, guid: ec6018a2e7a7c480297d0700c3cc91cb, type: 3}
+  dieClip: {fileID: 8300000, guid: 08178609b1fe54433bd4b42275a6134f, type: 3}
+  interactClip: {fileID: 8300000, guid: 6b36b9646024f4f1798f4e670af02692, type: 3}
+  playbackEnabled: 1
+  rollingVolume: 0.15
+  oneShotVolume: 0.2
+  rollingFadeDuration: 0.1
+  spatialBlend: 0
+  minDistance: 1.5
+  maxDistance: 18
+  randomizePlayback: 1
+  pitchRandomSemitones: 0.35
+  volumeRandomAmount: 0.08
+  applyGenerationProfile: 1
+  volumeLossPerGeneration: 0.1
+  minGenerationVolume: 0.5
+  quietGeneration: 3
+  quietGenerationVolume: 0.04
+  muteQuietGenerations: 0
+  enableCustomDsp: 1
+  maxLowPassCutoff: 16000
+  minLowPassCutoff: 700
+  lowPassFalloff: 0.45
+  maxDelayWet: 0.5
+  maxDelayFeedback: 0.55
+  delayTimeSeconds: 0.12
+  cleanBitDepth: 24
+  minBitDepth: 4
+  maxSampleHold: 8
+  parameterSmoothTime: 0.035
+  debugLogging: 0
+  debugPlayKey: 112
+  forceAuditionGeneration: 0
+  auditionGeneration: 2
+--- !u!114 &7250958134567001301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696089849162913681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99f91b7fd5f40e5b37ed3a2f1a08d0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generation0Alpha: 1
+  generation1Alpha: 0.7
+  generation2Alpha: 0.5
+  generation3PlusAlpha: 0.25

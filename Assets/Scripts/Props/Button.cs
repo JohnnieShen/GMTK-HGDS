@@ -40,7 +40,7 @@ public class Button : Interactable, RecordableProp
     {
         Debug.Log("Button pressed by interaction");
 
-        AkSoundEngine.PostEvent("Play_ButtonPress", gameObject);
+        WwiseAudioGate.PostCharacterLifetimeEvent("Play_ButtonPress", gameObject);
 
         if (!isProcessing)
             StartCoroutine(PressSequence());
@@ -79,7 +79,7 @@ public class Button : Interactable, RecordableProp
     {
         isProcessing = true;
         
-        AkSoundEngine.PostEvent("Play_ButtonPress", gameObject);
+        WwiseAudioGate.PostCharacterLifetimeEvent("Play_ButtonPress", gameObject);
 
         // Show activating sprite
         if (spriteRenderer && activatingSprite)

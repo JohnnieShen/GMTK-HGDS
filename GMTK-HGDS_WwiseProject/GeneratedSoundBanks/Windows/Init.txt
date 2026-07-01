@@ -4,6 +4,9 @@ State Group	ID	Name			Wwise Object Path	Notes
 State	ID	Name	State Group			Notes
 	748895195	None	Default			
 
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	2346531308	MusicVolume			\Default Work Unit\MusicVolume	
+
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	1942696649	Effects			\Default Work Unit\Master Audio Bus\Effects	
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	

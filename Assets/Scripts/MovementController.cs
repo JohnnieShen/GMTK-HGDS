@@ -26,6 +26,9 @@ public class MovementController : MonoBehaviour
     [SerializeField] Vector2  groundCheckSize = new(0.8f, 0.1f);
     [SerializeField] Vector3  groundCheckOffset = new(0f, -0.51f, 0f);
 
+    [Header("Audio Events")]
+    [SerializeField] float landEventCooldown = 0.15f;
+
     Rigidbody2D rb;
     Vector2 velocitySmooth;
     float  gravity;
@@ -39,6 +42,10 @@ public class MovementController : MonoBehaviour
     
     private bool isRollingSoundPlaying = false;
     private bool wasGroundedLastFrame = true;
+    bool jumpPerformedSinceLastConsume;
+    bool landedSinceLastConsume;
+    float lastLandEventTime = -999f;
+    SpectralImprintSource spectralImprint;
 
 
     public Vector2 CurrentVelocity => rb.linearVelocity;
@@ -46,6 +53,7 @@ public class MovementController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        spectralImprint = GetComponent<SpectralImprintSource>();
         rb.gravityScale = 0f;
 
         gravity = -(2f * jumpHeight) / (timeToApex * timeToApex);
@@ -53,6 +61,11 @@ public class MovementController : MonoBehaviour
 
         timeSinceJumpPressed = jumpBuffer + 1f;
         timeSinceLeftGround  = coyoteTime + 1f;
+    }
+
+    void Start()
+    {
+        wasGroundedLastFrame = IsGrounded();
     }
 
     void Update()
@@ -121,6 +134,9 @@ public class MovementController : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpVel);
         timeSinceJumpPressed = jumpBuffer + 1f;
+        jumpPerformedSinceLastConsume = true;
+        GetSpectralImprint()?.PlayJump();
+        WwiseAudioGate.PostCharacterLifetimeEvent("Play_Jumping", gameObject);
     }
     
     void HandleRollingSFX()
@@ -130,15 +146,16 @@ public class MovementController : MonoBehaviour
             return;
 
         bool isMovingHorizontally = Mathf.Abs(rb.linearVelocity.x) > 0.05f;
+        GetSpectralImprint()?.SetRolling(isMovingHorizontally);
 
         if (isMovingHorizontally && !isRollingSoundPlaying)
         {
-            AkSoundEngine.PostEvent("Play_Rolling", gameObject);
+            WwiseAudioGate.PostCharacterLifetimeEvent("Play_Rolling", gameObject);
             isRollingSoundPlaying = true;
         }
         else if (!isMovingHorizontally && isRollingSoundPlaying)
         {
-            AkSoundEngine.PostEvent("Stop_Rolling", gameObject);
+            WwiseAudioGate.PostCharacterLifetimeEvent("Stop_Rolling", gameObject);
             isRollingSoundPlaying = false;
         }
     }
@@ -148,12 +165,13 @@ public class MovementController : MonoBehaviour
     void OnDestroy()
     {
         var ghost = GetComponent<GhostController>();
+        GetSpectralImprint()?.SetRolling(false);
         if (ghost != null && ghost.enabled)
             return;
 
         if (isRollingSoundPlaying)
         {
-            AkSoundEngine.PostEvent("Stop_Rolling", gameObject);
+            WwiseAudioGate.PostCharacterLifetimeEvent("Stop_Rolling", gameObject);
             isRollingSoundPlaying = false;
         }
     }
@@ -162,12 +180,13 @@ public class MovementController : MonoBehaviour
     void OnDisable()
     {
         var ghost = GetComponent<GhostController>();
+        GetSpectralImprint()?.SetRolling(false);
         if (ghost != null && ghost.enabled)
             return;
 
         if (isRollingSoundPlaying)
         {
-            AkSoundEngine.PostEvent("Stop_Rolling", gameObject);
+            WwiseAudioGate.PostCharacterLifetimeEvent("Stop_Rolling", gameObject);
             isRollingSoundPlaying = false;
         }
     }
@@ -180,17 +199,37 @@ public class MovementController : MonoBehaviour
 
         bool isGroundedNow = IsGrounded();
 
-        if (isGroundedNow && !wasGroundedLastFrame)
+        if (isGroundedNow && !wasGroundedLastFrame && Time.time >= lastLandEventTime + landEventCooldown)
         {
-            AkSoundEngine.PostEvent("Play_Landing", gameObject);
-        }
-        
-        if (!isGroundedNow && wasGroundedLastFrame && rb.linearVelocity.y > 0.1f)
-        {
-            AkSoundEngine.PostEvent("Play_Jumping", gameObject);
+            landedSinceLastConsume = true;
+            lastLandEventTime = Time.time;
+            GetSpectralImprint()?.PlayLand();
+            WwiseAudioGate.PostCharacterLifetimeEvent("Play_Landing", gameObject);
         }
 
         wasGroundedLastFrame = isGroundedNow;
+    }
+
+    public bool ConsumeJumpPerformed()
+    {
+        bool value = jumpPerformedSinceLastConsume;
+        jumpPerformedSinceLastConsume = false;
+        return value;
+    }
+
+    public bool ConsumeLanded()
+    {
+        bool value = landedSinceLastConsume;
+        landedSinceLastConsume = false;
+        return value;
+    }
+
+    SpectralImprintSource GetSpectralImprint()
+    {
+        if (spectralImprint == null)
+            spectralImprint = GetComponent<SpectralImprintSource>();
+
+        return spectralImprint;
     }
 
 

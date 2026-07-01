@@ -27,7 +27,47 @@
 								</ObjectList>
 							</ObjectLists>
 						</AuxBus>
-						<Bus Name="Music" ID="{88F2E2BC-93FE-493E-AA13-2BA3A0587ED6}"/>
+						<Bus Name="Music" ID="{88F2E2BC-93FE-493E-AA13-2BA3A0587ED6}">
+							<ObjectLists>
+								<ObjectList Name="RTPC">
+									<Reference>
+										<Local>
+											<RTPC Name="" ID="{E469DC83-35CC-45C3-9222-C740F3A61E6C}" ShortID="619538518">
+												<PropertyList>
+													<Property Name="PropertyName" Type="string" Value="BusVolume"/>
+												</PropertyList>
+												<ReferenceList>
+													<Reference Name="ControlInput">
+														<ObjectRef Name="MusicVolume" ID="{368726C8-388F-441C-A7D7-2C90D3346702}" WorkUnitID="{E50556E4-CFCC-4A97-B357-3E0820109EE6}"/>
+													</Reference>
+													<Reference Name="Curve">
+														<Custom>
+															<Curve Name="" ID="{8E184205-CBA5-4B29-838C-CC76665A670A}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="3"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>-96</YPos>
+																		<Flags>5</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>100</XPos>
+																		<YPos>0</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</Custom>
+													</Reference>
+												</ReferenceList>
+											</RTPC>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</Bus>
 						<Bus Name="Effects" ID="{49601813-2E7F-455C-8CC9-E4A8D0296570}">
 							<DuckingList>
 								<DuckItem>

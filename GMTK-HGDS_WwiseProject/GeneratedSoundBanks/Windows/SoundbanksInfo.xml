@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="782826392" Type="User" Language="SFX" Hash="{C21A4AF2-8992-5157-AEEA-9F941BCBAE1E}">
+		<SoundBank Id="782826392" Type="User" Language="SFX" Hash="{E6193815-CD83-40CF-CEB4-797F7FA17BF9}">
 			<ShortName>Default</ShortName>
 			<Path>Default.bnk</Path>
 			<Media>
@@ -220,7 +220,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{12E86C74-B869-58EE-30A1-3155327B4D29}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{9F3C1487-9452-6D93-E2DA-BC9CF1480525}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -248,6 +248,7 @@
 			</AuxBusses>
 			<GameParameters>
 				<GameParameter Id="640949982" Name="Speed"/>
+				<GameParameter Id="2346531308" Name="MusicVolume"/>
 			</GameParameters>
 			<StateGroups>
 				<StateGroup Id="782826392" Name="Default">
@@ -270,5 +271,5 @@
 			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{2ABDFDB4-093C-3A83-BC47-DAE170769B9A}</FileHash>
+	<FileHash>{449EA20F-5279-66B4-209A-820493E19A06}</FileHash>
 </SoundBanksInfo>
