@@ -309,9 +309,9 @@ MonoBehaviour:
   dieClip: {fileID: 8300000, guid: 08178609b1fe54433bd4b42275a6134f, type: 3}
   interactClip: {fileID: 8300000, guid: 6b36b9646024f4f1798f4e670af02692, type: 3}
   playbackEnabled: 1
-  rollingVolume: 0.1
-  oneShotVolume: 0.2
-  rollingFadeDuration: 0.1
+  rollingVolume: 0.08
+  oneShotVolume: 0.12
+  rollingFadeDuration: 0.2
   spatialBlend: 0
   minDistance: 1.5
   maxDistance: 18

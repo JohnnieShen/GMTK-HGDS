@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rtpcName: MusicVolume
   applyGlobally: 1
-  normalValue: 67
-  showcaseValue: 0
+  normalValue: 70
+  showcaseValue: 40
   fadeDurationMs: 250
   fadeCurve: 4
